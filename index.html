@@ -3,12 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#10100f">
+    <meta name="theme-color" content="#f8f4e9">
     <meta name="description" content="D Psalmist Music Ministry — gospel music, contemporary Christian worship, African Highlife, music ministration, concerts and events with JethrosonMKO.">
     <title>D Psalmist Music Ministry | JethrosonMKO</title>
 
     <!-- Main styling is kept in a separate, easy-to-edit CSS file. -->
     <link rel="stylesheet" href="./styles.css">
+    <script>
+        /* Apply the saved theme before first paint; defaults to the existing bright theme. */
+        (function () {
+            var preference = "light";
+            try { preference = localStorage.getItem("dpmThemePreference_v1") || "light"; } catch (error) {}
+            if (!["light", "dark", "system"].includes(preference)) preference = "light";
+            var systemDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+            document.documentElement.dataset.theme = preference === "system" ? (systemDark ? "dark" : "light") : preference;
+            document.documentElement.dataset.themePreference = preference;
+        })();
+    </script>
     <style>
         /* Admin entry points are hidden from public visitors. Open with ?admin=1. */
         .admin-open, .footer-admin { display: none !important; }
@@ -29,8 +40,8 @@
                     <span class="logo-spark"></span>
                 </span>
                 <span class="brand-copy">
-                    <strong>D Psalmist</strong>
-                    <small>Music Ministry</small>
+                    <strong>D PSALMIST</strong>
+                    <small>MUSIC MINISTRY</small>
                 </span>
             </a>
 
@@ -39,6 +50,7 @@
             </button>
 
             <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+                <a href="#church">Church &amp; Devotional</a>
                 <a href="#about">About</a>
                 <a href="#music">Music</a>
                 <a href="#services">Services</a>
@@ -47,6 +59,12 @@
                 <a href="#updates">Updates</a>
                 <a href="#contact">Contact</a>
                 <button class="button button-small button-outline admin-open" type="button">Admin Login</button>
+                <div class="theme-switcher" role="group" aria-label="Website appearance">
+                    <span class="theme-switcher-label">Theme</span>
+                    <button class="theme-choice" type="button" data-theme-choice="light" aria-pressed="true" title="Use white theme">☀ <span>White</span></button>
+                    <button class="theme-choice" type="button" data-theme-choice="dark" aria-pressed="false" title="Use dark theme">☾ <span>Dark</span></button>
+                    <button class="theme-choice" type="button" data-theme-choice="system" aria-pressed="false" title="Follow device theme">◐ <span>System</span></button>
+                </div>
             </nav>
         </div>
     </header>
@@ -89,6 +107,7 @@
                             <small>Gospel Artist</small>
                         </div>
                     </div>
+                    <div class="latest-update-box" aria-live="polite"><span class="latest-update-label"><i></i> LATEST UPDATE</span><p id="latestUpdateText">New music and ministry updates coming soon.</p></div>
                     <div class="floating-note note-one" aria-hidden="true">♪</div>
                     <div class="floating-note note-two" aria-hidden="true">♫</div>
                     <div class="vertical-caption">D PSALMIST MUSIC MINISTRY</div>
@@ -227,7 +246,7 @@
                     <div class="slider-track" id="featuredSliderTrack" aria-live="polite"></div>
                     <button class="slider-arrow slider-prev" id="sliderPrev" type="button" aria-label="Previous featured photo">‹</button>
                     <button class="slider-arrow slider-next" id="sliderNext" type="button" aria-label="Next featured photo">›</button>
-                    <div class="slider-bottom-bar"><span id="sliderCounter">01 / 04</span><div class="slider-dots" id="sliderDots" aria-label="Choose featured photo"></div><span class="slider-auto-label"><i></i> AUTO ROTATE · 4 SEC</span></div>
+                    <div class="slider-bottom-bar"><span id="sliderCounter">01 / 07</span><div class="slider-dots" id="sliderDots" aria-label="Choose featured photo"></div><span class="slider-auto-label"><i></i> AUTO ROTATE · 4 SEC</span></div>
                 </div>
             </div>
         </section>
@@ -293,9 +312,9 @@
                         <a id="phoneTwoLink" href="tel:+2348130450135"><span class="contact-link-icon" aria-hidden="true">☎</span><span><small>Call</small><strong id="phoneTwoText">+234 813 045 0135</strong></span></a>
                     </div>
                     <div class="social-links" id="socialLinks">
-                        <a id="facebookLink" href="https://www.facebook.com/profile.php?id=61590028066545" target="_blank" rel="noopener noreferrer" aria-label="Facebook">f</a>
-                        <a id="tiktokLink" href="https://www.tiktok.com/@jethrosonmko?_r=1&_t=ZS-9AY5ZBDoaE1" target="_blank" rel="noopener noreferrer" aria-label="TikTok">♪</a>
-                        <a id="whatsappLink" href="https://wa.me/2349020075539" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">WA</a>
+                        <a id="facebookLink" href="https://www.facebook.com/profile.php?id=61590028066545" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-8.2h2.8l.42-3.2H13.5V7.55c0-.93.26-1.56 1.6-1.56h1.72V3.13A22.4 22.4 0 0 0 14.3 3c-2.5 0-4.2 1.53-4.2 4.34V9.6H7.3v3.2h2.8V21z"/></svg></a>
+                        <a id="tiktokLink" href="https://www.tiktok.com/@jethrosonmko?_r=1&_t=ZS-9AY5ZBDoaE1" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19.6 7.1a6.4 6.4 0 0 1-4.1-1.5v8.1a5.8 5.8 0 1 1-5-5.7v3.2a2.6 2.6 0 1 0 1.8 2.5V2.8h3.2c.2 2.2 1.7 3.9 4.1 4.2z"/></svg></a>
+                        <a id="whatsappLink" href="https://wa.me/2349020075539" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.04 2a9.9 9.9 0 0 0-8.5 15l-1.1 4 4.1-1.08A10 10 0 1 0 12.04 2m0 18.1a8.1 8.1 0 0 1-4.13-1.13l-.3-.18-2.43.64.65-2.37-.2-.31A8.1 8.1 0 1 1 12.04 20.1m4.45-6.07c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.95-1.2-.72-.64-1.2-1.43-1.34-1.67-.14-.24-.02-.37.1-.49.1-.1.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.4-.4-.54-.4h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.31.98 2.47c.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.1.15 1.51.09.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28"/></svg></a>
                     </div>
                 </div>
 
@@ -330,14 +349,33 @@
                 </div>
             </div>
         </section>
+        <!-- ================= CHURCH PARTNERSHIP & BESTRONG DEVOTIONAL (MOVED BELOW MAIN MINISTRY CONTENT) ================= -->
+        <!-- ================= CHURCH PARTNERSHIP & BESTRONG DEVOTIONAL ================= -->
+        <section class="church-devotional-section" id="church" aria-labelledby="churchSectionTitle">
+            <div class="container">
+                <div class="church-partner-card">
+                    <div class="church-logo-wrap" id="churchLogoWrap" aria-label="Church logo"><span class="church-cross" aria-hidden="true">✝</span></div>
+                    <div class="church-partner-copy"><p class="eyebrow">Church partnership</p><h2 id="churchSectionTitle">The Latter Day Church of Jesus Christ</h2><p id="churchIntroText">A ministry relationship built around faith, encouragement, and the Word of God.</p></div>
+                    <a class="button button-gold" id="churchWebsiteLink" href="https://example.com" target="_blank" rel="noopener noreferrer">Visit church website ↗</a>
+                </div>
+                <div class="devotional-panel" aria-labelledby="devotionalHeading">
+                    <div class="devotional-heading"><p class="eyebrow">Faith • Word • Daily encouragement</p><h2 id="devotionalHeading">BESTRONG DAILY DEVOTIONAL</h2><p id="devotionalDate" class="devotional-date"></p></div>
+                    <div class="devotional-content" id="devotionalContent"><p class="devotional-empty">The latest BeStrong Daily Devotional will be published here. Check back for devotional pictures and messages.</p></div>
+                </div>
+            </div>
+        </section>
+
     </main>
+
+    <!-- ======================= EDITABLE MOVING FOOTER MESSAGE ======================= -->
+    <div class="footer-marquee" aria-label="Ministry announcement"><div class="footer-marquee-track"><span id="footerMovingText">D Psalmist Music Ministry • Gospel sound • Worship heart • Purposeful living</span><span aria-hidden="true" id="footerMovingTextDuplicate">D Psalmist Music Ministry • Gospel sound • Worship heart • Purposeful living</span></div></div>
 
     <!-- ======================= FOOTER ======================= -->
     <footer class="site-footer">
         <div class="container footer-top">
             <a class="brand footer-brand" href="#top">
                 <span class="brand-emblem" aria-hidden="true"><span class="logo-orbit orbit-one"></span><span class="logo-orbit orbit-two"></span><span class="logo-core">D<span>P</span></span><span class="logo-spark"></span></span>
-                <span class="brand-copy"><strong>D Psalmist</strong><small>Music Ministry</small></span>
+                <span class="brand-copy"><strong>D PSALMIST</strong><small>MUSIC MINISTRY</small></span>
             </a>
             <p>Gospel sound. Worship heart. Purposeful living.</p>
             <a class="back-to-top" href="#top">Back to top ↑</a>
@@ -385,9 +423,9 @@
             <div class="admin-layout">
                 <aside class="admin-sidebar" aria-label="Admin sections">
                     <button class="admin-tab active" type="button" data-admin-tab="basics">Website basics</button>
-                    <button class="admin-tab" type="button" data-admin-tab="slider">Featured slider (4)</button>
+                    <button class="admin-tab" type="button" data-admin-tab="slider">Featured slider (7)</button>
                     <button class="admin-tab" type="button" data-admin-tab="gallery">Photo gallery (7)</button>
-                    <button class="admin-tab" type="button" data-admin-tab="news">News updates (2)</button>
+                    <button class="admin-tab" type="button" data-admin-tab="news">News updates (4)</button>
                     <button class="admin-tab" type="button" data-admin-tab="videos">▶ Manage YouTube videos (3)</button>
                     <button class="admin-tab" type="button" data-admin-tab="music">Music releases</button>
                     <button class="admin-tab" type="button" data-admin-tab="stores">Music stores (6)</button>
@@ -450,6 +488,40 @@
         "use strict";
 
         /* ============================================================
+           THEME SWITCHER — white, dark, or follow device settings.
+           Preference is stored separately from website content.
+        ============================================================ */
+        const THEME_PREFERENCE_KEY = "dpmThemePreference_v1";
+        const themeMediaQuery = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
+
+        function applyThemePreference(preference) {
+            const validPreference = ["light", "dark", "system"].includes(preference) ? preference : "light";
+            let effectiveTheme = validPreference;
+            if (validPreference === "system") effectiveTheme = themeMediaQuery && themeMediaQuery.matches ? "dark" : "light";
+            document.documentElement.dataset.themePreference = validPreference;
+            document.documentElement.dataset.theme = effectiveTheme;
+            document.documentElement.style.colorScheme = effectiveTheme;
+            document.querySelectorAll("[data-theme-choice]").forEach(button => {
+                const selected = button.dataset.themeChoice === validPreference;
+                button.setAttribute("aria-pressed", String(selected));
+                button.classList.toggle("is-selected", selected);
+            });
+            try { localStorage.setItem(THEME_PREFERENCE_KEY, validPreference); } catch (error) { /* Theme still works for this page view. */ }
+        }
+
+        document.querySelectorAll("[data-theme-choice]").forEach(button => {
+            button.addEventListener("click", () => applyThemePreference(button.dataset.themeChoice));
+        });
+        if (themeMediaQuery) {
+            const followSystemTheme = () => {
+                if (document.documentElement.dataset.themePreference === "system") applyThemePreference("system");
+            };
+            if (typeof themeMediaQuery.addEventListener === "function") themeMediaQuery.addEventListener("change", followSystemTheme);
+            else if (typeof themeMediaQuery.addListener === "function") themeMediaQuery.addListener(followSystemTheme);
+        }
+        applyThemePreference(document.documentElement.dataset.themePreference || "light");
+
+        /* ============================================================
            1. SITE CONTENT / DEFAULT SETTINGS
            Edit this section if you want to change the initial content.
            Uploaded media is stored separately in IndexedDB.
@@ -482,11 +554,26 @@
                 facebook: "https://www.facebook.com/profile.php?id=61590028066545",
                 tiktok: "https://www.tiktok.com/@jethrosonmko?_r=1&_t=ZS-9AY5ZBDoaE1"
             },
+            latestUpdate: "Stay connected for new songs, live ministrations, and ministry announcements.",
+            tickerText: "D Psalmist Music Ministry • Gospel sound • Worship heart • Purposeful living • Follow JethrosonMKO for the latest updates",
+            church: {
+                name: "The Latter Day Church of Jesus Christ",
+                url: "https://example.com",
+                intro: "A ministry relationship built around faith, encouragement, and the Word of God.",
+                devotionalTitle: "BESTRONG DAILY DEVOTIONAL",
+                devotionalDate: "",
+                devotionalBody: "",
+                mediaKey: "devotional-image",
+                logoMediaKey: "church-logo"
+            },
             slider: [
                 { caption: "Inside D Psalmist Studio", mediaKey: "slider-1" },
                 { caption: "Music, worship, and inspiration", mediaKey: "slider-2" },
                 { caption: "Live gospel moments", mediaKey: "slider-3" },
-                { caption: "Creating sounds that lift the soul", mediaKey: "slider-4" }
+                { caption: "Creating sounds that lift the soul", mediaKey: "slider-4" },
+                { caption: "Faith expressed through music", mediaKey: "slider-5" },
+                { caption: "Worship, fellowship, and service", mediaKey: "slider-6" },
+                { caption: "The journey continues with purpose", mediaKey: "slider-7" }
             ],
             gallery: [
                 { caption: "Studio sessions", mediaKey: "gallery-1" },
@@ -509,6 +596,18 @@
                     date: "Bookings",
                     body: "Invite JethrosonMKO for music ministration, concerts, MC engagements, studio enquiries, and other entertainment services. Use the booking form to tell us about your programme.",
                     mediaKey: "news-2"
+                },
+                {
+                    title: "BeStrong Daily Devotional",
+                    date: "Faith & encouragement",
+                    body: "Look out for BeStrong Daily Devotional messages designed to encourage faith, courage, and daily fellowship with God.",
+                    mediaKey: "news-3"
+                },
+                {
+                    title: "Follow the latest ministry updates",
+                    date: "Stay connected",
+                    body: "Follow JethrosonMKO on social media for new music, upcoming ministrations, event notices, and moments from the ministry.",
+                    mediaKey: "news-4"
                 }
             ],
             videos: [
@@ -543,9 +642,12 @@
             parsed = parsed && typeof parsed === "object" ? parsed : {};
             return {
                 contact: { ...DEFAULT_SITE_DATA.contact, ...(parsed.contact || {}) },
-                slider: Array.from({ length: 4 }, (_, index) => ({ ...DEFAULT_SITE_DATA.slider[index], ...((parsed.slider || [])[index] || {}) })),
+                latestUpdate: typeof parsed.latestUpdate === "string" ? parsed.latestUpdate : DEFAULT_SITE_DATA.latestUpdate,
+                tickerText: typeof parsed.tickerText === "string" ? parsed.tickerText : DEFAULT_SITE_DATA.tickerText,
+                church: { ...DEFAULT_SITE_DATA.church, ...(parsed.church || {}) },
+                slider: Array.from({ length: 7 }, (_, index) => ({ ...DEFAULT_SITE_DATA.slider[index], ...((parsed.slider || [])[index] || {}) })),
                 gallery: Array.from({ length: 7 }, (_, index) => ({ ...DEFAULT_SITE_DATA.gallery[index], ...((parsed.gallery || [])[index] || {}) })),
-                news: Array.from({ length: 2 }, (_, index) => ({ ...DEFAULT_SITE_DATA.news[index], ...((parsed.news || [])[index] || {}) })),
+                news: Array.from({ length: 4 }, (_, index) => ({ ...DEFAULT_SITE_DATA.news[index], ...((parsed.news || [])[index] || {}) })),
                 videos: Array.from({ length: 3 }, (_, index) => ({ ...DEFAULT_SITE_DATA.videos[index], ...((parsed.videos || [])[index] || {}) })),
                 stores: Array.from({ length: 6 }, (_, index) => ({ ...DEFAULT_SITE_DATA.stores[index], ...((parsed.stores || [])[index] || {}) })),
                 releases: Array.isArray(parsed.releases) ? parsed.releases : [],
@@ -779,8 +881,10 @@
             const contact = siteData.contact;
             document.title = `${contact.brand || "D Psalmist Music Ministry"} | ${contact.artist || "JethrosonMKO"}`;
             document.querySelector('meta[name="description"]').setAttribute("content", `${contact.brand}. ${contact.artist}. ${contact.genres}. Book music ministration, concerts, MC services, and studio enquiries.`);
-            document.querySelectorAll(".brand-copy strong").forEach(element => element.textContent = contact.brand || "D Psalmist");
-            document.querySelectorAll(".brand-copy small").forEach(element => element.textContent = "Music Ministry");
+            const brandName = String(contact.brand || "D Psalmist Music Ministry").trim();
+            const mainBrandName = brandName.replace(/\s+music\s+ministry$/i, "").trim() || "D Psalmist";
+            document.querySelectorAll(".brand-copy strong").forEach(element => element.textContent = mainBrandName.toUpperCase());
+            document.querySelectorAll(".brand-copy small").forEach(element => element.textContent = "MUSIC MINISTRY");
             document.getElementById("heroStudioName").textContent = `${contact.studio || "D Psalmist Studio"} presents`;
             document.getElementById("heroTitle").innerHTML = `${escapeHTML((contact.heroHeadline || "Sound that lifts the soul.").replace(/\s+/, " ").split(" ").slice(0, 3).join(" "))}<br><em>${escapeHTML((contact.heroHeadline || "Sound that lifts the soul.").split(" ").slice(3).join(" ") || "the soul.")}</em>`;
             document.getElementById("heroIntro").textContent = contact.heroIntro;
@@ -806,7 +910,7 @@
         let featuredSliderIndex = 0;
         let featuredSliderTimer = null;
 
-        // Render four editable images and keep the cinematic 3D rotation on a four-second interval.
+        // Render seven editable images and keep the cinematic 3D rotation on a four-second interval.
         async function renderFeaturedSlider() {
             const track = document.getElementById("featuredSliderTrack");
             const dots = document.getElementById("sliderDots");
@@ -822,13 +926,13 @@
             track.innerHTML = slides.join("");
             dots.innerHTML = siteData.slider.map((_, index) => `<button type="button" class="slider-dot ${index === featuredSliderIndex ? "is-active" : ""}" data-slider-go="${index}" aria-label="Show featured photo ${index + 1}" aria-current="${index === featuredSliderIndex ? "true" : "false"}"></button>`).join("");
             const counter = document.getElementById("sliderCounter");
-            if (counter) counter.textContent = `${String(featuredSliderIndex + 1).padStart(2, "0")} / 04`;
+            if (counter) counter.textContent = `${String(featuredSliderIndex + 1).padStart(2, "0")} / ${String(siteData.slider.length).padStart(2, "0")}`;
             if (featuredSliderTimer) clearInterval(featuredSliderTimer);
-            featuredSliderTimer = setInterval(() => changeFeaturedSlide((featuredSliderIndex + 1) % 4), 4000);
+            featuredSliderTimer = setInterval(() => changeFeaturedSlide((featuredSliderIndex + 1) % siteData.slider.length), 4000);
         }
 
         async function changeFeaturedSlide(nextIndex) {
-            featuredSliderIndex = (nextIndex + 4) % 4;
+            featuredSliderIndex = (nextIndex + siteData.slider.length) % siteData.slider.length;
             await renderFeaturedSlider();
         }
 
@@ -845,16 +949,68 @@
             grid.innerHTML = cards.join("");
         }
 
+        let newsFeedbackAvailable = true;
+        let newsFeedbackWarning = "";
+        function getVisitorId() {
+            let id = localStorage.getItem("dpmNewsVisitorId");
+            if (!id) { id = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : `v-${Date.now()}-${Math.random().toString(36).slice(2)}`; localStorage.setItem("dpmNewsVisitorId", id); }
+            return id;
+        }
+
         async function renderNews() {
             const grid = document.getElementById("newsGrid");
+            let feedback = [];
+            newsFeedbackWarning = "";
+            try {
+                const { data, error } = await supabaseClient.from("news_feedback").select("news_index, visitor_id, kind, display_name, comment, created_at").order("created_at", { ascending: false }).limit(500);
+                if (error) throw error;
+                feedback = data || []; newsFeedbackAvailable = true;
+            } catch (error) {
+                newsFeedbackAvailable = false;
+                newsFeedbackWarning = "Likes and comments will be available after the feedback table is set up in Supabase.";
+                console.warn("News feedback is not configured yet:", error.message || error);
+            }
             const cards = await Promise.all(siteData.news.map(async (item, index) => {
                 const imageUrl = await getMediaUrl(item.mediaKey);
+                const rows = feedback.filter(row => Number(row.news_index) === index);
+                const likes = rows.filter(row => row.kind === "like").length;
+                const comments = rows.filter(row => row.kind === "comment");
+                const alreadyLiked = rows.some(row => row.kind === "like" && row.visitor_id === getVisitorId());
+                const commentMarkup = comments.slice(0, 3).map(row => `<div class="news-comment"><strong>${escapeHTML(row.display_name || "Visitor")}</strong><p>${escapeHTML(row.comment || "")}</p></div>`).join("");
                 return `<article class="news-card">
-                    <div class="news-image ${imageUrl ? "has-image" : ""}">${imageUrl ? `<img src="${imageUrl}" alt="${escapeHTML(item.title)}" loading="lazy">` : `<span aria-hidden="true">${index === 0 ? "✦" : "♫"}</span>`}<small>${escapeHTML(item.date || "Ministry news")}</small></div>
-                    <div class="news-content"><p class="news-index">UPDATE / 0${index + 1}</p><h3>${escapeHTML(item.title || "Ministry update")}</h3><p>${escapeHTML(item.body || "Update details will be published soon.")}</p><a href="#contact" class="text-link">Enquire <span aria-hidden="true">↗</span></a></div>
+                    <div class="news-image ${imageUrl ? "has-image" : ""}">${imageUrl ? `<img src="${imageUrl}" alt="${escapeHTML(item.title)}" loading="lazy">` : `<span aria-hidden="true">${index % 2 === 0 ? "✦" : "♫"}</span>`}<small>${escapeHTML(item.date || "Ministry news")}</small></div>
+                    <div class="news-content"><p class="news-index">UPDATE / ${String(index + 1).padStart(2, "0")}</p><h3>${escapeHTML(item.title || "Ministry update")}</h3><p>${escapeHTML(item.body || "Update details will be published soon.")}</p><a href="#contact" class="text-link">Enquire <span aria-hidden="true">↗</span></a>
+                    <div class="news-feedback" data-news-index="${index}"><div class="news-feedback-actions"><button class="news-like-button ${alreadyLiked ? "is-liked" : ""}" type="button" data-news-like="${index}" ${alreadyLiked ? "disabled" : ""} aria-label="Like this update">♥ <span>${likes}</span> ${likes === 1 ? "Like" : "Likes"}</button><span class="news-comment-count">${comments.length} ${comments.length === 1 ? "comment" : "comments"}</span></div>
+                    <div class="news-comments-list">${commentMarkup || `<p class="no-comments">Be the first to comment.</p>`}</div>
+                    <form class="news-comment-form" data-news-comment-form="${index}"><label class="visually-hidden" for="newsName${index}">Your name</label><input id="newsName${index}" name="display_name" type="text" maxlength="60" placeholder="Your name (optional)"><label class="visually-hidden" for="newsComment${index}">Your comment</label><textarea id="newsComment${index}" name="comment" rows="2" maxlength="800" placeholder="Write a comment (up to 800 characters)" required></textarea><button class="button button-small button-gold" type="submit">Post comment</button></form>${newsFeedbackWarning ? `<p class="feedback-setup-note">${escapeHTML(newsFeedbackWarning)}</p>` : ""}</div>
+                    </div>
                 </article>`;
             }));
             grid.innerHTML = cards.join("");
+        }
+
+        async function submitNewsComment(form) {
+            const index = Number(form.dataset.newsCommentForm);
+            const displayName = String(new FormData(form).get("display_name") || "Visitor").trim().slice(0, 60) || "Visitor";
+            const comment = String(new FormData(form).get("comment") || "").trim().slice(0, 800);
+            if (!comment) return;
+            const button = form.querySelector("button[type=submit]"); button.disabled = true;
+            try {
+                const { error } = await supabaseClient.from("news_feedback").insert({ news_index: index, visitor_id: getVisitorId(), kind: "comment", display_name: displayName, comment });
+                if (error) throw error;
+                await renderNews(); showToast("Your comment has been posted.");
+            } catch (error) { console.error("Comment could not be posted:", error); showToast("Could not post comment. Please check that the feedback setup SQL has been run in Supabase.", true); button.disabled = false; }
+        }
+
+        async function likeNews(index, button) {
+            if (!Number.isInteger(index) || index < 0 || index >= siteData.news.length) return;
+            button.disabled = true;
+            try {
+                const { error } = await supabaseClient.from("news_feedback").insert({ news_index: index, visitor_id: getVisitorId(), kind: "like", display_name: "", comment: null });
+                if (error && error.code === "23505") { showToast("You have already liked this update."); await renderNews(); return; }
+                if (error) throw error;
+                await renderNews();
+            } catch (error) { console.error("Like could not be saved:", error); showToast("Could not save your like. Please check the feedback setup in Supabase.", true); button.disabled = false; }
         }
 
         function extractYouTubeId(value) {
@@ -913,8 +1069,39 @@
             }).join("");
         }
 
+        async function renderChurchAndTicker() {
+            const church = siteData.church || DEFAULT_SITE_DATA.church;
+            const title = document.getElementById("churchSectionTitle");
+            const intro = document.getElementById("churchIntroText");
+            const churchLink = document.getElementById("churchWebsiteLink");
+            const devotionalHeading = document.getElementById("devotionalHeading");
+            const devotionalDate = document.getElementById("devotionalDate");
+            const devotionalContent = document.getElementById("devotionalContent");
+            if (title) title.textContent = church.name || DEFAULT_SITE_DATA.church.name;
+            if (intro) intro.textContent = church.intro || "A ministry relationship built around faith, encouragement, and the Word of God.";
+            const logoWrap = document.getElementById("churchLogoWrap");
+            if (logoWrap) { const logoUrl = await getMediaUrl(church.logoMediaKey || "church-logo"); logoWrap.innerHTML = logoUrl ? `<img src="${logoUrl}" alt="${escapeHTML(church.name || "Church")} logo" loading="lazy">` : `<span class="church-cross" aria-hidden="true">✝</span><span class="church-logo-label">Church logo</span>`; }
+            const externalChurchUrl = safeExternalUrl(church.url);
+            if (churchLink) { churchLink.href = externalChurchUrl || "#church"; churchLink.hidden = !externalChurchUrl || externalChurchUrl.includes("example.com"); }
+            if (devotionalHeading) devotionalHeading.textContent = church.devotionalTitle || "BESTRONG DAILY DEVOTIONAL";
+            if (devotionalDate) { devotionalDate.textContent = church.devotionalDate || ""; devotionalDate.hidden = !church.devotionalDate; }
+            if (devotionalContent) {
+                const imageUrl = await getMediaUrl(church.mediaKey || "devotional-image");
+                const body = String(church.devotionalBody || "").trim();
+                devotionalContent.innerHTML = `${imageUrl ? `<img class="devotional-image" src="${imageUrl}" alt="BeStrong Daily Devotional" loading="lazy">` : ""}${body ? `<div class="devotional-body">${escapeHTML(body).replace(/\n/g, "<br>")}</div>` : `<p class="devotional-empty">The latest BeStrong Daily Devotional will be published here. The admin can add a devotional picture and a message of up to 800 words.</p>`}`;
+            }
+            const latest = document.getElementById("latestUpdateText");
+            if (latest) latest.textContent = siteData.latestUpdate || "Stay connected for the latest ministry updates.";
+            const tickerText = siteData.tickerText || DEFAULT_SITE_DATA.tickerText;
+            const ticker = document.getElementById("footerMovingText");
+            const duplicate = document.getElementById("footerMovingTextDuplicate");
+            if (ticker) ticker.textContent = tickerText;
+            if (duplicate) duplicate.textContent = tickerText;
+        }
+
         async function renderSite() {
             renderContactAndAbout();
+            await renderChurchAndTicker();
             await renderArtistImage();
             await renderFeaturedSlider();
             await renderGallery();
@@ -954,6 +1141,19 @@
                 </div>
                 ${adminTextarea("Hero introduction", c.heroIntro, "contact.heroIntro", 3)}
                 ${adminTextarea("About the artist / ministry", c.bio, "contact.bio", 5)}
+                <div class="admin-section-heading admin-subsection-heading"><p class="eyebrow">Live homepage messages</p><h3>Latest update &amp; moving footer text</h3><p>These messages are shared with all visitors after you save.</p></div>
+                ${adminTextarea("Blinking latest update (below artist portrait)", siteData.latestUpdate, "latestUpdate", 2, "Type a short announcement...")}
+                ${adminTextarea("Moving footer message", siteData.tickerText, "tickerText", 2, "Type the moving message...")}
+                <div class="admin-section-heading admin-subsection-heading"><p class="eyebrow">Church partnership</p><h3>The Latter Day Church of Jesus Christ</h3><p>Update the church introduction and website link. Replace the example link with the real church website address before publishing.</p></div>
+                <div class="admin-form-grid">${adminField("Church name", siteData.church.name, "church.name")}${adminField("Church website URL", siteData.church.url, "church.url", "url", "https://...")}</div>
+                ${adminTextarea("Church introduction", siteData.church.intro, "church.intro", 2)}
+                <div class="admin-upload-block"><div><h4>Church logo</h4><p>Upload or replace the partner church logo. It will appear beside the church name on the public website.</p></div><label class="file-picker">Upload church logo<input type="file" accept="image/*" data-media-key="church-logo" data-media-kind="image"></label>${siteData.media && siteData.media["church-logo"] ? `<button class="button button-small button-danger" type="button" data-delete-media-key="church-logo" data-delete-media-kind="image">Delete logo</button>` : ""}<span class="upload-state" data-media-status="church-logo">${siteData.media && siteData.media["church-logo"] ? "Church logo uploaded" : "No church logo uploaded"}</span></div>
+                <div class="admin-section-heading admin-subsection-heading"><p class="eyebrow">Devotional publishing</p><h3>BeStrong Daily Devotional</h3><p>Enter a message up to 800 words. The devotional appears within the church partnership section.</p></div>
+                <div class="admin-form-grid">${adminField("Devotional heading", siteData.church.devotionalTitle, "church.devotionalTitle")}${adminField("Date / issue label", siteData.church.devotionalDate, "church.devotionalDate", "text", "e.g. Thursday, October 15, 2026")}</div>
+                ${adminTextarea("Devotional message (maximum 800 words)", siteData.church.devotionalBody, "church.devotionalBody", 12, "Write or paste the devotional text here...")}
+                <p class="admin-word-count" id="devotionalWordCount">0 / 800 words</p>
+                <div class="admin-upload-block"><div><h4>Devotional picture</h4><p>Upload a devotional flyer or image to display with the message.</p></div><label class="file-picker">Upload devotional picture<input type="file" accept="image/*" data-media-key="devotional-image" data-media-kind="image"></label>${siteData.media && siteData.media["devotional-image"] ? `<button class="button button-small button-danger" type="button" data-delete-media-key="devotional-image" data-delete-media-kind="image">Delete image</button>` : ""}<span class="upload-state" data-media-status="devotional-image">${siteData.media && siteData.media["devotional-image"] ? "Devotional image uploaded" : "No devotional image uploaded"}</span></div>
+                <div class="devotional-admin-actions"><button class="button button-gold" type="button" data-devotional-action="post">Post devotional</button><button class="button button-outline" type="button" data-devotional-action="update">Update devotional</button><button class="button button-danger" type="button" data-devotional-action="delete">Delete devotional</button><p>Post publishes the devotional you entered. Update saves your edits to the current devotional. Delete removes the text, date, and devotional picture.</p></div>
                 <div class="admin-upload-block"><div><h4>Artist portrait</h4><p>Recommended: a sharp portrait or stage photo in JPG, PNG, or WebP format.</p></div><label class="file-picker">Upload portrait<input type="file" accept="image/*" data-media-key="artist-portrait" data-media-kind="image"></label>${siteData.media && siteData.media["artist-portrait"] ? `<button class="button button-small button-danger" type="button" data-delete-media-key="artist-portrait" data-delete-media-kind="image">Delete image</button>` : ""}<span class="upload-state" data-media-status="artist-portrait">Portrait can be changed any time.</span></div>
                 <div class="admin-help-card"><strong>Tip:</strong> Use your best high-resolution stage or studio photograph for the welcome page. Uploads are stored online and shared with visitors.</div>`;
         }
@@ -964,7 +1164,7 @@
                 const url = await getMediaUrl(item.mediaKey);
                 return `<article class="admin-media-card slider-admin-card"><div class="admin-media-preview">${url ? `<img src="${url}" alt="Featured slider photo ${index + 1} preview">` : `<span aria-hidden="true">✦</span>`}</div><div class="admin-media-controls"><h4>Featured slide 0${index + 1}</h4><p class="slider-admin-note">Shown in the automatic 4-second 3D-style slideshow above the photo gallery.</p><label class="admin-field">Slide caption<input type="text" data-slider-caption="${index}" value="${escapeHTML(item.caption || "")}" placeholder="Add a short caption"></label><label class="file-picker">${url ? "Replace featured photo" : "Upload featured photo"}<input type="file" accept="image/*" data-media-key="${escapeHTML(item.mediaKey)}" data-media-kind="image"></label>${url ? `<button class="button button-small button-danger" type="button" data-delete-media-key="${escapeHTML(item.mediaKey)}" data-delete-media-kind="image">Delete image</button>` : ""}<span class="upload-state" data-media-status="${escapeHTML(item.mediaKey)}">${url ? "Photo uploaded" : "No photo uploaded yet"}</span></div></article>`;
             }));
-            panel.innerHTML = `<div class="admin-section-heading"><p class="eyebrow">Homepage showcase</p><h3>Featured picture slider</h3><p>Upload or replace the four images shown directly above the gallery. The slider rotates automatically every four seconds with a cinematic 3D perspective transition. Captions can be changed here too.</p></div><div class="slider-admin-tip"><strong>Image tip</strong><span>Use landscape photos (16:9), ideally at least 1600 × 900 pixels, for the best studio-style presentation.</span></div><div class="admin-media-list">${cards.join("")}</div>`;
+            panel.innerHTML = `<div class="admin-section-heading"><p class="eyebrow">Homepage showcase</p><h3>Featured picture slider</h3><p>Upload or replace the seven images shown directly above the gallery. The slider rotates automatically every four seconds with a cinematic 3D perspective transition. Captions can be changed here too.</p></div><div class="slider-admin-tip"><strong>Image tip</strong><span>Use landscape photos (16:9), ideally at least 1600 × 900 pixels, for the best studio-style presentation.</span></div><div class="admin-media-list">${cards.join("")}</div>`;
         }
 
         async function renderGalleryAdmin() {
@@ -982,7 +1182,7 @@
                 const url = await getMediaUrl(item.mediaKey);
                 return `<article class="admin-edit-card"><div class="admin-section-subheading"><span class="admin-number">0${index + 1}</span><div><h4>News feed ${index + 1}</h4><p>This appears in the public News &amp; Updates section.</p></div><button class="button button-small button-outline" type="button" data-edit-post="${index}">Edit post</button></div><div class="admin-form-grid">${adminField("Headline", item.title, `news.${index}.title`)}${adminField("Date or label", item.date, `news.${index}.date` )}</div>${adminTextarea("Update details", item.body, `news.${index}.body`, 4)}<div class="admin-upload-block"><div class="admin-upload-description">${url ? `<img class="small-preview" src="${url}" alt="News image preview">` : `<span class="mini-placeholder">✦</span>`}<div><h4>Optional news image</h4><p>Add a photo to this update.</p></div></div><label class="file-picker">${url ? "Replace image" : "Upload image"}<input type="file" accept="image/*" data-media-key="${escapeHTML(item.mediaKey)}" data-media-kind="image"></label>${url ? `<button class="button button-small button-danger" type="button" data-delete-media-key="${escapeHTML(item.mediaKey)}" data-delete-media-kind="image">Delete image</button>` : ""}<span class="upload-state" data-media-status="${escapeHTML(item.mediaKey)}">${url ? "Image uploaded" : "No image uploaded"}</span></div></article>`;
             }));
-            panel.innerHTML = `<div class="admin-section-heading"><p class="eyebrow">Announcements</p><h3>News &amp; updates</h3><p>Edit the two news cards with release announcements, event information, and ministry updates.</p></div>${cards.join("")}`;
+            panel.innerHTML = `<div class="admin-section-heading"><p class="eyebrow">Announcements</p><h3>News &amp; updates</h3><p>Edit four news cards with release announcements, event information, and ministry updates. Visitors can like and comment on each update.</p></div>${cards.join("")}`;
         }
 
         function renderVideosAdmin() {
@@ -1009,6 +1209,9 @@
             const dashboardMusicCount = document.getElementById("dashboardMusicCount");
             if (dashboardMusicCount) dashboardMusicCount.textContent = String((siteData.releases || []).length);
             renderBasicsAdmin();
+            const devotionalWords = String(siteData.church.devotionalBody || "").trim();
+            const wordCounter = document.getElementById("devotionalWordCount");
+            if (wordCounter) wordCounter.textContent = `${devotionalWords ? devotionalWords.split(/\s+/).length : 0} / 800 words`;
             await renderSliderAdmin();
             await renderGalleryAdmin();
             await renderNewsAdmin();
@@ -1057,6 +1260,13 @@
 
         async function saveAdminChanges() {
             collectAdminForm();
+            const devotionalWords = String(siteData.church.devotionalBody || "").trim();
+            const devotionalWordCount = devotionalWords ? devotionalWords.split(/\s+/).length : 0;
+            if (devotionalWordCount > 800) {
+                activateAdminTab("basics");
+                showToast(`The devotional is ${devotionalWordCount} words. Please reduce it to 800 words or fewer.`, true);
+                return;
+            }
             try {
                 await saveSiteData();
                 await renderSite();
@@ -1350,12 +1560,44 @@
         });
         document.getElementById("featuredSliderStage").addEventListener("mouseleave", () => {
             if (featuredSliderTimer) clearInterval(featuredSliderTimer);
-            featuredSliderTimer = setInterval(() => changeFeaturedSlide((featuredSliderIndex + 1) % 4), 4000);
+            featuredSliderTimer = setInterval(() => changeFeaturedSlide((featuredSliderIndex + 1) % siteData.slider.length), 4000);
         });
         document.getElementById("adminForm").addEventListener("change", event => {
             if (event.target.matches("input[data-media-key]")) handleMediaUpload(event.target);
         });
         document.getElementById("adminForm").addEventListener("click", async event => {
+            const devotionalAction = event.target.closest("[data-devotional-action]");
+            if (devotionalAction) {
+                collectAdminForm();
+                const action = devotionalAction.dataset.devotionalAction;
+                if (action === "delete") {
+                    if (!window.confirm("Delete the published BeStrong Daily Devotional text, date, and picture? This cannot be undone unless you have a backup.")) return;
+                    siteData.church.devotionalDate = "";
+                    siteData.church.devotionalBody = "";
+                    const cloudPath = siteData.media && siteData.media["devotional-image"];
+                    if (cloudPath) {
+                        const { error: removeError } = await supabaseClient.storage.from(SITE_MEDIA_BUCKET).remove([cloudPath]);
+                        if (removeError) console.warn("Could not remove devotional image from storage", removeError);
+                        delete siteData.media["devotional-image"];
+                    }
+                    await deleteMedia("devotional-image").catch(() => {});
+                    await saveSiteData();
+                    await renderSite();
+                    await renderBasicsAdmin();
+                    activateAdminTab("basics");
+                    showToast("Devotional deleted from the live website.");
+                } else {
+                    const body = String(siteData.church.devotionalBody || "").trim();
+                    if (!body) { showToast("Enter the devotional message before posting.", true); return; }
+                    const count = body.split(/\s+/).length;
+                    if (count > 800) { showToast(`The devotional is ${count} words. Please reduce it to 800 words or fewer.`, true); return; }
+                    await saveAdminChanges();
+                    showToast(action === "post" ? "BeStrong Daily Devotional posted successfully." : "BeStrong Daily Devotional updated successfully.");
+                    await renderBasicsAdmin();
+                    activateAdminTab("basics");
+                }
+                return;
+            }
             const deleteMediaButton = event.target.closest("[data-delete-media-key]");
             if (deleteMediaButton) {
                 await handleMediaDelete(deleteMediaButton);
@@ -1402,6 +1644,22 @@
                 await renderMusicAdmin();
                 await renderSite();
                 showToast("Release removed.");
+            }
+        });
+        document.getElementById("newsGrid").addEventListener("click", event => {
+            const likeButton = event.target.closest("[data-news-like]");
+            if (likeButton) likeNews(Number(likeButton.dataset.newsLike), likeButton);
+        });
+        document.getElementById("newsGrid").addEventListener("submit", event => {
+            const form = event.target.closest("[data-news-comment-form]");
+            if (form) { event.preventDefault(); submitNewsComment(form); }
+        });
+        document.getElementById("adminForm").addEventListener("input", event => {
+            if (event.target.matches('[data-site-field="church.devotionalBody"]')) {
+                const count = event.target.value.trim() ? event.target.value.trim().split(/\s+/).length : 0;
+                const display = document.getElementById("devotionalWordCount");
+                if (display) { display.textContent = `${count} / 800 words`; display.classList.toggle("over-limit", count > 800); }
+                event.target.setCustomValidity(count > 800 ? "Please keep the devotional within 800 words." : "");
             }
         });
         document.getElementById("exportBackupBtn").addEventListener("click", exportBackup);
