@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#10100f">
+    <meta name="description" content="D Psalmist Music Ministry — gospel music, contemporary Christian worship, African Highlife, music ministration, concerts and events with JethrosonMKO.">
+    <title>D Psalmist Music Ministry | JethrosonMKO</title>
+
+    <!-- Main styling is kept in a separate, easy-to-edit CSS file. -->
+    <link rel="stylesheet" href="./styles.css">
+    <style>
+        /* Admin entry points are hidden from public visitors. Open with ?admin=1. */
+        .admin-open, .footer-admin { display: none !important; }
+    </style>
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <!-- ======================= SITE HEADER ======================= -->
+    <header class="site-header" id="top">
+        <div class="container header-inner">
+            <a class="brand" href="#top" aria-label="D Psalmist Music Ministry home">
+                <!-- Animated CSS logo: orbit rings rotate around the DPM monogram. -->
+                <span class="brand-emblem" aria-hidden="true">
+                    <span class="logo-orbit orbit-one"></span>
+                    <span class="logo-orbit orbit-two"></span>
+                    <span class="logo-core">D<span>P</span></span>
+                    <span class="logo-spark"></span>
+                </span>
+                <span class="brand-copy">
+                    <strong>D Psalmist</strong>
+                    <small>Music Ministry</small>
+                </span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+
+            <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+                <a href="#about">About</a>
+                <a href="#music">Music</a>
+                <a href="#services">Services</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#videos">Videos</a>
+                <a href="#updates">Updates</a>
+                <a href="#contact">Contact</a>
+                <button class="button button-small button-outline admin-open" type="button">Admin Login</button>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <!-- ======================= HERO / WELCOME ======================= -->
+        <section class="hero-section" aria-labelledby="heroTitle">
+            <div class="hero-glow hero-glow-one" aria-hidden="true"></div>
+            <div class="hero-glow hero-glow-two" aria-hidden="true"></div>
+            <div class="container hero-grid">
+                <div class="hero-copy">
+                    <p class="eyebrow"><span class="eyebrow-line"></span> Worship • Purpose • Excellence</p>
+                    <p class="hero-ministry" id="heroStudioName">D Psalmist Studio presents</p>
+                    <h1 id="heroTitle">Sound that lifts<br><em>the soul.</em></h1>
+                    <p class="hero-intro" id="heroIntro">Gospel music, heartfelt worship, and vibrant African Highlife — created to inspire faith and bring people together in God's presence.</p>
+                    <div class="hero-actions">
+                        <a class="button button-gold" href="#music">Explore the music <span aria-hidden="true">↗</span></a>
+                        <a class="button button-glass" href="#contact">Book JethrosonMKO</a>
+                    </div>
+                    <div class="hero-signature">
+                        <span class="signature-rule"></span>
+                        <span>Faith in every note.</span>
+                        <span class="signature-rule"></span>
+                    </div>
+                </div>
+
+                <div class="hero-visual" aria-label="Artist portrait">
+                    <div class="portrait-halo" aria-hidden="true"></div>
+                    <div class="portrait-frame">
+                        <div class="portrait-placeholder" id="artistPhotoPlaceholder">
+                            <div class="placeholder-mic" aria-hidden="true">♫</div>
+                            <span class="placeholder-initials">JM</span>
+                            <span class="placeholder-caption">Artist photo</span>
+                            <span class="placeholder-hint">Add a portrait in Admin</span>
+                        </div>
+                        <img id="artistPhoto" alt="JethrosonMKO, gospel artist" hidden>
+                        <div class="portrait-bottom-label">
+                            <span class="live-dot"></span>
+                            <span>JethrosonMKO</span>
+                            <small>Gospel Artist</small>
+                        </div>
+                    </div>
+                    <div class="floating-note note-one" aria-hidden="true">♪</div>
+                    <div class="floating-note note-two" aria-hidden="true">♫</div>
+                    <div class="vertical-caption">D PSALMIST MUSIC MINISTRY</div>
+                </div>
+            </div>
+            <div class="hero-bottom-line" aria-hidden="true"></div>
+        </section>
+
+        <!-- ======================= QUICK CREDENTIAL STRIP ======================= -->
+        <section class="feature-strip" aria-label="Music styles">
+            <div class="container feature-strip-inner">
+                <span><b>01</b> Contemporary Christian Music</span>
+                <span><b>02</b> Christian Worship</span>
+                <span><b>03</b> Gospel</span>
+                <span><b>04</b> African Highlife</span>
+            </div>
+        </section>
+
+        <!-- ======================= ABOUT ======================= -->
+        <section class="section about-section" id="about">
+            <div class="container about-grid">
+                <div class="section-kicker-block">
+                    <p class="eyebrow">The ministry</p>
+                    <h2>Music with a <em>message.</em></h2>
+                    <div class="gold-mark" aria-hidden="true"></div>
+                </div>
+                <div class="about-copy">
+                    <p id="artistBio">D Psalmist Music Ministry is the home of JethrosonMKO — sharing the message of Christ through contemporary gospel, Christian worship, and the joyful rhythms of African Highlife. Every song and ministration is an invitation to worship, hope, and live with purpose.</p>
+                    <div class="about-signoff">
+                        <span class="signature-script">JethrosonMKO</span>
+                        <span class="signoff-line"></span>
+                        <small>Artist • Worshipper • Minister</small>
+                    </div>
+                </div>
+            </div>
+            <div class="container values-grid">
+                <article class="value-card">
+                    <span class="value-number">01</span>
+                    <span class="value-icon" aria-hidden="true">♫</span>
+                    <h3>Authentic sound</h3>
+                    <p>Gospel roots blended with worship and African Highlife.</p>
+                </article>
+                <article class="value-card">
+                    <span class="value-number">02</span>
+                    <span class="value-icon" aria-hidden="true">✧</span>
+                    <h3>Purposeful ministry</h3>
+                    <p>Music and moments designed to encourage faith and hope.</p>
+                </article>
+                <article class="value-card">
+                    <span class="value-number">03</span>
+                    <span class="value-icon" aria-hidden="true">◈</span>
+                    <h3>Professional delivery</h3>
+                    <p>Quality studio work and reliable event coordination.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- ======================= MUSIC RELEASES ======================= -->
+        <section class="section music-section" id="music">
+            <div class="container">
+                <div class="section-heading section-heading-row">
+                    <div>
+                        <p class="eyebrow">Listen • Stream • Download</p>
+                        <h2>Latest <em>releases</em></h2>
+                    </div>
+                    <p class="section-side-copy">New sounds for your playlist, prayer time, and everyday walk of faith.</p>
+                </div>
+                <div class="releases-grid" id="releasesGrid" aria-live="polite">
+                    <!-- Music release cards are rendered by the inline JavaScript. -->
+                </div>
+                <div class="empty-music-note" id="emptyMusicNote">
+                    <span aria-hidden="true">♫</span>
+                    <p>New music releases will appear here. Visit Admin to add a song, upload an MP3, and enable downloads.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================= MUSIC STORE LINKS ======================= -->
+        <section class="store-section" aria-labelledby="storeTitle">
+            <div class="container store-inner">
+                <div class="store-heading">
+                    <p class="eyebrow">Find the music</p>
+                    <h2 id="storeTitle">Listen on your <em>favourite platform.</em></h2>
+                </div>
+                <div class="store-links" id="storeLinksGrid">
+                    <!-- Six editable music-store links are rendered by JavaScript. -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================= SERVICES ======================= -->
+        <section class="section services-section" id="services">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="eyebrow">Invite the ministry</p>
+                    <h2>Sound for every <em>occasion.</em></h2>
+                    <p class="section-intro">From a worship service to a major celebration, let us help create an experience your audience will remember.</p>
+                </div>
+                <div class="services-grid">
+                    <article class="service-card">
+                        <div class="service-top"><span>01 / MINISTRY</span><span class="service-symbol" aria-hidden="true">✧</span></div>
+                        <h3>Music ministration</h3>
+                        <p>Spirit-led gospel music for church services, revivals, conventions, thanksgiving, and special programmes.</p>
+                        <a href="#contact" class="text-link">Invite the ministry <span aria-hidden="true">↗</span></a>
+                    </article>
+                    <article class="service-card service-card-featured">
+                        <div class="service-top"><span>02 / LIVE</span><span class="service-symbol" aria-hidden="true">♫</span></div>
+                        <h3>Concerts &amp; events</h3>
+                        <p>Live performances for gospel concerts, festivals, community celebrations, and faith-based events.</p>
+                        <a href="#contact" class="text-link">Plan an event <span aria-hidden="true">↗</span></a>
+                    </article>
+                    <article class="service-card">
+                        <div class="service-top"><span>03 / HOSTING</span><span class="service-symbol" aria-hidden="true">◈</span></div>
+                        <h3>MC services</h3>
+                        <p>Engaging and professional hosting for ceremonies, launches, celebrations, and special gatherings.</p>
+                        <a href="#contact" class="text-link">Book an MC <span aria-hidden="true">↗</span></a>
+                    </article>
+                    <article class="service-card">
+                        <div class="service-top"><span>04 / CREATIVE</span><span class="service-symbol" aria-hidden="true">✦</span></div>
+                        <h3>Other entertainment services</h3>
+                        <p>Tell us about your programme and we will discuss a suitable creative or entertainment package.</p>
+                        <a href="#contact" class="text-link">Discuss your needs <span aria-hidden="true">↗</span></a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================= FEATURED 4-IMAGE 3D SLIDER ======================= -->
+        <section class="featured-slider-section" id="featuredSlider" aria-label="Featured studio and ministry photographs">
+            <div class="container">
+                <div class="section-heading section-heading-row slider-heading">
+                    <div><p class="eyebrow">Inside the sound</p><h2>Studio <em>in motion.</em></h2></div>
+                    <p class="section-side-copy">A rotating look at the music, the ministry, and the moments behind every song.</p>
+                </div>
+                <div class="featured-slider" id="featuredSliderStage" aria-roledescription="carousel" aria-label="Featured photos">
+                    <div class="slider-track" id="featuredSliderTrack" aria-live="polite"></div>
+                    <button class="slider-arrow slider-prev" id="sliderPrev" type="button" aria-label="Previous featured photo">‹</button>
+                    <button class="slider-arrow slider-next" id="sliderNext" type="button" aria-label="Next featured photo">›</button>
+                    <div class="slider-bottom-bar"><span id="sliderCounter">01 / 04</span><div class="slider-dots" id="sliderDots" aria-label="Choose featured photo"></div><span class="slider-auto-label"><i></i> AUTO ROTATE · 4 SEC</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================= PHOTO GALLERY: SEVEN EDITABLE SLOTS ======================= -->
+        <section class="section gallery-section" id="gallery">
+            <div class="container">
+                <div class="section-heading section-heading-row">
+                    <div>
+                        <p class="eyebrow">Moments from the journey</p>
+                        <h2>Behind the <em>music.</em></h2>
+                    </div>
+                    <p class="section-side-copy">Studio sessions, worship moments, live shows, and life on the road.</p>
+                </div>
+                <div class="gallery-grid" id="galleryGrid" aria-live="polite">
+                    <!-- Seven gallery slots are rendered by JavaScript. Click a photo to enlarge it. -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================= YOUTUBE VIDEOS: THREE EDITABLE SLOTS ======================= -->
+        <section class="section videos-section" id="videos">
+            <div class="container">
+                <div class="section-heading section-heading-row">
+                    <div>
+                        <p class="eyebrow">Watch and worship</p>
+                        <h2>Video <em>moments.</em></h2>
+                    </div>
+                    <a class="text-link" href="#contact">Invite us to your event <span aria-hidden="true">↗</span></a>
+                </div>
+                <div class="videos-grid" id="videosGrid" aria-live="polite">
+                    <!-- Three YouTube video slots are rendered by JavaScript. -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================= NEWS / UPDATES: TWO EDITABLE FEEDS ======================= -->
+        <section class="section updates-section" id="updates">
+            <div class="container">
+                <div class="section-heading section-heading-row">
+                    <div>
+                        <p class="eyebrow">From the ministry</p>
+                        <h2>News &amp; <em>updates.</em></h2>
+                    </div>
+                    <p class="section-side-copy">Announcements, upcoming appearances, new music, and ministry news.</p>
+                </div>
+                <div class="news-grid" id="newsGrid" aria-live="polite">
+                    <!-- Two news cards are rendered by JavaScript. -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================= CONTACT / BOOKING ======================= -->
+        <section class="section contact-section" id="contact">
+            <div class="container contact-grid">
+                <div class="contact-copy">
+                    <p class="eyebrow">Let's make it happen</p>
+                    <h2>Bring the music<br>to <em>your gathering.</em></h2>
+                    <p>For music ministration, concerts, MC bookings, studio enquiries, or collaborations, send us a message. We will be happy to discuss your event.</p>
+                    <div class="contact-direct-links">
+                        <a id="emailLink" href="mailto:consultant1805@gmail.com"><span class="contact-link-icon" aria-hidden="true">✉</span><span><small>Email</small><strong id="emailText">consultant1805@gmail.com</strong></span></a>
+                        <a id="phoneOneLink" href="tel:+2347059095206"><span class="contact-link-icon" aria-hidden="true">☎</span><span><small>Call</small><strong id="phoneOneText">+234 705 909 5206</strong></span></a>
+                        <a id="phoneTwoLink" href="tel:+2348130450135"><span class="contact-link-icon" aria-hidden="true">☎</span><span><small>Call</small><strong id="phoneTwoText">+234 813 045 0135</strong></span></a>
+                    </div>
+                    <div class="social-links" id="socialLinks">
+                        <a id="facebookLink" href="https://www.facebook.com/profile.php?id=61590028066545" target="_blank" rel="noopener noreferrer" aria-label="Facebook">f</a>
+                        <a id="tiktokLink" href="https://www.tiktok.com/@jethrosonmko?_r=1&_t=ZS-9AY5ZBDoaE1" target="_blank" rel="noopener noreferrer" aria-label="TikTok">♪</a>
+                        <a id="whatsappLink" href="https://wa.me/2349020075539" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">WA</a>
+                    </div>
+                </div>
+
+                <div class="booking-card">
+                    <div class="booking-card-heading">
+                        <span class="booking-icon" aria-hidden="true">✦</span>
+                        <div><p class="eyebrow">Booking enquiry</p><h3>Tell us about your event.</h3></div>
+                    </div>
+                    <form id="bookingForm">
+                        <div class="form-row">
+                            <label for="bookingName">Your name<input id="bookingName" name="name" type="text" placeholder="Full name" required></label>
+                            <label for="bookingPhone">Phone number<input id="bookingPhone" name="phone" type="tel" placeholder="+234..." required></label>
+                        </div>
+                        <label for="bookingType">Service needed
+                            <select id="bookingType" name="service" required>
+                                <option value="">Choose a service</option>
+                                <option>Music ministration</option>
+                                <option>Concert or event</option>
+                                <option>MC services</option>
+                                <option>Studio recording</option>
+                                <option>Other entertainment services</option>
+                            </select>
+                        </label>
+                        <div class="form-row">
+                            <label for="bookingDate">Event date<input id="bookingDate" name="date" type="date"></label>
+                            <label for="bookingLocation">Event location<input id="bookingLocation" name="location" type="text" placeholder="City / venue"></label>
+                        </div>
+                        <label for="bookingMessage">Tell us more<textarea id="bookingMessage" name="message" rows="4" placeholder="Event details, audience, or special requests..."></textarea></label>
+                        <button class="button button-gold button-full" type="submit">Send enquiry on WhatsApp <span aria-hidden="true">↗</span></button>
+                        <p class="form-note">This form opens WhatsApp with your enquiry prepared for sending.</p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ======================= FOOTER ======================= -->
+    <footer class="site-footer">
+        <div class="container footer-top">
+            <a class="brand footer-brand" href="#top">
+                <span class="brand-emblem" aria-hidden="true"><span class="logo-orbit orbit-one"></span><span class="logo-orbit orbit-two"></span><span class="logo-core">D<span>P</span></span><span class="logo-spark"></span></span>
+                <span class="brand-copy"><strong>D Psalmist</strong><small>Music Ministry</small></span>
+            </a>
+            <p>Gospel sound. Worship heart. Purposeful living.</p>
+            <a class="back-to-top" href="#top">Back to top ↑</a>
+        </div>
+        <div class="container footer-bottom">
+            <span>© <span id="currentYear"></span> D Psalmist Music Ministry. All rights reserved.</span>
+            <span>Powered by faith &amp; music.</span>
+            <button class="footer-admin admin-open" type="button">Admin</button>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp booking shortcut. -->
+    <a class="whatsapp-float" id="floatingWhatsapp" href="https://wa.me/2349020075539" target="_blank" rel="noopener noreferrer" aria-label="Chat with D Psalmist Music Ministry on WhatsApp">WA</a>
+
+    <!-- ======================= ADMIN LOGIN MODAL ======================= -->
+    <div class="modal-backdrop" id="loginModal" hidden>
+        <section class="login-card" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+            <button class="modal-close" type="button" data-close-login aria-label="Close login">×</button>
+            <div class="login-logo brand-emblem" aria-hidden="true"><span class="logo-orbit orbit-one"></span><span class="logo-orbit orbit-two"></span><span class="logo-core">D<span>P</span></span><span class="logo-spark"></span></div>
+            <p class="eyebrow">Site management</p>
+            <h2 id="loginTitle">Welcome back.</h2>
+            <p class="login-description">Sign in to update photos, news, videos, music releases, and store links on this browser.</p>
+            <form id="loginForm">
+                <label for="adminPassword">Admin password<input id="adminPassword" type="password" autocomplete="current-password" placeholder="Enter password" required></label>
+                <p class="login-error" id="loginError" role="alert"></p>
+                <button class="button button-gold button-full" type="submit">Open admin panel</button>
+            </form>
+            <p class="security-note">Starter version: this is a front-end demo login, not secure server authentication. See README before publishing.</p>
+        </section>
+    </div>
+
+    <!-- ======================= ADMIN PANEL ======================= -->
+    <div class="admin-backdrop" id="adminPanel" hidden>
+        <section class="admin-dialog" role="dialog" aria-modal="true" aria-labelledby="adminPanelTitle">
+            <div class="admin-topbar">
+                <div><p class="eyebrow">D Psalmist CMS</p><h2 id="adminPanelTitle">Website admin</h2></div>
+                <div class="admin-top-actions">
+                    <button class="button button-small button-outline" type="button" id="exportBackupBtn">Download backup</button>
+                    <label class="button button-small button-outline import-backup-label" for="importBackupInput">Restore backup<input id="importBackupInput" type="file" accept="application/json,.json" hidden></label>
+                    <button class="modal-close admin-close" type="button" id="closeAdminBtn" aria-label="Close admin panel">×</button>
+                </div>
+            </div>
+            <div class="admin-warning"><strong>Important:</strong> edits are stored in this browser only. Visitors on other devices will not see these changes until a real shared CMS/backend is connected. The demo password is not production security.</div>
+            <div class="admin-layout">
+                <aside class="admin-sidebar" aria-label="Admin sections">
+                    <button class="admin-tab active" type="button" data-admin-tab="basics">Website basics</button>
+                    <button class="admin-tab" type="button" data-admin-tab="slider">Featured slider (4)</button>
+                    <button class="admin-tab" type="button" data-admin-tab="gallery">Photo gallery (7)</button>
+                    <button class="admin-tab" type="button" data-admin-tab="news">News updates (2)</button>
+                    <button class="admin-tab" type="button" data-admin-tab="videos">▶ Manage YouTube videos (3)</button>
+                    <button class="admin-tab" type="button" data-admin-tab="music">Music releases</button>
+                    <button class="admin-tab" type="button" data-admin-tab="stores">Music stores (6)</button>
+                </aside>
+                <div class="admin-main">
+                    <!-- Dashboard overview: quick counts and shortcuts for the ministry website. -->
+                    <section class="admin-dashboard" aria-label="Website dashboard overview">
+                        <div class="dashboard-welcome">
+                            <div>
+                                <p class="eyebrow">Control centre</p>
+                                <h3>Welcome to your <em>dashboard.</em></h3>
+                                <p>Manage your music ministry website from one place.</p>
+                            </div>
+                            <span class="dashboard-live"><i></i> Website workspace</span>
+                        </div>
+                        <div class="dashboard-stats">
+                            <article class="dashboard-stat"><span class="dashboard-stat-icon">♫</span><div><strong id="dashboardMusicCount">0</strong><span>Music releases</span></div></article>
+                            <article class="dashboard-stat"><span class="dashboard-stat-icon">▧</span><div><strong>7</strong><span>Gallery slots</span></div></article>
+                            <article class="dashboard-stat"><span class="dashboard-stat-icon">▶</span><div><strong>3</strong><span>YouTube videos</span></div></article>
+                            <article class="dashboard-stat"><span class="dashboard-stat-icon">✦</span><div><strong>2</strong><span>News updates</span></div></article>
+                        </div>
+                        <div class="dashboard-shortcuts">
+                            <span>QUICK ACTIONS</span>
+                            <button type="button" data-admin-tab="music">＋ Add music</button>
+                            <button type="button" data-admin-tab="slider">✦ Update featured slider</button>
+                            <button type="button" data-admin-tab="gallery">▧ Update gallery</button>
+                            <button type="button" data-admin-tab="news">✎ Edit news</button>
+                            <button type="button" data-admin-tab="videos">▶ Manage YouTube videos</button>
+                        </div>
+                    </section>
+                    <form id="adminForm">
+                        <div class="admin-tab-panel active" data-admin-panel="basics" id="basicsPanel"></div>
+                        <div class="admin-tab-panel" data-admin-panel="slider" id="sliderPanel"></div>
+                        <div class="admin-tab-panel" data-admin-panel="gallery" id="galleryPanel"></div>
+                        <div class="admin-tab-panel" data-admin-panel="news" id="newsPanel"></div>
+                        <div class="admin-tab-panel" data-admin-panel="videos" id="videosPanel"></div>
+                        <div class="admin-tab-panel" data-admin-panel="music" id="musicPanel"></div>
+                        <div class="admin-tab-panel" data-admin-panel="stores" id="storesPanel"></div>
+                        <div class="admin-save-bar">
+                            <span id="adminSaveStatus" role="status">Remember to save your changes.</span>
+                            <button class="button button-gold" type="button" id="saveAdminBtn">Save all changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Photo lightbox and lightweight status toast. -->
+    <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Expanded gallery image">
+        <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Close image">×</button>
+        <img id="lightboxImage" alt="Expanded gallery photograph">
+        <p id="lightboxCaption"></p>
+    </div>
+    <div class="toast-message" id="toastMessage" role="status" aria-live="polite"></div>
+
+    <!-- JavaScript is intentionally inline here, separated into commented sections for easy tracing. -->
+    <script>
+        "use strict";
+
+        /* ============================================================
+           1. SITE CONTENT / DEFAULT SETTINGS
+           Edit this section if you want to change the initial content.
+           Uploaded media is stored separately in IndexedDB.
+        ============================================================ */
+        const ADMIN_PASSWORD = "DPM2026!"; // Change for the demo. Not secure for a public production website.
+        const DATA_STORAGE_KEY = "dpmMusicMinistrySiteData_v1";
+        const MEDIA_DB_NAME = "dpmMusicMinistryMedia_v1";
+        const MEDIA_STORE_NAME = "media";
+
+        const DEFAULT_SITE_DATA = {
+            contact: {
+                brand: "D Psalmist Music Ministry",
+                studio: "D Psalmist Studio",
+                artist: "JethrosonMKO",
+                genres: "Contemporary Christian Music (CCM), Christian worship music, gospel, African Highlife",
+                heroHeadline: "Sound that lifts the soul.",
+                heroIntro: "Gospel music, heartfelt worship, and vibrant African Highlife — created to inspire faith and bring people together in God's presence.",
+                bio: "D Psalmist Music Ministry is the home of JethrosonMKO — sharing the message of Christ through contemporary gospel, Christian worship, and the joyful rhythms of African Highlife. Every song and ministration is an invitation to worship, hope, and live with purpose.",
+                phone1: "+2347059095206",
+                phone2: "+2348130450135",
+                email: "consultant1805@gmail.com",
+                whatsapp: "+2349020075539",
+                facebook: "https://www.facebook.com/profile.php?id=61590028066545",
+                tiktok: "https://www.tiktok.com/@jethrosonmko?_r=1&_t=ZS-9AY5ZBDoaE1"
+            },
+            slider: [
+                { caption: "Inside D Psalmist Studio", mediaKey: "slider-1" },
+                { caption: "Music, worship, and inspiration", mediaKey: "slider-2" },
+                { caption: "Live gospel moments", mediaKey: "slider-3" },
+                { caption: "Creating sounds that lift the soul", mediaKey: "slider-4" }
+            ],
+            gallery: [
+                { caption: "Studio sessions", mediaKey: "gallery-1" },
+                { caption: "Worship moments", mediaKey: "gallery-2" },
+                { caption: "Live performances", mediaKey: "gallery-3" },
+                { caption: "Behind the music", mediaKey: "gallery-4" },
+                { caption: "Ministry on the road", mediaKey: "gallery-5" },
+                { caption: "Moments of fellowship", mediaKey: "gallery-6" },
+                { caption: "The journey continues", mediaKey: "gallery-7" }
+            ],
+            news: [
+                {
+                    title: "Welcome to D Psalmist Music Ministry",
+                    date: "Ministry update",
+                    body: "Welcome to our online home for gospel music, worship, African Highlife, and ministry news. Check this space for new songs, event announcements, and updates from JethrosonMKO.",
+                    mediaKey: "news-1"
+                },
+                {
+                    title: "Booking enquiries are open",
+                    date: "Bookings",
+                    body: "Invite JethrosonMKO for music ministration, concerts, MC engagements, studio enquiries, and other entertainment services. Use the booking form to tell us about your programme.",
+                    mediaKey: "news-2"
+                }
+            ],
+            videos: [
+                { title: "Worship video", url: "" },
+                { title: "Live ministration", url: "" },
+                { title: "Music and ministry", url: "" }
+            ],
+            stores: [
+                { label: "Spotify", url: "https://open.spotify.com/", icon: "Sp" },
+                { label: "Apple Music", url: "https://music.apple.com/", icon: "A" },
+                { label: "YouTube Music", url: "https://music.youtube.com/", icon: "▶" },
+                { label: "Boomplay", url: "https://www.boomplay.com/", icon: "B" },
+                { label: "Audiomack", url: "https://audiomack.com/", icon: "AM" },
+                { label: "Deezer", url: "https://www.deezer.com/", icon: "D" }
+            ],
+            releases: []
+        };
+
+        let siteData = loadSiteData();
+        const mediaUrlCache = new Map();
+        let mediaDatabasePromise = null;
+        let toastTimer = null;
+
+        /* ============================================================
+           2. SMALL UTILITIES / SAFE TEXT HELPERS
+        ============================================================ */
+        function clone(value) {
+            return JSON.parse(JSON.stringify(value));
+        }
+
+        function loadSiteData() {
+            try {
+                const saved = localStorage.getItem(DATA_STORAGE_KEY);
+                if (!saved) return clone(DEFAULT_SITE_DATA);
+                const parsed = JSON.parse(saved);
+                return {
+                    contact: { ...DEFAULT_SITE_DATA.contact, ...(parsed.contact || {}) },
+                    slider: Array.from({ length: 4 }, (_, index) => ({
+                        ...DEFAULT_SITE_DATA.slider[index],
+                        ...((parsed.slider || [])[index] || {})
+                    })),
+                    gallery: Array.from({ length: 7 }, (_, index) => ({
+                        ...DEFAULT_SITE_DATA.gallery[index],
+                        ...((parsed.gallery || [])[index] || {})
+                    })),
+                    news: Array.from({ length: 2 }, (_, index) => ({
+                        ...DEFAULT_SITE_DATA.news[index],
+                        ...((parsed.news || [])[index] || {})
+                    })),
+                    videos: Array.from({ length: 3 }, (_, index) => ({
+                        ...DEFAULT_SITE_DATA.videos[index],
+                        ...((parsed.videos || [])[index] || {})
+                    })),
+                    stores: Array.from({ length: 6 }, (_, index) => ({
+                        ...DEFAULT_SITE_DATA.stores[index],
+                        ...((parsed.stores || [])[index] || {})
+                    })),
+                    releases: Array.isArray(parsed.releases) ? parsed.releases : []
+                };
+            } catch (error) {
+                console.warn("Could not load saved site settings; defaults will be used.", error);
+                return clone(DEFAULT_SITE_DATA);
+            }
+        }
+
+        function saveSiteData() {
+            localStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(siteData));
+        }
+
+        function escapeHTML(value) {
+            return String(value ?? "").replace(/[&<>"']/g, character => ({
+                "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+            })[character]);
+        }
+
+        function cleanPhoneNumber(value) {
+            return String(value || "").replace(/[^0-9+]/g, "");
+        }
+
+        function formatPhoneNumber(value) {
+            const clean = cleanPhoneNumber(value);
+            if (clean.startsWith("+234") && clean.length === 14) {
+                return `+234 ${clean.slice(4, 7)} ${clean.slice(7, 10)} ${clean.slice(10)}`;
+            }
+            return value || "";
+        }
+
+        function safeExternalUrl(value) {
+            const raw = String(value || "").trim();
+            if (!raw) return "";
+            try {
+                const parsed = new URL(raw);
+                return ["http:", "https:"].includes(parsed.protocol) ? parsed.href : "";
+            } catch (error) {
+                return "";
+            }
+        }
+
+        function showToast(message, isError = false) {
+            const toast = document.getElementById("toastMessage");
+            toast.textContent = message;
+            toast.classList.toggle("toast-error", isError);
+            toast.classList.add("toast-visible");
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => toast.classList.remove("toast-visible"), 3200);
+        }
+
+        function setAdminSaveStatus(message) {
+            const status = document.getElementById("adminSaveStatus");
+            if (status) status.textContent = message;
+        }
+
+        /* ============================================================
+           3. INDEXEDDB MEDIA STORAGE
+           Images and audio are kept out of localStorage to avoid its small size limit.
+        ============================================================ */
+        function openMediaDatabase() {
+            if (mediaDatabasePromise) return mediaDatabasePromise;
+
+            mediaDatabasePromise = new Promise((resolve, reject) => {
+                if (!window.indexedDB) {
+                    reject(new Error("This browser does not support IndexedDB media storage."));
+                    return;
+                }
+
+                const request = indexedDB.open(MEDIA_DB_NAME, 1);
+                request.onupgradeneeded = event => {
+                    const db = event.target.result;
+                    if (!db.objectStoreNames.contains(MEDIA_STORE_NAME)) {
+                        db.createObjectStore(MEDIA_STORE_NAME, { keyPath: "key" });
+                    }
+                };
+                request.onsuccess = () => resolve(request.result);
+                request.onerror = () => reject(request.error || new Error("Could not open media database."));
+            });
+
+            return mediaDatabasePromise;
+        }
+
+        async function putMedia(key, blob, name = "uploaded-file") {
+            const db = await openMediaDatabase();
+            await new Promise((resolve, reject) => {
+                const transaction = db.transaction(MEDIA_STORE_NAME, "readwrite");
+                transaction.objectStore(MEDIA_STORE_NAME).put({ key, blob, name, type: blob.type || "application/octet-stream" });
+                transaction.oncomplete = () => resolve();
+                transaction.onerror = () => reject(transaction.error || new Error("Could not save uploaded media."));
+                transaction.onabort = () => reject(transaction.error || new Error("Media upload was cancelled."));
+            });
+            if (mediaUrlCache.has(key)) {
+                URL.revokeObjectURL(mediaUrlCache.get(key));
+                mediaUrlCache.delete(key);
+            }
+        }
+
+        async function getMediaRecord(key) {
+            const db = await openMediaDatabase();
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction(MEDIA_STORE_NAME, "readonly");
+                const request = transaction.objectStore(MEDIA_STORE_NAME).get(key);
+                request.onsuccess = () => resolve(request.result || null);
+                request.onerror = () => reject(request.error || new Error("Could not read uploaded media."));
+            });
+        }
+
+        async function getMediaUrl(key) {
+            if (!key) return "";
+            if (mediaUrlCache.has(key)) return mediaUrlCache.get(key);
+            const record = await getMediaRecord(key);
+            if (!record || !record.blob) return "";
+            const url = URL.createObjectURL(record.blob);
+            mediaUrlCache.set(key, url);
+            return url;
+        }
+
+        async function deleteMedia(key) {
+            if (!key) return;
+            const db = await openMediaDatabase();
+            await new Promise((resolve, reject) => {
+                const transaction = db.transaction(MEDIA_STORE_NAME, "readwrite");
+                transaction.objectStore(MEDIA_STORE_NAME).delete(key);
+                transaction.oncomplete = () => resolve();
+                transaction.onerror = () => reject(transaction.error || new Error("Could not delete media."));
+            });
+            if (mediaUrlCache.has(key)) {
+                URL.revokeObjectURL(mediaUrlCache.get(key));
+                mediaUrlCache.delete(key);
+            }
+        }
+
+        async function getAllMediaRecords() {
+            const db = await openMediaDatabase();
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction(MEDIA_STORE_NAME, "readonly");
+                const request = transaction.objectStore(MEDIA_STORE_NAME).getAll();
+                request.onsuccess = () => resolve(request.result || []);
+                request.onerror = () => reject(request.error || new Error("Could not read media for backup."));
+            });
+        }
+
+        async function compressImageIfNeeded(file) {
+            if (!file.type.startsWith("image/")) return file;
+            try {
+                const bitmap = await createImageBitmap(file);
+                const maxDimension = 1800;
+                const ratio = Math.min(1, maxDimension / Math.max(bitmap.width, bitmap.height));
+                const canvas = document.createElement("canvas");
+                canvas.width = Math.max(1, Math.round(bitmap.width * ratio));
+                canvas.height = Math.max(1, Math.round(bitmap.height * ratio));
+                const context = canvas.getContext("2d");
+                context.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+                bitmap.close?.();
+                const blob = await new Promise(resolve => canvas.toBlob(resolve, "image/jpeg", 0.84));
+                return blob || file;
+            } catch (error) {
+                console.warn("Image compression was skipped.", error);
+                return file;
+            }
+        }
+
+        /* ============================================================
+           4. PUBLIC WEBSITE RENDERING
+        ============================================================ */
+        async function renderArtistImage() {
+            const image = document.getElementById("artistPhoto");
+            const placeholder = document.getElementById("artistPhotoPlaceholder");
+            try {
+                const url = await getMediaUrl("artist-portrait");
+                if (url) {
+                    image.src = url;
+                    image.hidden = false;
+                    placeholder.hidden = true;
+                } else {
+                    image.hidden = true;
+                    image.removeAttribute("src");
+                    placeholder.hidden = false;
+                }
+            } catch (error) {
+                console.warn("Artist image could not be loaded.", error);
+            }
+        }
+
+        function renderContactAndAbout() {
+            const contact = siteData.contact;
+            document.title = `${contact.brand || "D Psalmist Music Ministry"} | ${contact.artist || "JethrosonMKO"}`;
+            document.querySelector('meta[name="description"]').setAttribute("content", `${contact.brand}. ${contact.artist}. ${contact.genres}. Book music ministration, concerts, MC services, and studio enquiries.`);
+            document.querySelectorAll(".brand-copy strong").forEach(element => element.textContent = contact.brand || "D Psalmist");
+            document.querySelectorAll(".brand-copy small").forEach(element => element.textContent = "Music Ministry");
+            document.getElementById("heroStudioName").textContent = `${contact.studio || "D Psalmist Studio"} presents`;
+            document.getElementById("heroTitle").innerHTML = `${escapeHTML((contact.heroHeadline || "Sound that lifts the soul.").replace(/\s+/, " ").split(" ").slice(0, 3).join(" "))}<br><em>${escapeHTML((contact.heroHeadline || "Sound that lifts the soul.").split(" ").slice(3).join(" ") || "the soul.")}</em>`;
+            document.getElementById("heroIntro").textContent = contact.heroIntro;
+            document.getElementById("artistBio").textContent = contact.bio;
+            document.querySelectorAll(".portrait-bottom-label > span:nth-child(2)").forEach(element => element.textContent = contact.artist || "JethrosonMKO");
+
+            document.getElementById("emailText").textContent = contact.email;
+            document.getElementById("emailLink").href = `mailto:${contact.email}`;
+            document.getElementById("phoneOneText").textContent = formatPhoneNumber(contact.phone1);
+            document.getElementById("phoneOneLink").href = `tel:${cleanPhoneNumber(contact.phone1)}`;
+            document.getElementById("phoneTwoText").textContent = formatPhoneNumber(contact.phone2);
+            document.getElementById("phoneTwoLink").href = `tel:${cleanPhoneNumber(contact.phone2)}`;
+
+            const whatsappNumber = cleanPhoneNumber(contact.whatsapp).replace(/^\+/, "");
+            const whatsappUrl = `https://wa.me/${whatsappNumber}`;
+            document.getElementById("whatsappLink").href = whatsappUrl;
+            document.getElementById("floatingWhatsapp").href = whatsappUrl;
+            document.getElementById("facebookLink").href = safeExternalUrl(contact.facebook) || "#contact";
+            document.getElementById("tiktokLink").href = safeExternalUrl(contact.tiktok) || "#contact";
+            document.getElementById("currentYear").textContent = new Date().getFullYear();
+        }
+
+        let featuredSliderIndex = 0;
+        let featuredSliderTimer = null;
+
+        // Render four editable images and keep the cinematic 3D rotation on a four-second interval.
+        async function renderFeaturedSlider() {
+            const track = document.getElementById("featuredSliderTrack");
+            const dots = document.getElementById("sliderDots");
+            if (!track || !dots) return;
+            const slides = await Promise.all(siteData.slider.map(async (item, index) => {
+                const imageUrl = await getMediaUrl(item.mediaKey);
+                const caption = item.caption || `Featured photo ${index + 1}`;
+                return `<article class="featured-slide ${index === featuredSliderIndex ? "is-active" : ""}" data-slide-index="${index}" aria-hidden="${index !== featuredSliderIndex}">
+                    ${imageUrl ? `<img src="${imageUrl}" alt="${escapeHTML(caption)}" ${index === featuredSliderIndex ? "fetchpriority=high" : "loading=lazy"}>` : `<div class="featured-slide-placeholder"><span>✦</span><strong>D Psalmist Studio</strong><small>Upload a featured image in Admin</small></div>`}
+                    <div class="featured-slide-shade"></div><div class="featured-slide-copy"><span class="featured-slide-kicker">D PSALMIST MUSIC MINISTRY · 0${index + 1}</span><h3>${escapeHTML(caption)}</h3><p>Contemporary gospel · Worship · African Highlife</p></div>
+                </article>`;
+            }));
+            track.innerHTML = slides.join("");
+            dots.innerHTML = siteData.slider.map((_, index) => `<button type="button" class="slider-dot ${index === featuredSliderIndex ? "is-active" : ""}" data-slider-go="${index}" aria-label="Show featured photo ${index + 1}" aria-current="${index === featuredSliderIndex ? "true" : "false"}"></button>`).join("");
+            const counter = document.getElementById("sliderCounter");
+            if (counter) counter.textContent = `${String(featuredSliderIndex + 1).padStart(2, "0")} / 04`;
+            if (featuredSliderTimer) clearInterval(featuredSliderTimer);
+            featuredSliderTimer = setInterval(() => changeFeaturedSlide((featuredSliderIndex + 1) % 4), 4000);
+        }
+
+        async function changeFeaturedSlide(nextIndex) {
+            featuredSliderIndex = (nextIndex + 4) % 4;
+            await renderFeaturedSlider();
+        }
+
+        async function renderGallery() {
+            const grid = document.getElementById("galleryGrid");
+            const cards = await Promise.all(siteData.gallery.map(async (item, index) => {
+                const imageUrl = await getMediaUrl(item.mediaKey);
+                const caption = item.caption || `Gallery photo ${index + 1}`;
+                const inner = imageUrl
+                    ? `<img src="${imageUrl}" alt="${escapeHTML(caption)}" loading="lazy"><span class="gallery-number">0${index + 1}</span><span class="gallery-caption">${escapeHTML(caption)}</span><span class="gallery-expand" aria-hidden="true">↗</span>`
+                    : `<span class="gallery-placeholder-icon" aria-hidden="true">✦</span><span class="gallery-number">0${index + 1}</span><span class="gallery-caption">${escapeHTML(caption)}</span><span class="gallery-empty-note">Add photo in Admin</span>`;
+                return `<button class="gallery-item gallery-item-${index + 1}" type="button" ${imageUrl ? `data-lightbox-key="${escapeHTML(item.mediaKey)}" data-lightbox-caption="${escapeHTML(caption)}"` : "disabled"} aria-label="${escapeHTML(imageUrl ? `Enlarge ${caption}` : `${caption}: no photo uploaded`)}">${inner}</button>`;
+            }));
+            grid.innerHTML = cards.join("");
+        }
+
+        async function renderNews() {
+            const grid = document.getElementById("newsGrid");
+            const cards = await Promise.all(siteData.news.map(async (item, index) => {
+                const imageUrl = await getMediaUrl(item.mediaKey);
+                return `<article class="news-card">
+                    <div class="news-image ${imageUrl ? "has-image" : ""}">${imageUrl ? `<img src="${imageUrl}" alt="${escapeHTML(item.title)}" loading="lazy">` : `<span aria-hidden="true">${index === 0 ? "✦" : "♫"}</span>`}<small>${escapeHTML(item.date || "Ministry news")}</small></div>
+                    <div class="news-content"><p class="news-index">UPDATE / 0${index + 1}</p><h3>${escapeHTML(item.title || "Ministry update")}</h3><p>${escapeHTML(item.body || "Update details will be published soon.")}</p><a href="#contact" class="text-link">Enquire <span aria-hidden="true">↗</span></a></div>
+                </article>`;
+            }));
+            grid.innerHTML = cards.join("");
+        }
+
+        function extractYouTubeId(value) {
+            const url = safeExternalUrl(value);
+            if (!url) return "";
+            try {
+                const parsed = new URL(url);
+                let id = "";
+                if (parsed.hostname.includes("youtu.be")) id = parsed.pathname.split("/").filter(Boolean)[0] || "";
+                else if (parsed.hostname.includes("youtube.com") || parsed.hostname.includes("youtube-nocookie.com")) {
+                    id = parsed.searchParams.get("v") || "";
+                    const parts = parsed.pathname.split("/").filter(Boolean);
+                    if (!id && ["embed", "shorts", "live"].includes(parts[0])) id = parts[1] || "";
+                }
+                return /^[A-Za-z0-9_-]{11}$/.test(id) ? id : "";
+            } catch (error) {
+                return "";
+            }
+        }
+
+        function renderVideos() {
+            const grid = document.getElementById("videosGrid");
+            grid.innerHTML = siteData.videos.map((video, index) => {
+                const id = extractYouTubeId(video.url);
+                const visual = id
+                    ? `<div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/${id}" title="${escapeHTML(video.title || `D Psalmist video ${index + 1}`)}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>`
+                    : `<div class="video-placeholder"><span class="play-icon" aria-hidden="true">▶</span><span class="video-placeholder-label">YouTube video 0${index + 1}</span><small>Add a YouTube link in Admin</small></div>`;
+                return `<article class="video-card">${visual}<div class="video-card-caption"><span>VIDEO / 0${index + 1}</span><h3>${escapeHTML(video.title || "Video title")}</h3></div></article>`;
+            }).join("");
+        }
+
+        async function renderReleases() {
+            const grid = document.getElementById("releasesGrid");
+            const emptyNote = document.getElementById("emptyMusicNote");
+            emptyNote.hidden = siteData.releases.length > 0;
+            const cards = await Promise.all(siteData.releases.map(async (release, index) => {
+                const coverUrl = await getMediaUrl(`release-cover-${release.id}`);
+                const audioUrl = await getMediaUrl(`release-audio-${release.id}`);
+                const streamLink = safeExternalUrl(release.streamUrl);
+                return `<article class="release-card">
+                    <div class="release-cover ${coverUrl ? "has-cover" : ""}">${coverUrl ? `<img src="${coverUrl}" alt="${escapeHTML(release.title)} cover art" loading="lazy">` : `<span class="release-cover-mark" aria-hidden="true">♫</span><span class="release-cover-name">D Psalmist<br>Music Ministry</span>`}<span class="release-number">0${index + 1}</span></div>
+                    <div class="release-info"><p class="release-meta">${escapeHTML(release.date || "New release")}</p><h3>${escapeHTML(release.title || "Untitled release")}</h3><p>${escapeHTML(release.description || "A new release from JethrosonMKO.")}</p>
+                        ${audioUrl ? `<audio controls preload="none" src="${audioUrl}">Your browser does not support audio playback.</audio><div class="release-actions"><a class="button button-small button-gold" href="${audioUrl}" download="${escapeHTML((release.title || "d-psalmist-song").replace(/[^a-z0-9-_]+/gi, "-").toLowerCase())}.mp3">Download MP3 ↓</a>${streamLink ? `<a class="text-link" href="${streamLink}" target="_blank" rel="noopener noreferrer">Stream <span aria-hidden="true">↗</span></a>` : ""}</div>` : `<p class="release-awaiting">Audio will be available soon.</p>${streamLink ? `<a class="text-link" href="${streamLink}" target="_blank" rel="noopener noreferrer">Listen online <span aria-hidden="true">↗</span></a>` : ""}`}
+                    </div>
+                </article>`;
+            }));
+            grid.innerHTML = cards.join("");
+        }
+
+        function renderStores() {
+            document.getElementById("storeLinksGrid").innerHTML = siteData.stores.map((store, index) => {
+                const url = safeExternalUrl(store.url);
+                return `<a class="store-link ${index % 2 === 0 ? "store-link-even" : ""}" href="${url || "#music"}" ${url ? 'target="_blank" rel="noopener noreferrer"' : ""} aria-label="${escapeHTML(`Open ${store.label || "music platform"}`)}">
+                    <span class="store-icon store-icon-${index + 1}">${escapeHTML(store.icon || (store.label || "M").slice(0, 2))}</span><span class="store-label">${escapeHTML(store.label || "Music store")}</span><span class="store-arrow" aria-hidden="true">↗</span>
+                </a>`;
+            }).join("");
+        }
+
+        async function renderSite() {
+            renderContactAndAbout();
+            await renderArtistImage();
+            await renderFeaturedSlider();
+            await renderGallery();
+            await renderNews();
+            renderVideos();
+            await renderReleases();
+            renderStores();
+        }
+
+        /* ============================================================
+           5. ADMIN PANEL FORM GENERATION
+        ============================================================ */
+        function adminField(label, value, path, type = "text", placeholder = "") {
+            return `<label class="admin-field">${escapeHTML(label)}<input type="${type}" data-site-field="${escapeHTML(path)}" value="${escapeHTML(value || "")}" placeholder="${escapeHTML(placeholder)}"></label>`;
+        }
+
+        function adminTextarea(label, value, path, rows = 4, placeholder = "") {
+            return `<label class="admin-field">${escapeHTML(label)}<textarea data-site-field="${escapeHTML(path)}" rows="${rows}" placeholder="${escapeHTML(placeholder)}">${escapeHTML(value || "")}</textarea></label>`;
+        }
+
+        function renderBasicsAdmin() {
+            const c = siteData.contact;
+            document.getElementById("basicsPanel").innerHTML = `
+                <div class="admin-section-heading"><p class="eyebrow">Brand & contact</p><h3>Website basics</h3><p>Update how your ministry appears across the website. Your uploaded artist portrait is managed here too.</p></div>
+                <div class="admin-form-grid">
+                    ${adminField("Ministry / brand name", c.brand, "contact.brand")}
+                    ${adminField("Studio name", c.studio, "contact.studio")}
+                    ${adminField("Artist name", c.artist, "contact.artist")}
+                    ${adminField("Music genres", c.genres, "contact.genres")}
+                    ${adminField("Hero headline", c.heroHeadline, "contact.heroHeadline")}
+                    ${adminField("Email address", c.email, "contact.email", "email")}
+                    ${adminField("Primary phone", c.phone1, "contact.phone1", "tel")}
+                    ${adminField("Secondary phone", c.phone2, "contact.phone2", "tel")}
+                    ${adminField("WhatsApp number (include country code)", c.whatsapp, "contact.whatsapp", "tel", "+234...")}
+                    ${adminField("Facebook page URL", c.facebook, "contact.facebook", "url")}
+                    ${adminField("TikTok profile URL", c.tiktok, "contact.tiktok", "url")}
+                </div>
+                ${adminTextarea("Hero introduction", c.heroIntro, "contact.heroIntro", 3)}
+                ${adminTextarea("About the artist / ministry", c.bio, "contact.bio", 5)}
+                <div class="admin-upload-block"><div><h4>Artist portrait</h4><p>Recommended: a sharp portrait or stage photo in JPG, PNG, or WebP format.</p></div><label class="file-picker">Upload portrait<input type="file" accept="image/*" data-media-key="artist-portrait" data-media-kind="image"></label><span class="upload-state" data-media-status="artist-portrait">Portrait can be changed any time.</span></div>
+                <div class="admin-help-card"><strong>Tip:</strong> Use your best high-resolution stage or studio photograph for the welcome page. Uploads are stored on this device in this starter version.</div>`;
+        }
+
+        async function renderSliderAdmin() {
+            const panel = document.getElementById("sliderPanel");
+            const cards = await Promise.all(siteData.slider.map(async (item, index) => {
+                const url = await getMediaUrl(item.mediaKey);
+                return `<article class="admin-media-card slider-admin-card"><div class="admin-media-preview">${url ? `<img src="${url}" alt="Featured slider photo ${index + 1} preview">` : `<span aria-hidden="true">✦</span>`}</div><div class="admin-media-controls"><h4>Featured slide 0${index + 1}</h4><p class="slider-admin-note">Shown in the automatic 4-second 3D-style slideshow above the photo gallery.</p><label class="admin-field">Slide caption<input type="text" data-slider-caption="${index}" value="${escapeHTML(item.caption || "")}" placeholder="Add a short caption"></label><label class="file-picker">${url ? "Replace featured photo" : "Upload featured photo"}<input type="file" accept="image/*" data-media-key="${escapeHTML(item.mediaKey)}" data-media-kind="image"></label><span class="upload-state" data-media-status="${escapeHTML(item.mediaKey)}">${url ? "Photo uploaded" : "No photo uploaded yet"}</span></div></article>`;
+            }));
+            panel.innerHTML = `<div class="admin-section-heading"><p class="eyebrow">Homepage showcase</p><h3>Featured picture slider</h3><p>Upload or replace the four images shown directly above the gallery. The slider rotates automatically every four seconds with a cinematic 3D perspective transition. Captions can be changed here too.</p></div><div class="slider-admin-tip"><strong>Image tip</strong><span>Use landscape photos (16:9), ideally at least 1600 × 900 pixels, for the best studio-style presentation.</span></div><div class="admin-media-list">${cards.join("")}</div>`;
+        }
+
+        async function renderGalleryAdmin() {
+            const panel = document.getElementById("galleryPanel");
+            const slots = await Promise.all(siteData.gallery.map(async (item, index) => {
+                const url = await getMediaUrl(item.mediaKey);
+                return `<article class="admin-media-card"><div class="admin-media-preview">${url ? `<img src="${url}" alt="Gallery slot ${index + 1} preview">` : `<span aria-hidden="true">✦</span>`}</div><div class="admin-media-controls"><h4>Photo slot 0${index + 1}</h4><label class="admin-field">Photo caption<input type="text" data-gallery-caption="${index}" value="${escapeHTML(item.caption || "")}" placeholder="Describe the photo"></label><label class="file-picker">${url ? "Replace photo" : "Upload photo"}<input type="file" accept="image/*" data-media-key="${escapeHTML(item.mediaKey)}" data-media-kind="image"></label><span class="upload-state" data-media-status="${escapeHTML(item.mediaKey)}">${url ? "Photo uploaded" : "No photo uploaded yet"}</span></div></article>`;
+            }));
+            panel.innerHTML = `<div class="admin-section-heading"><p class="eyebrow">Photo management</p><h3>Gallery images</h3><p>Manage the seven gallery slots shown on the public website. Keep images clear and use short captions.</p></div><div class="admin-media-list">${slots.join("")}</div>`;
+        }
+
+        async function renderNewsAdmin() {
+            const panel = document.getElementById("newsPanel");
+            const cards = await Promise.all(siteData.news.map(async (item, index) => {
+                const url = await getMediaUrl(item.mediaKey);
+                return `<article class="admin-edit-card"><div class="admin-section-subheading"><span class="admin-number">0${index + 1}</span><div><h4>News feed ${index + 1}</h4><p>This appears in the public News &amp; Updates section.</p></div></div><div class="admin-form-grid">${adminField("Headline", item.title, `news.${index}.title`)}${adminField("Date or label", item.date, `news.${index}.date` )}</div>${adminTextarea("Update details", item.body, `news.${index}.body`, 4)}<div class="admin-upload-block"><div class="admin-upload-description">${url ? `<img class="small-preview" src="${url}" alt="News image preview">` : `<span class="mini-placeholder">✦</span>`}<div><h4>Optional news image</h4><p>Add a photo to this update.</p></div></div><label class="file-picker">${url ? "Replace image" : "Upload image"}<input type="file" accept="image/*" data-media-key="${escapeHTML(item.mediaKey)}" data-media-kind="image"></label><span class="upload-state" data-media-status="${escapeHTML(item.mediaKey)}">${url ? "Image uploaded" : "No image uploaded"}</span></div></article>`;
+            }));
+            panel.innerHTML = `<div class="admin-section-heading"><p class="eyebrow">Announcements</p><h3>News &amp; updates</h3><p>Edit the two news cards with release announcements, event information, and ministry updates.</p></div>${cards.join("")}`;
+        }
+
+        function renderVideosAdmin() {
+            const panel = document.getElementById("videosPanel");
+            panel.innerHTML = `<div class="admin-section-heading"><p class="eyebrow">Video embeds</p><h3>Manage YouTube videos</h3><p>For each slot, enter the video title and paste its YouTube link. Supported links include youtube.com/watch, youtu.be, and YouTube Shorts. After editing, tap <strong>Save all changes</strong> at the bottom of the admin panel. Use public or unlisted videos that allow embedding.</p></div>${siteData.videos.map((video, index) => `<article class="admin-edit-card"><div class="admin-section-subheading"><span class="admin-number">0${index + 1}</span><div><h4>YouTube video ${index + 1}</h4><p>This video appears in the public website's Video moments section.</p></div></div><div class="admin-form-grid">${adminField("Video title", video.title, `videos.${index}.title`)}${adminField("YouTube video link", video.url, `videos.${index}.url`, "url", "https://www.youtube.com/watch?v=...")}</div></article>`).join("")}`;
+        }
+
+        async function renderMusicAdmin() {
+            const panel = document.getElementById("musicPanel");
+            const releases = await Promise.all(siteData.releases.map(async (release, index) => {
+                const coverUrl = await getMediaUrl(`release-cover-${release.id}`);
+                const audioUrl = await getMediaUrl(`release-audio-${release.id}`);
+                return `<article class="admin-edit-card admin-release-card" data-release-id="${escapeHTML(release.id)}"><div class="admin-section-subheading"><span class="admin-number">${String(index + 1).padStart(2, "0")}</span><div><h4>Music release ${index + 1}</h4><p>Upload an MP3 and optional cover art. The MP3 download link appears automatically.</p></div><button class="button button-small button-danger" type="button" data-remove-release="${escapeHTML(release.id)}">Remove</button></div><div class="admin-form-grid">${adminField("Song / release title", release.title, `release.${release.id}.title`)}${adminField("Release date or label", release.date, `release.${release.id}.date`, "text", "e.g. October 2026")}${adminField("Streaming link (optional)", release.streamUrl, `release.${release.id}.streamUrl`, "url", "https://...")}</div>${adminTextarea("Short description", release.description, `release.${release.id}.description`, 3)}<div class="admin-media-upload-row"><div class="admin-upload-block"><div class="admin-upload-description">${coverUrl ? `<img class="small-preview" src="${coverUrl}" alt="Cover preview">` : `<span class="mini-placeholder">♫</span>`}<div><h4>Cover art</h4><p>Square artwork recommended.</p></div></div><label class="file-picker">${coverUrl ? "Replace cover" : "Upload cover"}<input type="file" accept="image/*" data-media-key="release-cover-${escapeHTML(release.id)}" data-media-kind="image"></label><span class="upload-state" data-media-status="release-cover-${escapeHTML(release.id)}">${coverUrl ? "Cover uploaded" : "No cover uploaded"}</span></div><div class="admin-upload-block"><div class="admin-upload-description"><span class="mini-placeholder">♫</span><div><h4>MP3 audio</h4><p>${audioUrl ? "Audio uploaded and ready." : "Upload the song file for playback and download."}</p></div></div><label class="file-picker">${audioUrl ? "Replace MP3" : "Upload MP3"}<input type="file" accept="audio/mpeg,audio/mp3,.mp3" data-media-key="release-audio-${escapeHTML(release.id)}" data-media-kind="audio"></label><span class="upload-state" data-media-status="release-audio-${escapeHTML(release.id)}">${audioUrl ? "MP3 uploaded" : "No MP3 uploaded"}</span></div></div></article>`;
+            }));
+            panel.innerHTML = `<div class="admin-section-heading"><p class="eyebrow">Release management</p><h3>Music releases &amp; downloads</h3><p>Add a song, upload the MP3, include cover art, and optionally link to a streaming page. The website has no fixed release limit.</p></div><div class="admin-release-list">${releases.length ? releases.join("") : `<div class="admin-help-card"><strong>No releases added yet.</strong><br>Add your first release below, then upload its MP3. Only add audio files you have permission to distribute.</div>`}</div><button class="button button-outline add-release-button" id="addReleaseBtn" type="button">＋ Add music release</button>`;
+        }
+
+        function renderStoresAdmin() {
+            const panel = document.getElementById("storesPanel");
+            panel.innerHTML = `<div class="admin-section-heading"><p class="eyebrow">Streaming &amp; sales</p><h3>Music store links</h3><p>Six platform cards appear on the public website. Replace the sample platform homepages with your actual artist or song pages.</p></div><div class="admin-store-list">${siteData.stores.map((store, index) => `<article class="admin-store-row"><span class="store-icon store-icon-${index + 1}">${escapeHTML(store.icon || (store.label || "M").slice(0, 2))}</span><div class="admin-store-fields">${adminField("Platform name", store.label, `stores.${index}.label`)}${adminField("Artist / store link", store.url, `stores.${index}.url`, "url", "https://...")}</div></article>`).join("")}</div>`;
+        }
+
+        async function renderAdminPanel() {
+            const dashboardMusicCount = document.getElementById("dashboardMusicCount");
+            if (dashboardMusicCount) dashboardMusicCount.textContent = String((siteData.releases || []).length);
+            renderBasicsAdmin();
+            await renderSliderAdmin();
+            await renderGalleryAdmin();
+            await renderNewsAdmin();
+            renderVideosAdmin();
+            await renderMusicAdmin();
+            renderStoresAdmin();
+        }
+
+        function setObjectPath(object, path, value) {
+            const parts = path.split(".");
+            let target = object;
+            for (let index = 0; index < parts.length - 1; index += 1) {
+                const part = parts[index];
+                if (/^\d+$/.test(part)) target = target[Number(part)];
+                else target = target[part];
+                if (!target) return;
+            }
+            const finalKey = parts[parts.length - 1];
+            if (/^\d+$/.test(finalKey)) target[Number(finalKey)] = value;
+            else target[finalKey] = value;
+        }
+
+        function collectAdminForm() {
+            document.querySelectorAll("[data-site-field]").forEach(input => {
+                const path = input.dataset.siteField;
+
+                // Music release paths include a string ID, so update those records directly.
+                if (path.startsWith("release.")) {
+                    const [, releaseId, fieldName] = path.split(".");
+                    const release = siteData.releases.find(item => String(item.id) === releaseId);
+                    if (release && fieldName) release[fieldName] = input.value.trim();
+                    return;
+                }
+
+                setObjectPath(siteData, path, input.value.trim());
+            });
+
+            document.querySelectorAll("[data-slider-caption]").forEach(input => {
+                siteData.slider[Number(input.dataset.sliderCaption)].caption = input.value.trim();
+            });
+
+            document.querySelectorAll("[data-gallery-caption]").forEach(input => {
+                siteData.gallery[Number(input.dataset.galleryCaption)].caption = input.value.trim();
+            });
+        }
+
+        async function saveAdminChanges() {
+            collectAdminForm();
+            try {
+                saveSiteData();
+                await renderSite();
+                setAdminSaveStatus(`Saved locally at ${new Date().toLocaleTimeString()}.`);
+                showToast("Website content saved in this browser.");
+            } catch (error) {
+                console.error(error);
+                showToast("Could not save. Check browser storage permissions.", true);
+                setAdminSaveStatus("Save failed. Check browser storage settings.");
+            }
+        }
+
+        /* ============================================================
+           6. LOGIN, ADMIN NAVIGATION, AND UPLOAD HANDLERS
+        ============================================================ */
+        function openLoginModal() {
+            document.getElementById("loginModal").hidden = false;
+            document.getElementById("adminPassword").value = "";
+            document.getElementById("loginError").textContent = "";
+            setTimeout(() => document.getElementById("adminPassword").focus(), 50);
+        }
+
+        function closeLoginModal() {
+            document.getElementById("loginModal").hidden = true;
+        }
+
+        async function openAdminPanel() {
+            closeLoginModal();
+            document.getElementById("adminPanel").hidden = false;
+            document.body.classList.add("modal-open");
+            await renderAdminPanel();
+            setAdminSaveStatus("Remember: save changes before closing.");
+        }
+
+        function closeAdminPanel() {
+            document.getElementById("adminPanel").hidden = true;
+            document.body.classList.remove("modal-open");
+        }
+
+        function activateAdminTab(tabName) {
+            document.querySelectorAll(".admin-tab").forEach(tab => tab.classList.toggle("active", tab.dataset.adminTab === tabName));
+            document.querySelectorAll(".admin-tab-panel").forEach(panel => panel.classList.toggle("active", panel.dataset.adminPanel === tabName));
+        }
+
+        async function handleMediaUpload(input) {
+            const file = input.files && input.files[0];
+            if (!file) return;
+            const key = input.dataset.mediaKey;
+            const kind = input.dataset.mediaKind || (file.type.startsWith("image/") ? "image" : "audio");
+            const status = document.querySelector(`[data-media-status="${CSS.escape(key)}"]`);
+            if (status) status.textContent = "Uploading and saving…";
+
+            try {
+                if (kind === "image" && !file.type.startsWith("image/")) throw new Error("Please select an image file.");
+                if (kind === "audio" && !(file.type === "audio/mpeg" || file.type === "audio/mp3" || file.name.toLowerCase().endsWith(".mp3"))) {
+                    throw new Error("Please choose an MP3 audio file.");
+                }
+                const preparedFile = kind === "image" ? await compressImageIfNeeded(file) : file;
+                await putMedia(key, preparedFile, file.name);
+                if (status) status.textContent = `${kind === "image" ? "Image" : "Audio"} saved: ${file.name}`;
+                await renderSite();
+
+                // Update the relevant preview inside the admin panel without clearing typed form fields.
+                const previewContainer = input.closest(".admin-media-card, .admin-upload-block");
+                if (previewContainer && kind === "image") {
+                    const preview = previewContainer.querySelector(".admin-media-preview, .admin-upload-description");
+                    const url = await getMediaUrl(key);
+                    if (preview && url && preview.classList.contains("admin-media-preview")) preview.innerHTML = `<img src="${url}" alt="Uploaded image preview">`;
+                    else if (preview && url) {
+                        let img = preview.querySelector(".small-preview");
+                        if (!img) {
+                            img = document.createElement("img");
+                            img.className = "small-preview";
+                            img.alt = "Uploaded image preview";
+                            preview.prepend(img);
+                        }
+                        img.src = url;
+                    }
+                }
+                showToast(`${kind === "image" ? "Image" : "Audio file"} uploaded successfully.`);
+            } catch (error) {
+                console.error(error);
+                if (status) status.textContent = error.message || "Upload failed";
+                showToast(error.message || "Upload failed. Try another file.", true);
+            } finally {
+                input.value = "";
+            }
+        }
+
+        /* ============================================================
+           7. BACKUP EXPORT / RESTORE
+           Backup JSON includes site text and media files stored on this device.
+        ============================================================ */
+        function blobToDataUrl(blob) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = () => reject(reader.error || new Error("Could not convert media for backup."));
+                reader.readAsDataURL(blob);
+            });
+        }
+
+        function dataUrlToBlob(dataUrl) {
+            const parts = dataUrl.split(",");
+            const mime = (parts[0].match(/data:(.*?);base64/) || [])[1] || "application/octet-stream";
+            const binary = atob(parts[1] || "");
+            const bytes = new Uint8Array(binary.length);
+            for (let index = 0; index < binary.length; index += 1) bytes[index] = binary.charCodeAt(index);
+            return new Blob([bytes], { type: mime });
+        }
+
+        async function exportBackup() {
+            try {
+                const records = await getAllMediaRecords();
+                const media = await Promise.all(records.map(async record => ({
+                    key: record.key,
+                    name: record.name,
+                    type: record.type,
+                    dataUrl: await blobToDataUrl(record.blob)
+                })));
+                const backup = { format: "dpm-music-ministry-backup-v1", exportedAt: new Date().toISOString(), siteData, media };
+                const blob = new Blob([JSON.stringify(backup, null, 2)], { type: "application/json" });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement("a");
+                link.href = url;
+                link.download = `d-psalmist-website-backup-${new Date().toISOString().slice(0, 10)}.json`;
+                link.click();
+                URL.revokeObjectURL(url);
+                showToast("Website backup downloaded.");
+            } catch (error) {
+                console.error(error);
+                showToast("Backup could not be created. Check browser storage.", true);
+            }
+        }
+
+        async function importBackup(file) {
+            if (!file) return;
+            try {
+                const backup = JSON.parse(await file.text());
+                if (backup.format !== "dpm-music-ministry-backup-v1" || !backup.siteData) throw new Error("This is not a D Psalmist website backup file.");
+                siteData = backup.siteData;
+                saveSiteData();
+                for (const asset of (backup.media || [])) {
+                    if (asset.key && asset.dataUrl) await putMedia(asset.key, dataUrlToBlob(asset.dataUrl), asset.name || asset.key);
+                }
+                await renderSite();
+                await renderAdminPanel();
+                showToast("Backup restored successfully.");
+                setAdminSaveStatus("Backup restored in this browser.");
+            } catch (error) {
+                console.error(error);
+                showToast(error.message || "Could not restore backup.", true);
+            }
+        }
+
+        /* ============================================================
+           8. BOOKING FORM / GALLERY LIGHTBOX / MOBILE NAVIGATION
+        ============================================================ */
+        function submitBooking(event) {
+            event.preventDefault();
+            const form = event.currentTarget;
+            if (!form.reportValidity()) return;
+            const formData = new FormData(form);
+            const message = [
+                "Hello D Psalmist Music Ministry, I would like to make a booking enquiry.",
+                `Name: ${formData.get("name")}`,
+                `Phone: ${formData.get("phone")}`,
+                `Service: ${formData.get("service")}`,
+                `Event date: ${formData.get("date") || "Not decided"}`,
+                `Location: ${formData.get("location") || "Not specified"}`,
+                `Details: ${formData.get("message") || "No additional details"}`
+            ].join("\n");
+            const whatsappNumber = cleanPhoneNumber(siteData.contact.whatsapp).replace(/^\+/, "");
+            window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+        }
+
+        async function openLightbox(key, caption) {
+            const url = await getMediaUrl(key);
+            if (!url) return;
+            document.getElementById("lightboxImage").src = url;
+            document.getElementById("lightboxImage").alt = caption || "Expanded gallery photograph";
+            document.getElementById("lightboxCaption").textContent = caption || "";
+            document.getElementById("lightbox").hidden = false;
+        }
+
+        function closeLightbox() {
+            document.getElementById("lightbox").hidden = true;
+            document.getElementById("lightboxImage").removeAttribute("src");
+        }
+
+        function toggleMobileMenu() {
+            const button = document.getElementById("menuToggle");
+            const nav = document.getElementById("mainNav");
+            const isOpen = nav.classList.toggle("nav-open");
+            button.classList.toggle("menu-open", isOpen);
+            button.setAttribute("aria-expanded", String(isOpen));
+            button.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
+        }
+
+        /* ============================================================
+           9. EVENT LISTENERS
+        ============================================================ */
+        document.querySelectorAll(".admin-open").forEach(button => button.addEventListener("click", openLoginModal));
+        // Owner access: visit the homepage URL with ?admin=1 to open the login prompt.
+        if (new URLSearchParams(window.location.search).get("admin") === "1") {
+            openLoginModal();
+        }
+        document.querySelectorAll("[data-close-login]").forEach(button => button.addEventListener("click", closeLoginModal));
+        document.getElementById("loginModal").addEventListener("click", event => {
+            if (event.target.id === "loginModal") closeLoginModal();
+        });
+        document.getElementById("loginForm").addEventListener("submit", async event => {
+            event.preventDefault();
+            const enteredPassword = document.getElementById("adminPassword").value;
+            if (enteredPassword !== ADMIN_PASSWORD) {
+                document.getElementById("loginError").textContent = "That password did not match. Try again.";
+                return;
+            }
+            await openAdminPanel();
+        });
+
+        document.getElementById("closeAdminBtn").addEventListener("click", closeAdminPanel);
+        document.getElementById("adminPanel").addEventListener("click", event => {
+            if (event.target.id === "adminPanel") closeAdminPanel();
+        });
+        document.querySelectorAll("[data-admin-tab]").forEach(button => button.addEventListener("click", () => activateAdminTab(button.dataset.adminTab)));
+        document.getElementById("saveAdminBtn").addEventListener("click", saveAdminChanges);
+        document.getElementById("sliderPrev").addEventListener("click", () => changeFeaturedSlide(featuredSliderIndex - 1));
+        document.getElementById("sliderNext").addEventListener("click", () => changeFeaturedSlide(featuredSliderIndex + 1));
+        document.getElementById("sliderDots").addEventListener("click", event => {
+            const dot = event.target.closest("[data-slider-go]");
+            if (dot) changeFeaturedSlide(Number(dot.dataset.sliderGo));
+        });
+        document.getElementById("featuredSliderStage").addEventListener("mouseenter", () => {
+            if (featuredSliderTimer) clearInterval(featuredSliderTimer);
+            featuredSliderTimer = null;
+        });
+        document.getElementById("featuredSliderStage").addEventListener("mouseleave", () => {
+            if (featuredSliderTimer) clearInterval(featuredSliderTimer);
+            featuredSliderTimer = setInterval(() => changeFeaturedSlide((featuredSliderIndex + 1) % 4), 4000);
+        });
+        document.getElementById("adminForm").addEventListener("change", event => {
+            if (event.target.matches("input[data-media-key]")) handleMediaUpload(event.target);
+        });
+        document.getElementById("adminForm").addEventListener("click", async event => {
+            if (event.target.id === "addReleaseBtn") {
+                collectAdminForm();
+                const id = `release-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
+                siteData.releases.push({ id, title: "", date: "", description: "", streamUrl: "" });
+                saveSiteData();
+                await renderMusicAdmin();
+                activateAdminTab("music");
+                showToast("A new release form has been added.");
+            }
+            const removeButton = event.target.closest("[data-remove-release]");
+            if (removeButton) {
+                collectAdminForm();
+                const releaseId = removeButton.dataset.removeRelease;
+                const release = siteData.releases.find(item => String(item.id) === String(releaseId));
+                if (!window.confirm(`Remove ${release && release.title ? `“${release.title}”` : "this release"} from the website?`)) return;
+                siteData.releases = siteData.releases.filter(item => String(item.id) !== String(releaseId));
+                await deleteMedia(`release-cover-${releaseId}`);
+                await deleteMedia(`release-audio-${releaseId}`);
+                saveSiteData();
+                await renderMusicAdmin();
+                await renderSite();
+                showToast("Release removed.");
+            }
+        });
+        document.getElementById("exportBackupBtn").addEventListener("click", exportBackup);
+        document.getElementById("importBackupInput").addEventListener("change", event => importBackup(event.target.files[0]));
+        document.getElementById("bookingForm").addEventListener("submit", submitBooking);
+        document.getElementById("galleryGrid").addEventListener("click", event => {
+            const item = event.target.closest("[data-lightbox-key]");
+            if (item) openLightbox(item.dataset.lightboxKey, item.dataset.lightboxCaption);
+        });
+        document.getElementById("lightboxClose").addEventListener("click", closeLightbox);
+        document.getElementById("lightbox").addEventListener("click", event => {
+            if (event.target.id === "lightbox") closeLightbox();
+        });
+        document.getElementById("menuToggle").addEventListener("click", toggleMobileMenu);
+        document.querySelectorAll(".main-nav a").forEach(link => link.addEventListener("click", () => {
+            document.getElementById("mainNav").classList.remove("nav-open");
+            document.getElementById("menuToggle").classList.remove("menu-open");
+            document.getElementById("menuToggle").setAttribute("aria-expanded", "false");
+        }));
+
+        document.addEventListener("keydown", event => {
+            if (event.key === "Escape") {
+                closeLoginModal();
+                closeLightbox();
+                closeAdminPanel();
+            }
+        });
+
+        /* ============================================================
+           10. START THE WEBSITE
+        ============================================================ */
+        renderSite().catch(error => {
+            console.error("The website could not render some content.", error);
+            showToast("Some media did not load. Check the browser storage settings.", true);
+        });
+    </script>
+</body>
+</html>
