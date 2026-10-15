@@ -3390,3 +3390,517 @@ body {
 @media (prefers-reduced-motion: reduce) {
     .featured-slide, .featured-slide-copy, .featured-slide img, .slider-arrow, .slider-dot { animation: none !important; transition-duration: .01ms !important; }
 }
+
+/* ============================================================
+   ACCESSIBILITY + NEW CHURCH / DEVOTIONAL / FEEDBACK FEATURES
+   High-contrast text is used on dark panels. Dark text is retained
+   on light cream panels so contrast remains readable.
+============================================================ */
+html { font-size: 17px; }
+body { font-size: 1rem; }
+.hero-intro, .about-copy > p, .section-side-copy, .section-intro,
+.service-card > p, .release-info > p, .news-content > p:not(.news-index),
+.video-card-caption h3, .empty-music-note p, .store-heading p {
+    color: #f0eadf;
+    font-size: 1rem;
+    line-height: 1.85;
+}
+.eyebrow, .news-index, .release-meta, .video-card-caption > span {
+    color: #ffe08a;
+}
+.service-card, .news-card, .release-card, .video-card {
+    color: #fff8e9;
+}
+.service-card p, .news-content > p:not(.news-index), .release-info > p,
+.video-placeholder small, .slider-admin-note {
+    color: #eee4d2;
+}
+.social-links { gap: 13px; flex-wrap: wrap; }
+.social-links a {
+    width: 56px; height: 56px; min-width: 56px;
+    border-width: 2px; font-size: 1.08rem; font-weight: 900;
+}
+.store-links { gap: 18px; }
+.store-link { min-height: 112px; padding: 18px; gap: 14px; }
+.store-icon {
+    width: 58px; height: 58px; min-width: 58px;
+    font-size: 1.25rem; font-weight: 900;
+}
+.store-label { font-size: .95rem; font-weight: 850; }
+
+.church-devotional-section {
+    position: relative; overflow: hidden; padding: clamp(28px, 5vw, 58px) 0;
+    color: #fff8e9;
+    background: radial-gradient(ellipse at 12% 0%, rgba(241,216,139,.16), transparent 45%), linear-gradient(135deg,#17140f,#242019 60%,#12110e);
+    border-bottom: 1px solid rgba(241,216,139,.28);
+}
+.church-partner-card {
+    display: grid; grid-template-columns: auto minmax(0,1fr) auto; gap: 20px; align-items: center;
+    padding: clamp(20px,3vw,32px); border: 1px solid rgba(241,216,139,.35); border-radius: 20px;
+    background: linear-gradient(110deg,rgba(216,180,90,.13),rgba(255,255,255,.025));
+    box-shadow: 0 18px 50px rgba(0,0,0,.2);
+}
+.church-cross { display:grid; place-items:center; width:62px; height:62px; border-radius:18px; color:#17130c; background:linear-gradient(135deg,#ffe9a8,#c99835); font-size:2rem; box-shadow:0 0 30px rgba(216,180,90,.2); }
+.church-partner-copy .eyebrow { margin:0 0 5px; color:#ffe08a; }
+.church-partner-copy h2 { margin:0 0 7px; color:#fff7e4; font-family:Georgia,"Times New Roman",serif; font-size:clamp(1.35rem,3vw,2.1rem); line-height:1.2; }
+.church-partner-copy p:not(.eyebrow) { margin:0; color:#f1e7d5; font-size:.98rem; line-height:1.65; }
+.church-partner-card .button { white-space:nowrap; }
+.devotional-panel { margin-top:24px; padding:clamp(22px,4vw,42px); border:1px solid rgba(241,216,139,.22); border-radius:22px; background:rgba(5,6,7,.36); }
+.devotional-heading { text-align:center; margin-bottom:22px; }
+.devotional-heading .eyebrow { color:#ffe08a; }
+.devotional-heading h2 { margin:0; color:#ffe7a2; font-family:Georgia,"Times New Roman",serif; font-size:clamp(1.5rem,3.8vw,2.5rem); line-height:1.2; }
+.devotional-date { margin:10px 0 0; color:#e8d8b9; font-weight:750; }
+.devotional-content { display:grid; grid-template-columns:minmax(0, .85fr) minmax(0,1.15fr); gap:24px; align-items:start; }
+.devotional-content:not(:has(.devotional-image)) { display:block; max-width:900px; margin-inline:auto; }
+.devotional-image { width:100%; max-height:650px; object-fit:contain; border-radius:14px; border:1px solid rgba(241,216,139,.25); background:#0c0c0b; }
+.devotional-body { color:#fff5df; font-size:1.03rem; line-height:1.95; overflow-wrap:anywhere; }
+.devotional-empty { grid-column:1/-1; margin:0; padding:25px; text-align:center; color:#eee3ce; border:1px dashed rgba(241,216,139,.3); border-radius:14px; }
+.latest-update-box { position:relative; z-index:3; width:min(100%,390px); margin:18px auto 0; padding:13px 17px; border:1px solid rgba(255,224,138,.58); border-radius:13px; color:#fff7e5; background:rgba(12,13,12,.92); box-shadow:0 0 28px rgba(216,180,90,.16); text-align:left; }
+.latest-update-label { display:flex; align-items:center; gap:9px; margin-bottom:5px; color:#ffe08a; font-size:.72rem; font-weight:950; letter-spacing:.14em; }
+.latest-update-label i { width:8px; height:8px; border-radius:50%; background:#ffcf57; box-shadow:0 0 12px #ffcf57; animation:latestPulse 1.1s ease-in-out infinite; }
+.latest-update-box p { margin:0; color:#fff8e9; font-size:.96rem; font-weight:750; line-height:1.6; animation:latestTextGlow 2.1s ease-in-out infinite; }
+@keyframes latestPulse { 50% { opacity:.35; transform:scale(.78); } }
+@keyframes latestTextGlow { 0%,100% { opacity:1; } 50% { opacity:.72; } }
+.footer-marquee { overflow:hidden; padding:14px 0; color:#1a1409; background:linear-gradient(90deg,#c18b2c,#ffe5a0,#d2a13c); border-top:1px solid rgba(255,255,255,.22); border-bottom:1px solid rgba(0,0,0,.25); }
+.footer-marquee-track { display:flex; width:max-content; gap:56px; white-space:nowrap; animation:footerMarquee 28s linear infinite; }
+.footer-marquee-track span { display:block; padding-left:24px; font-size:.95rem; font-weight:950; letter-spacing:.08em; text-transform:uppercase; }
+.footer-marquee:hover .footer-marquee-track { animation-play-state:paused; }
+@keyframes footerMarquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+.news-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; }
+.news-card { grid-template-columns:minmax(125px,.58fr) minmax(0,1.42fr); border-radius:15px; overflow:hidden; }
+.news-content { padding:clamp(16px,2.1vw,25px); }
+.news-content h3 { font-size:clamp(1.25rem,2vw,1.6rem); }
+.news-feedback { width:100%; margin-top:20px; padding-top:15px; border-top:1px solid rgba(255,224,138,.24); }
+.news-feedback-actions { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:12px; }
+.news-like-button { display:inline-flex; align-items:center; gap:7px; min-height:42px; padding:8px 13px; border:1px solid rgba(255,224,138,.42); border-radius:999px; color:#ffe8a7; background:#292318; font-weight:850; cursor:pointer; }
+.news-like-button.is-liked { color:#17100a; background:#ffe08a; border-color:#ffe08a; }
+.news-like-button:disabled { cursor:default; }
+.news-comment-count { color:#f0e4d1; font-size:.82rem; font-weight:750; }
+.news-comments-list { display:grid; gap:9px; margin-bottom:13px; }
+.news-comment { padding:10px 12px; border-radius:9px; background:rgba(255,255,255,.055); }
+.news-comment strong { color:#ffe08a; font-size:.83rem; }
+.news-comment p, .no-comments { margin:3px 0 0; color:#f5ead8; font-size:.88rem; line-height:1.55; overflow-wrap:anywhere; }
+.no-comments { color:#d7cbb8; }
+.news-comment-form { display:grid; gap:8px; }
+.news-comment-form input, .news-comment-form textarea { width:100%; min-width:0; padding:10px 12px; border:1px solid rgba(255,224,138,.3); border-radius:9px; color:#fff7e7; background:#151410; font-size:.9rem; }
+.news-comment-form input::placeholder, .news-comment-form textarea::placeholder { color:#d0c3ac; }
+.news-comment-form .button { justify-self:start; }
+.feedback-setup-note { margin:9px 0 0 !important; color:#ffe08a !important; font-size:.78rem !important; }
+.admin-subsection-heading { margin-top:30px; padding-top:22px; border-top:1px solid rgba(241,216,139,.18); }
+.admin-word-count { margin:7px 0 14px; color:#f4e5c8; font-weight:800; }
+.admin-word-count.over-limit { color:#ff9999; }
+.visually-hidden { position:absolute!important; width:1px!important; height:1px!important; padding:0!important; margin:-1px!important; overflow:hidden!important; clip:rect(0,0,0,0)!important; white-space:nowrap!important; border:0!important; }
+
+@media (max-width: 900px) {
+    .church-partner-card { grid-template-columns:auto minmax(0,1fr); }
+    .church-partner-card .button { grid-column:2; justify-self:start; }
+    .devotional-content { grid-template-columns:1fr; }
+    .devotional-image { max-height:520px; }
+    .news-grid { grid-template-columns:1fr; }
+}
+@media (max-width: 620px) {
+    html { font-size:16px; }
+    .church-devotional-section { padding:22px 0 28px; }
+    .church-partner-card { grid-template-columns:1fr; gap:12px; padding:20px; }
+    .church-cross { width:50px; height:50px; font-size:1.7rem; }
+    .church-partner-card .button { grid-column:auto; width:100%; justify-content:center; }
+    .devotional-panel { padding:18px 15px; }
+    .latest-update-box { width:100%; }
+    .social-links a { width:54px; height:54px; min-width:54px; }
+    .store-link { min-height:92px; }
+    .store-icon { width:52px; height:52px; min-width:52px; }
+    .news-card { grid-template-columns:1fr; }
+    .news-image { min-height:220px; }
+    .news-content { padding:19px; }
+    .footer-marquee-track { animation-duration:22s; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .latest-update-label i, .latest-update-box p, .footer-marquee-track { animation:none!important; }
+    .footer-marquee-track { width:100%; white-space:normal; justify-content:center; flex-wrap:wrap; }
+}
+
+/* ================== CONSOLIDATED BRIGHT THEME OVERRIDES ==================
+   One scoped theme layer: warm, light surfaces and readable blue/purple text.
+   Keeps image overlays, brand SVG artwork, layout and responsive rules intact.
+*/
+:root {
+    --ink: #2357c6;
+    --ink-soft: #526da8;
+    --ink-card: #2357c6;
+    --cream: #fffdf8;
+    --cream-muted: #526da8;
+    --gold: #e4a800;
+    --gold-light: #ffd84d;
+    --gold-dark: #8a6100;
+    --plum: #6b35b5;
+    --line-dark: rgba(35, 87, 198, .18);
+    --line-light: rgba(35, 87, 198, .20);
+    --shadow: 0 18px 48px rgba(58, 77, 123, .12);
+}
+
+html { color-scheme: light; }
+body {
+    color: #2357c6;
+    background: #f8f5ed;
+}
+.site-header, .mobile-menu {
+    color: #2357c6;
+    background: rgba(255,253,248,.98);
+    border-color: #e2e8f8;
+    box-shadow: 0 5px 24px rgba(45,66,116,.08);
+}
+.booking-card, .store-link, .release-card, .news-card, .video-card,
+.gallery-item, .church-partner-card, .devotional-panel, .admin-card,
+.admin-dashboard-card, .admin-edit-card, .admin-media-card,
+.admin-upload-block, .admin-help-card, .booking-form,
+.contact-direct-links a, .service-card, .about-card, .stat-card,
+.testimonial-card, .news-comment {
+    background-color: #fffdf8;
+    color: #2357c6;
+    border-color: rgba(35,87,198,.18);
+}
+.hero-section, .hero-content, .contact-section, .music-section,
+.news-section, .gallery-section, .video-section, .services-section,
+.about-section, .church-devotional-section, .site-footer,
+.ticker-section, .latest-update-section {
+    color: #2357c6;
+    background-color: #f5f0e4;
+}
+body :is(h1,h2,h3,h4,h5,h6) { color: #6b35b5; }
+body :is(p,li,label,small,strong,em,.section-description,.contact-copy,
+    .service-card,.news-card,.release-card,.store-label,.footer-copy,
+    .devotional-body,.devotional-date,.church-partner-copy,
+    .admin-section-heading p,.hero-intro,.about-copy > p,
+    .section-side-copy,.section-intro,.service-card > p,
+    .release-info > p,.news-content > p:not(.news-index),
+    .video-card-caption h3,.empty-music-note p,.store-heading p) {
+    color: #2357c6;
+}
+body :is(.eyebrow,.gold-text,.highlight,.section-kicker,.news-index,
+    .release-meta,.video-card-caption > span) { color: #8a6100; }
+body :is(input,textarea,select) {
+    color: #2357c6;
+    background: #ffffff;
+    border-color: #9bb4f0;
+}
+body :is(input,textarea,select)::placeholder { color: #7184b5; opacity: 1; }
+body :is(input,textarea,select):focus-visible,
+body :is(button,a, [tabindex]):focus-visible {
+    outline: 3px solid #8a45d4;
+    outline-offset: 2px;
+}
+body :is(.button,.button-gold) {
+    color: #ffffff;
+    background: linear-gradient(135deg,#8a45d4,#2357c6);
+    border-color: transparent;
+}
+body .button-outline {
+    color: #2357c6;
+    background: #fffdf8;
+    border-color: #2357c6;
+}
+body .button-danger { color: #ffffff; background: #c62855; }
+.brand, .main-nav a, .footer-admin { color: #2357c6; }
+.admin-modal, .admin-panel, .admin-sidebar, .admin-header,
+.admin-login-card {
+    color: #2357c6;
+    background: #fffdf8;
+    border-color: #d9e2f7;
+}
+.admin-tab, .admin-tab.active {
+    color: #2357c6;
+    background: #f0eaff;
+    border-color: #d8c9f4;
+}
+.admin-tab.active { box-shadow: inset 3px 0 #8a45d4; }
+
+/* Keep photo areas bright enough to see, without covering supplied imagery. */
+.featured-slider-section {
+    color: #2357c6;
+    background: radial-gradient(ellipse at 50% 20%, rgba(210,155,58,.12), transparent 58%), #f5f0e4;
+    border-color: #e2d8c0;
+}
+.featured-slider {
+    background: #fffdf8;
+    border-color: rgba(138,97,0,.28);
+    box-shadow: 0 20px 55px rgba(58,77,123,.14);
+}
+.featured-slide { filter: brightness(.88) saturate(.9); }
+.featured-slide.is-active { filter: brightness(1) saturate(1); }
+.featured-slide-shade {
+    background: linear-gradient(90deg,rgba(255,253,248,.72) 0%,rgba(255,253,248,.34) 43%,rgba(255,253,248,.04) 100%),
+               linear-gradient(0deg,rgba(255,253,248,.52),transparent 48%);
+}
+.featured-slide-copy h3 { color: #4e287f; text-shadow: 0 1px 8px rgba(255,255,255,.6); }
+.featured-slide-copy p { color: #23417f; }
+.featured-slide-kicker { color: #8a6100; }
+.featured-slide-kicker::before { background: #8a6100; box-shadow: none; }
+.featured-slide-placeholder {
+    color: #6b35b5;
+    background: radial-gradient(ellipse at center,rgba(218,168,76,.16),transparent 45%),linear-gradient(135deg,#fff8e7,#f4f0ff 65%,#eaf0ff);
+}
+.featured-slide-placeholder strong { color: #6b35b5; }
+.featured-slide-placeholder small { color: #526da8; }
+.slider-arrow { color: #2357c6; background: rgba(255,253,248,.9); border-color: #c7d4f3; }
+.slider-arrow:hover { color: #ffffff; background: #6b35b5; border-color: #6b35b5; }
+.slider-bottom-bar { color: #2357c6; background: rgba(255,253,248,.94); border-color: #d9e2f7; }
+.slider-dot { background: #b7c6e8; }
+.slider-dot.is-active { background: #8a45d4; box-shadow: 0 0 10px rgba(138,69,212,.2); }
+.slider-admin-note { color: #526da8; }
+.slider-admin-tip { color: #526da8; background: #fff8e7; border-color: #ead9a8; }
+.slider-admin-tip strong { color: #8a6100; }
+
+.church-devotional-section {
+    color: #2357c6;
+    background: radial-gradient(ellipse at 12% 0%, rgba(241,216,139,.22), transparent 45%), linear-gradient(135deg,#fffaf0,#f1edff 60%,#eef4ff);
+    border-color: #e2d8c0;
+}
+.church-partner-card {
+    background: linear-gradient(110deg,#fff9e9,#fffdf8 70%,#f3efff);
+    box-shadow: 0 12px 34px rgba(58,77,123,.10);
+}
+.church-cross { color: #4e287f; background: linear-gradient(135deg,#ffe9a8,#f4d783); }
+.church-partner-copy .eyebrow { color: #8a6100; }
+.church-partner-copy h2 { color: #6b35b5; }
+.church-partner-copy p:not(.eyebrow) { color: #2357c6; }
+.devotional-panel { box-shadow: 0 12px 34px rgba(58,77,123,.09); }
+.latest-update-box { background: #fff8e7; border-color: #ead9a8; }
+.latest-update-label { color: #8a6100; }
+.latest-update-box p { color: #2357c6; }
+.footer-marquee {
+    color: #4e287f;
+    background: linear-gradient(90deg,#f4d783,#fff1c7,#f4d783);
+    border-color: #e4d19c;
+}
+.footer-marquee-track span { color: #4e287f; }
+
+/* Social SVGs retain their own official brand colors; only the clickable tile is styled. */
+.social-links { gap: 14px; }
+.social-links a {
+    width: 56px; height: 56px; min-width: 56px;
+    border-radius: 50%; background: #ffffff;
+    border: 2px solid #d4defa;
+    box-shadow: 0 6px 18px rgba(35,87,198,.12);
+}
+.social-links a svg { width: 30px; height: 30px; display: block; }
+.store-link { background: #fffdf8; }
+.store-icon { background-color: #f0eaff; }
+.church-logo-wrap {
+    width: 112px; height: 112px; flex: 0 0 112px;
+    display:flex; align-items:center; justify-content:center; flex-direction:column;
+    gap:3px; overflow:hidden; border:2px dashed #9ab1ef; border-radius:18px;
+    background:#f2edff; color:#6b35b5;
+}
+.church-logo-wrap img { width:100%; height:100%; object-fit:contain; padding:7px; }
+.church-logo-label { color:#6b35b5; font-size:.68rem; font-weight:800; text-align:center; }
+.devotional-admin-actions {
+    display:flex; align-items:center; flex-wrap:wrap; gap:12px; padding:16px; margin:14px 0 20px;
+    border:1px solid #c8d6fb; border-radius:14px; background:#f5f2ff;
+}
+.devotional-admin-actions p { flex-basis:100%; margin:0; color:#526da8; font-size:.9rem; }
+.admin-word-count { color:#526da8; }
+.admin-word-count.over-limit { color:#c62855; }
+.news-like-button { color:#6b35b5; background:#f4efff; border-color:#cbb9ed; }
+.news-like-button.is-liked { color:#ffffff; background:#6b35b5; border-color:#6b35b5; }
+.news-comment-count, .news-comment p, .no-comments { color:#526da8; }
+.news-comment strong { color:#6b35b5; }
+.news-comment-form input, .news-comment-form textarea { color:#2357c6; background:#ffffff; border-color:#c8d6fb; }
+.news-comment-form input::placeholder, .news-comment-form textarea::placeholder { color:#7184b5; }
+.feedback-setup-note { color:#8a6100; }
+
+@media (max-width: 640px) {
+    .church-partner-card { align-items:flex-start; flex-wrap:wrap; }
+    .church-logo-wrap { width:88px; height:88px; flex-basis:88px; }
+}
+
+/* ======================== APPEARANCE SWITCHER ======================== */
+.theme-switcher {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 3px;
+    padding: 4px;
+    border: 1px solid #d7def1;
+    border-radius: 999px;
+    background: #eef2ff;
+    color: #334a7c;
+    box-shadow: 0 3px 12px rgba(35, 87, 198, .08);
+    flex: 0 0 auto;
+}
+.theme-switcher-label {
+    padding: 0 5px 0 7px;
+    color: #526da8;
+    font-size: .65rem;
+    font-weight: 800;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+}
+.theme-choice {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    min-height: 32px;
+    padding: 5px 9px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    color: #334a7c;
+    background: transparent;
+    font-size: .7rem;
+    font-weight: 800;
+    line-height: 1;
+    cursor: pointer;
+    transition: color .18s ease, background .18s ease, box-shadow .18s ease;
+}
+.theme-choice:hover { background: #ffffff; }
+.theme-choice.is-selected, .theme-choice[aria-pressed="true"] {
+    color: #ffffff;
+    background: linear-gradient(135deg, #8a45d4, #2357c6);
+    box-shadow: 0 3px 9px rgba(35, 87, 198, .2);
+}
+.theme-choice:focus-visible { outline: 3px solid #e4a800; outline-offset: 2px; }
+@media (max-width: 840px) {
+    .theme-switcher { align-self: center; margin-top: 10px; width: max-content; max-width: 100%; }
+    .theme-switcher-label { font-size: .68rem; }
+    .theme-choice { min-height: 38px; padding-inline: 12px; font-size: .76rem; }
+}
+@media (max-width: 380px) {
+    .theme-switcher { gap: 1px; padding: 3px; }
+    .theme-switcher-label { padding-inline: 4px; font-size: .6rem; }
+    .theme-choice { gap: 3px; padding-inline: 7px; font-size: .68rem; }
+}
+
+/* =========================== DARK THEME ===========================
+   Explicit dark surfaces override the default bright palette while
+   leaving supplied photos and original social SVG logos untouched.
+================================================================== */
+html[data-theme="dark"] { color-scheme: dark; }
+html[data-theme="dark"] body {
+    color: #edf2ff !important;
+    background: #101522 !important;
+}
+html[data-theme="dark"] body :is(h1,h2,h3,h4,h5,h6) { color: #d8c5ff !important; }
+html[data-theme="dark"] body :is(p,li,label,small,strong,em,.section-description,.contact-copy,
+    .service-card,.news-card,.release-card,.store-label,.footer-copy,.devotional-body,
+    .devotional-date,.church-partner-copy,.admin-section-heading p,.hero-intro,
+    .about-copy > p,.section-side-copy,.section-intro,.release-info > p,
+    .news-content > p:not(.news-index),.video-card-caption h3,.empty-music-note p,
+    .store-heading p,.main-nav a,.brand,.footer-copy,.latest-update-box p,
+    .church-partner-copy p:not(.eyebrow),.slider-admin-note,.admin-word-count) {
+    color: #e5ebff !important;
+}
+html[data-theme="dark"] body :is(.eyebrow,.gold-text,.highlight,.section-kicker,.news-index,
+    .release-meta,.video-card-caption > span,.latest-update-label,.feedback-setup-note) {
+    color: #ffd978 !important;
+}
+html[data-theme="dark"] body :is(.site-header,.mobile-menu,.main-nav,.feature-strip,
+    .about-section,.services-section,.videos-section,.music-section,.gallery-section,
+    .news-section,.store-section,.contact-section,.hero-section,.church-devotional-section,
+    .site-footer,.ticker-section,.latest-update-section,.featured-slider-section) {
+    color: #edf2ff !important;
+    background-color: #101522 !important;
+    border-color: #303b53 !important;
+}
+html[data-theme="dark"] .hero-section {
+    background-image: linear-gradient(90deg,rgba(5,8,16,.94),rgba(5,8,16,.75) 50%,rgba(5,8,16,.68)),
+      url('https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=2200&q=88') !important;
+}
+html[data-theme="dark"] body :is(.booking-card,.store-link,.release-card,.news-card,.video-card,
+    .gallery-item,.church-partner-card,.devotional-panel,.admin-card,.admin-dashboard-card,
+    .admin-edit-card,.admin-media-card,.admin-upload-block,.admin-help-card,.booking-form,
+    .contact-direct-links a,.service-card,.about-card,.stat-card,.testimonial-card,
+    .news-comment,.value-card,.admin-modal,.admin-panel,.admin-sidebar,.admin-header,
+    .admin-login-card,.featured-slider,.slider-bottom-bar,.latest-update-box,
+    .church-logo-wrap,.devotional-admin-actions,.slider-admin-tip) {
+    color: #e5ebff !important;
+    background: #1b2435 !important;
+    border-color: #394863 !important;
+}
+html[data-theme="dark"] body :is(input,textarea,select) {
+    color: #f4f6ff !important;
+    background: #111a2a !important;
+    border-color: #526789 !important;
+}
+html[data-theme="dark"] body :is(input,textarea,select)::placeholder { color: #b3c0dc !important; opacity: 1; }
+html[data-theme="dark"] body :is(.button,.button-gold) {
+    color: #ffffff !important;
+    background: linear-gradient(135deg,#8650d5,#285fd1) !important;
+    border-color: transparent !important;
+}
+html[data-theme="dark"] body .button-outline {
+    color: #e5ebff !important;
+    background: #1b2435 !important;
+    border-color: #758ab4 !important;
+}
+html[data-theme="dark"] body .button-danger { color: #ffffff !important; background: #bd3158 !important; }
+html[data-theme="dark"] .theme-switcher { background: #1b2435; border-color: #43516d; }
+html[data-theme="dark"] .theme-switcher-label { color: #b8c6e4; }
+html[data-theme="dark"] .theme-choice { color: #e5ebff; }
+html[data-theme="dark"] .theme-choice:hover { background: #2a3650; }
+html[data-theme="dark"] .theme-choice.is-selected,
+html[data-theme="dark"] .theme-choice[aria-pressed="true"] { color: #fff; background: linear-gradient(135deg,#8650d5,#285fd1); }
+html[data-theme="dark"] .featured-slide-shade {
+    background: linear-gradient(90deg,rgba(10,14,24,.8),rgba(10,14,24,.35) 55%,rgba(10,14,24,.08)),
+                linear-gradient(0deg,rgba(10,14,24,.58),transparent 48%);
+}
+html[data-theme="dark"] .featured-slide-copy h3,
+html[data-theme="dark"] .featured-slide-copy p { color: #ffffff !important; }
+html[data-theme="dark"] .featured-slide-placeholder { background: linear-gradient(135deg,#1c2435,#28213b); color: #e1d4ff; }
+html[data-theme="dark"] .footer-marquee { color: #281b3d; background: linear-gradient(90deg,#f4d783,#fff1c7,#f4d783); }
+html[data-theme="dark"] .footer-marquee-track span { color: #281b3d !important; }
+html[data-theme="dark"] .social-links a { background: #ffffff !important; }
+
+/* The added theme selector needs a compact navigation layout on tablets too. */
+@media (max-width: 1120px) {
+    .header-inner { min-height: 76px; }
+    .menu-toggle { display: block; margin-left: auto; }
+    .main-nav {
+        position: absolute;
+        top: calc(100% + 1px);
+        right: 0;
+        left: 0;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 10px 18px 20px;
+        border-bottom: 1px solid #d7def1;
+        background: rgba(255,253,248,.99);
+        box-shadow: 0 18px 36px rgba(45,66,116,.15);
+    }
+    .main-nav.nav-open { display: flex; }
+    .main-nav > a { padding: 12px 5px; border-bottom: 1px solid rgba(35,87,198,.1); font-size: .83rem; }
+    .main-nav .button { align-self: flex-start; margin-top: 12px; }
+    .theme-switcher { align-self: center; margin-top: 12px; }
+}
+html[data-theme="dark"] .main-nav { background: rgba(16,21,34,.99) !important; border-color: #303b53 !important; }
+html[data-theme="dark"] .main-nav > a { border-color: #303b53; }
+
+
+/* ================= BRAND COLOR-CYCLING ANIMATION =================
+   Keeps the existing logo and layout; only animates the ministry name.
+=================================================================== */
+.brand-copy strong,
+.brand-copy small {
+    background: linear-gradient(100deg, #2357c6 0%, #8a45d4 22%, #e0a52b 44%, #0d9b8a 66%, #d12f76 84%, #2357c6 100%);
+    background-size: 300% 100%;
+    background-position: 0% 50%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: dpm-brand-color-cycle 0s ease-in-out infinite;
+}
+.brand-copy small {
+    font-size: .62rem;
+    letter-spacing: .13em;
+    animation-delay: 5s;
+}
+@keyframes dpm-brand-color-cycle {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .brand-copy strong, .brand-copy small { animation: none; background-position: 50% 50%; }
+  
