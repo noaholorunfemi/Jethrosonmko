@@ -359,13 +359,14 @@
             <div class="login-logo brand-emblem" aria-hidden="true"><span class="logo-orbit orbit-one"></span><span class="logo-orbit orbit-two"></span><span class="logo-core">D<span>P</span></span><span class="logo-spark"></span></div>
             <p class="eyebrow">Site management</p>
             <h2 id="loginTitle">Welcome back.</h2>
-            <p class="login-description">Sign in to update photos, news, videos, music releases, and store links on this browser.</p>
+            <p class="login-description">Sign in securely to update photos, news, videos, music releases, and store links for every visitor.</p>
             <form id="loginForm">
-                <label for="adminPassword">Admin password<input id="adminPassword" type="password" autocomplete="current-password" placeholder="Enter password" required></label>
+                <label for="adminEmail">Admin email<input id="adminEmail" type="email" autocomplete="username" placeholder="Enter your Supabase admin email" required></label>
+                <label for="adminPassword">Admin password<input id="adminPassword" type="password" autocomplete="current-password" placeholder="Enter your Supabase password" required></label>
                 <p class="login-error" id="loginError" role="alert"></p>
                 <button class="button button-gold button-full" type="submit">Open admin panel</button>
             </form>
-            <p class="security-note">Starter version: this is a front-end demo login, not secure server authentication. See README before publishing.</p>
+            <p class="security-note">Secure sign-in is handled by Supabase. Your password is not stored in this website.</p>
         </section>
     </div>
 
@@ -380,7 +381,7 @@
                     <button class="modal-close admin-close" type="button" id="closeAdminBtn" aria-label="Close admin panel">×</button>
                 </div>
             </div>
-            <div class="admin-warning"><strong>Important:</strong> edits are stored in this browser only. Visitors on other devices will not see these changes until a real shared CMS/backend is connected. The demo password is not production security.</div>
+            <div class="admin-warning"><strong>Connected:</strong> saved website content is shared with visitors on other devices. Changes are published to the live website when you save.</div>
             <div class="admin-layout">
                 <aside class="admin-sidebar" aria-label="Admin sections">
                     <button class="admin-tab active" type="button" data-admin-tab="basics">Website basics</button>
@@ -444,6 +445,7 @@
     <div class="toast-message" id="toastMessage" role="status" aria-live="polite"></div>
 
     <!-- JavaScript is intentionally inline here, separated into commented sections for easy tracing. -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
         "use strict";
 
@@ -452,10 +454,17 @@
            Edit this section if you want to change the initial content.
            Uploaded media is stored separately in IndexedDB.
         ============================================================ */
-        const ADMIN_PASSWORD = "DPM2026!"; // Change for the demo. Not secure for a public production website.
+        // Supabase connection. The publishable key is designed for use in a public website;
+        // access is controlled by Supabase Auth and the Row Level Security policies.
+        const SUPABASE_URL = "https://ypbcibuzsmtrfbmbgxqk.supabase.co";
+        const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_s8ExqgL-CJz9rAzMpg17bA_QGTvzhiH";
+        const SITE_MEDIA_BUCKET = "site-media";
         const DATA_STORAGE_KEY = "dpmMusicMinistrySiteData_v1";
         const MEDIA_DB_NAME = "dpmMusicMinistryMedia_v1";
         const MEDIA_STORE_NAME = "media";
+        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+        let cloudSavePromise = Promise.resolve();
+        let cloudLoadComplete = false;
 
         const DEFAULT_SITE_DATA = {
             contact: {
@@ -530,43 +539,58 @@
             return JSON.parse(JSON.stringify(value));
         }
 
+        function normalizeSiteData(parsed) {
+            parsed = parsed && typeof parsed === "object" ? parsed : {};
+            return {
+                contact: { ...DEFAULT_SITE_DATA.contact, ...(parsed.contact || {}) },
+                slider: Array.from({ length: 4 }, (_, index) => ({ ...DEFAULT_SITE_DATA.slider[index], ...((parsed.slider || [])[index] || {}) })),
+                gallery: Array.from({ length: 7 }, (_, index) => ({ ...DEFAULT_SITE_DATA.gallery[index], ...((parsed.gallery || [])[index] || {}) })),
+                news: Array.from({ length: 2 }, (_, index) => ({ ...DEFAULT_SITE_DATA.news[index], ...((parsed.news || [])[index] || {}) })),
+                videos: Array.from({ length: 3 }, (_, index) => ({ ...DEFAULT_SITE_DATA.videos[index], ...((parsed.videos || [])[index] || {}) })),
+                stores: Array.from({ length: 6 }, (_, index) => ({ ...DEFAULT_SITE_DATA.stores[index], ...((parsed.stores || [])[index] || {}) })),
+                releases: Array.isArray(parsed.releases) ? parsed.releases : [],
+                media: parsed.media && typeof parsed.media === "object" ? parsed.media : {}
+            };
+        }
+
         function loadSiteData() {
             try {
                 const saved = localStorage.getItem(DATA_STORAGE_KEY);
-                if (!saved) return clone(DEFAULT_SITE_DATA);
-                const parsed = JSON.parse(saved);
-                return {
-                    contact: { ...DEFAULT_SITE_DATA.contact, ...(parsed.contact || {}) },
-                    slider: Array.from({ length: 4 }, (_, index) => ({
-                        ...DEFAULT_SITE_DATA.slider[index],
-                        ...((parsed.slider || [])[index] || {})
-                    })),
-                    gallery: Array.from({ length: 7 }, (_, index) => ({
-                        ...DEFAULT_SITE_DATA.gallery[index],
-                        ...((parsed.gallery || [])[index] || {})
-                    })),
-                    news: Array.from({ length: 2 }, (_, index) => ({
-                        ...DEFAULT_SITE_DATA.news[index],
-                        ...((parsed.news || [])[index] || {})
-                    })),
-                    videos: Array.from({ length: 3 }, (_, index) => ({
-                        ...DEFAULT_SITE_DATA.videos[index],
-                        ...((parsed.videos || [])[index] || {})
-                    })),
-                    stores: Array.from({ length: 6 }, (_, index) => ({
-                        ...DEFAULT_SITE_DATA.stores[index],
-                        ...((parsed.stores || [])[index] || {})
-                    })),
-                    releases: Array.isArray(parsed.releases) ? parsed.releases : []
-                };
+                return normalizeSiteData(saved ? JSON.parse(saved) : DEFAULT_SITE_DATA);
             } catch (error) {
-                console.warn("Could not load saved site settings; defaults will be used.", error);
-                return clone(DEFAULT_SITE_DATA);
+                console.warn("Could not load cached site settings; defaults will be used.", error);
+                return normalizeSiteData(DEFAULT_SITE_DATA);
             }
         }
 
         function saveSiteData() {
+            // Keep a local cache as a fallback, and queue cloud writes in order.
             localStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(siteData));
+            cloudSavePromise = cloudSavePromise.catch(() => {}).then(async () => {
+                const { error } = await supabaseClient
+                    .from("site_content")
+                    .update({ data: siteData, updated_at: new Date().toISOString() })
+                    .eq("id", "main");
+                if (error) throw error;
+            });
+            return cloudSavePromise;
+        }
+
+        async function loadCloudSiteData() {
+            const { data, error } = await supabaseClient
+                .from("site_content")
+                .select("data")
+                .eq("id", "main")
+                .maybeSingle();
+            if (error) throw error;
+            if (data && data.data && Object.keys(data.data).length) {
+                siteData = normalizeSiteData(data.data);
+                localStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(siteData));
+            } else {
+                // First connection: keep this device's existing content, or the built-in defaults.
+                siteData = normalizeSiteData(siteData);
+            }
+            cloudLoadComplete = true;
         }
 
         function escapeHTML(value) {
@@ -666,12 +690,22 @@
 
         async function getMediaUrl(key) {
             if (!key) return "";
+            const cloudPath = siteData.media && siteData.media[key];
+            if (cloudPath) {
+                const { data } = supabaseClient.storage.from(SITE_MEDIA_BUCKET).getPublicUrl(cloudPath);
+                return data && data.publicUrl ? data.publicUrl : "";
+            }
+            // Legacy fallback for media uploaded before cloud storage was connected.
             if (mediaUrlCache.has(key)) return mediaUrlCache.get(key);
-            const record = await getMediaRecord(key);
-            if (!record || !record.blob) return "";
-            const url = URL.createObjectURL(record.blob);
-            mediaUrlCache.set(key, url);
-            return url;
+            try {
+                const record = await getMediaRecord(key);
+                if (!record || !record.blob) return "";
+                const url = URL.createObjectURL(record.blob);
+                mediaUrlCache.set(key, url);
+                return url;
+            } catch (error) {
+                return "";
+            }
         }
 
         async function deleteMedia(key) {
@@ -921,7 +955,7 @@
                 ${adminTextarea("Hero introduction", c.heroIntro, "contact.heroIntro", 3)}
                 ${adminTextarea("About the artist / ministry", c.bio, "contact.bio", 5)}
                 <div class="admin-upload-block"><div><h4>Artist portrait</h4><p>Recommended: a sharp portrait or stage photo in JPG, PNG, or WebP format.</p></div><label class="file-picker">Upload portrait<input type="file" accept="image/*" data-media-key="artist-portrait" data-media-kind="image"></label><span class="upload-state" data-media-status="artist-portrait">Portrait can be changed any time.</span></div>
-                <div class="admin-help-card"><strong>Tip:</strong> Use your best high-resolution stage or studio photograph for the welcome page. Uploads are stored on this device in this starter version.</div>`;
+                <div class="admin-help-card"><strong>Tip:</strong> Use your best high-resolution stage or studio photograph for the welcome page. Uploads are stored online and shared with visitors.</div>`;
         }
 
         async function renderSliderAdmin() {
@@ -1024,10 +1058,10 @@
         async function saveAdminChanges() {
             collectAdminForm();
             try {
-                saveSiteData();
+                await saveSiteData();
                 await renderSite();
-                setAdminSaveStatus(`Saved locally at ${new Date().toLocaleTimeString()}.`);
-                showToast("Website content saved in this browser.");
+                setAdminSaveStatus(`Published to the live website at ${new Date().toLocaleTimeString()}.`);
+                showToast("Saved online. Visitors can now see your changes.");
             } catch (error) {
                 console.error(error);
                 showToast("Could not save. Check browser storage permissions.", true);
@@ -1040,9 +1074,10 @@
         ============================================================ */
         function openLoginModal() {
             document.getElementById("loginModal").hidden = false;
+            document.getElementById("adminEmail").value = "";
             document.getElementById("adminPassword").value = "";
             document.getElementById("loginError").textContent = "";
-            setTimeout(() => document.getElementById("adminPassword").focus(), 50);
+            setTimeout(() => document.getElementById("adminEmail").focus(), 50);
         }
 
         function closeLoginModal() {
@@ -1081,8 +1116,18 @@
                     throw new Error("Please choose an MP3 audio file.");
                 }
                 const preparedFile = kind === "image" ? await compressImageIfNeeded(file) : file;
-                await putMedia(key, preparedFile, file.name);
-                if (status) status.textContent = `${kind === "image" ? "Image" : "Audio"} saved: ${file.name}`;
+                const safeName = String(file.name || "upload").replace(/[^a-zA-Z0-9._-]/g, "_").slice(-100);
+                const cloudPath = `${key}/${Date.now()}-${safeName}`;
+                const { error: uploadError } = await supabaseClient.storage.from(SITE_MEDIA_BUCKET).upload(cloudPath, preparedFile, {
+                    contentType: preparedFile.type || file.type || "application/octet-stream",
+                    cacheControl: "3600",
+                    upsert: false
+                });
+                if (uploadError) throw uploadError;
+                siteData.media = siteData.media || {};
+                siteData.media[key] = cloudPath;
+                await saveSiteData();
+                if (status) status.textContent = `${kind === "image" ? "Image" : "Audio"} uploaded online: ${file.name}`;
                 await renderSite();
 
                 // Update the relevant preview inside the admin panel without clearing typed form fields.
@@ -1236,12 +1281,23 @@
         });
         document.getElementById("loginForm").addEventListener("submit", async event => {
             event.preventDefault();
-            const enteredPassword = document.getElementById("adminPassword").value;
-            if (enteredPassword !== ADMIN_PASSWORD) {
-                document.getElementById("loginError").textContent = "That password did not match. Try again.";
-                return;
+            const email = document.getElementById("adminEmail").value.trim();
+            const password = document.getElementById("adminPassword").value;
+            const errorBox = document.getElementById("loginError");
+            const submitButton = event.currentTarget.querySelector('button[type="submit"]');
+            errorBox.textContent = "Signing in…";
+            submitButton.disabled = true;
+            try {
+                const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+                if (error) throw error;
+                errorBox.textContent = "";
+                await openAdminPanel();
+            } catch (error) {
+                console.error("Admin sign-in failed", error);
+                errorBox.textContent = "Sign-in failed. Check your admin email and password, then try again.";
+            } finally {
+                submitButton.disabled = false;
             }
-            await openAdminPanel();
         });
 
         document.getElementById("closeAdminBtn").addEventListener("click", closeAdminPanel);
@@ -1284,9 +1340,16 @@
                 const release = siteData.releases.find(item => String(item.id) === String(releaseId));
                 if (!window.confirm(`Remove ${release && release.title ? `“${release.title}”` : "this release"} from the website?`)) return;
                 siteData.releases = siteData.releases.filter(item => String(item.id) !== String(releaseId));
-                await deleteMedia(`release-cover-${releaseId}`);
-                await deleteMedia(`release-audio-${releaseId}`);
-                saveSiteData();
+                for (const mediaKey of [`release-cover-${releaseId}`, `release-audio-${releaseId}`]) {
+                    const cloudPath = siteData.media && siteData.media[mediaKey];
+                    if (cloudPath) {
+                        const { error: removeError } = await supabaseClient.storage.from(SITE_MEDIA_BUCKET).remove([cloudPath]);
+                        if (removeError) console.warn("Could not remove old media object", removeError);
+                        delete siteData.media[mediaKey];
+                    }
+                    await deleteMedia(mediaKey).catch(() => {});
+                }
+                await saveSiteData();
                 await renderMusicAdmin();
                 await renderSite();
                 showToast("Release removed.");
@@ -1321,10 +1384,20 @@
         /* ============================================================
            10. START THE WEBSITE
         ============================================================ */
-        renderSite().catch(error => {
-            console.error("The website could not render some content.", error);
-            showToast("Some media did not load. Check the browser storage settings.", true);
-        });
+        (async () => {
+            try {
+                await loadCloudSiteData();
+            } catch (error) {
+                console.error("Could not load shared website content from Supabase.", error);
+                showToast("Could not connect to shared content. Check the internet connection.", true);
+            }
+            try {
+                await renderSite();
+            } catch (error) {
+                console.error("The website could not render some content.", error);
+                showToast("Some content did not load. Please refresh the page.", true);
+            }
+        })();
     </script>
 </body>
 </html>
