@@ -954,7 +954,7 @@
                 </div>
                 ${adminTextarea("Hero introduction", c.heroIntro, "contact.heroIntro", 3)}
                 ${adminTextarea("About the artist / ministry", c.bio, "contact.bio", 5)}
-                <div class="admin-upload-block"><div><h4>Artist portrait</h4><p>Recommended: a sharp portrait or stage photo in JPG, PNG, or WebP format.</p></div><label class="file-picker">Upload portrait<input type="file" accept="image/*" data-media-key="artist-portrait" data-media-kind="image"></label><span class="upload-state" data-media-status="artist-portrait">Portrait can be changed any time.</span></div>
+                <div class="admin-upload-block"><div><h4>Artist portrait</h4><p>Recommended: a sharp portrait or stage photo in JPG, PNG, or WebP format.</p></div><label class="file-picker">Upload portrait<input type="file" accept="image/*" data-media-key="artist-portrait" data-media-kind="image"></label>${siteData.media && siteData.media["artist-portrait"] ? `<button class="button button-small button-danger" type="button" data-delete-media-key="artist-portrait" data-delete-media-kind="image">Delete image</button>` : ""}<span class="upload-state" data-media-status="artist-portrait">Portrait can be changed any time.</span></div>
                 <div class="admin-help-card"><strong>Tip:</strong> Use your best high-resolution stage or studio photograph for the welcome page. Uploads are stored online and shared with visitors.</div>`;
         }
 
@@ -962,7 +962,7 @@
             const panel = document.getElementById("sliderPanel");
             const cards = await Promise.all(siteData.slider.map(async (item, index) => {
                 const url = await getMediaUrl(item.mediaKey);
-                return `<article class="admin-media-card slider-admin-card"><div class="admin-media-preview">${url ? `<img src="${url}" alt="Featured slider photo ${index + 1} preview">` : `<span aria-hidden="true">✦</span>`}</div><div class="admin-media-controls"><h4>Featured slide 0${index + 1}</h4><p class="slider-admin-note">Shown in the automatic 4-second 3D-style slideshow above the photo gallery.</p><label class="admin-field">Slide caption<input type="text" data-slider-caption="${index}" value="${escapeHTML(item.caption || "")}" placeholder="Add a short caption"></label><label class="file-picker">${url ? "Replace featured photo" : "Upload featured photo"}<input type="file" accept="image/*" data-media-key="${escapeHTML(item.mediaKey)}" data-media-kind="image"></label><span class="upload-state" data-media-status="${escapeHTML(item.mediaKey)}">${url ? "Photo uploaded" : "No photo uploaded yet"}</span></div></article>`;
+                return `<article class="admin-media-card slider-admin-card"><div class="admin-media-preview">${url ? `<img src="${url}" alt="Featured slider photo ${index + 1} preview">` : `<span aria-hidden="true">✦</span>`}</div><div class="admin-media-controls"><h4>Featured slide 0${index + 1}</h4><p class="slider-admin-note">Shown in the automatic 4-second 3D-style slideshow above the photo gallery.</p><label class="admin-field">Slide caption<input type="text" data-slider-caption="${index}" value="${escapeHTML(item.caption || "")}" placeholder="Add a short caption"></label><label class="file-picker">${url ? "Replace featured photo" : "Upload featured photo"}<input type="file" accept="image/*" data-media-key="${escapeHTML(item.mediaKey)}" data-media-kind="image"></label>${url ? `<button class="button button-small button-danger" type="button" data-delete-media-key="${escapeHTML(item.mediaKey)}" data-delete-media-kind="image">Delete image</button>` : ""}<span class="upload-state" data-media-status="${escapeHTML(item.mediaKey)}">${url ? "Photo uploaded" : "No photo uploaded yet"}</span></div></article>`;
             }));
             panel.innerHTML = `<div class="admin-section-heading"><p class="eyebrow">Homepage showcase</p><h3>Featured picture slider</h3><p>Upload or replace the four images shown directly above the gallery. The slider rotates automatically every four seconds with a cinematic 3D perspective transition. Captions can be changed here too.</p></div><div class="slider-admin-tip"><strong>Image tip</strong><span>Use landscape photos (16:9), ideally at least 1600 × 900 pixels, for the best studio-style presentation.</span></div><div class="admin-media-list">${cards.join("")}</div>`;
         }
@@ -971,7 +971,7 @@
             const panel = document.getElementById("galleryPanel");
             const slots = await Promise.all(siteData.gallery.map(async (item, index) => {
                 const url = await getMediaUrl(item.mediaKey);
-                return `<article class="admin-media-card"><div class="admin-media-preview">${url ? `<img src="${url}" alt="Gallery slot ${index + 1} preview">` : `<span aria-hidden="true">✦</span>`}</div><div class="admin-media-controls"><h4>Photo slot 0${index + 1}</h4><label class="admin-field">Photo caption<input type="text" data-gallery-caption="${index}" value="${escapeHTML(item.caption || "")}" placeholder="Describe the photo"></label><label class="file-picker">${url ? "Replace photo" : "Upload photo"}<input type="file" accept="image/*" data-media-key="${escapeHTML(item.mediaKey)}" data-media-kind="image"></label><span class="upload-state" data-media-status="${escapeHTML(item.mediaKey)}">${url ? "Photo uploaded" : "No photo uploaded yet"}</span></div></article>`;
+                return `<article class="admin-media-card"><div class="admin-media-preview">${url ? `<img src="${url}" alt="Gallery slot ${index + 1} preview">` : `<span aria-hidden="true">✦</span>`}</div><div class="admin-media-controls"><h4>Photo slot 0${index + 1}</h4><label class="admin-field">Photo caption<input type="text" data-gallery-caption="${index}" value="${escapeHTML(item.caption || "")}" placeholder="Describe the photo"></label><label class="file-picker">${url ? "Replace photo" : "Upload photo"}<input type="file" accept="image/*" data-media-key="${escapeHTML(item.mediaKey)}" data-media-kind="image"></label>${url ? `<button class="button button-small button-danger" type="button" data-delete-media-key="${escapeHTML(item.mediaKey)}" data-delete-media-kind="image">Delete image</button>` : ""}<span class="upload-state" data-media-status="${escapeHTML(item.mediaKey)}">${url ? "Photo uploaded" : "No photo uploaded yet"}</span></div></article>`;
             }));
             panel.innerHTML = `<div class="admin-section-heading"><p class="eyebrow">Photo management</p><h3>Gallery images</h3><p>Manage the seven gallery slots shown on the public website. Keep images clear and use short captions.</p></div><div class="admin-media-list">${slots.join("")}</div>`;
         }
@@ -980,7 +980,7 @@
             const panel = document.getElementById("newsPanel");
             const cards = await Promise.all(siteData.news.map(async (item, index) => {
                 const url = await getMediaUrl(item.mediaKey);
-                return `<article class="admin-edit-card"><div class="admin-section-subheading"><span class="admin-number">0${index + 1}</span><div><h4>News feed ${index + 1}</h4><p>This appears in the public News &amp; Updates section.</p></div></div><div class="admin-form-grid">${adminField("Headline", item.title, `news.${index}.title`)}${adminField("Date or label", item.date, `news.${index}.date` )}</div>${adminTextarea("Update details", item.body, `news.${index}.body`, 4)}<div class="admin-upload-block"><div class="admin-upload-description">${url ? `<img class="small-preview" src="${url}" alt="News image preview">` : `<span class="mini-placeholder">✦</span>`}<div><h4>Optional news image</h4><p>Add a photo to this update.</p></div></div><label class="file-picker">${url ? "Replace image" : "Upload image"}<input type="file" accept="image/*" data-media-key="${escapeHTML(item.mediaKey)}" data-media-kind="image"></label><span class="upload-state" data-media-status="${escapeHTML(item.mediaKey)}">${url ? "Image uploaded" : "No image uploaded"}</span></div></article>`;
+                return `<article class="admin-edit-card"><div class="admin-section-subheading"><span class="admin-number">0${index + 1}</span><div><h4>News feed ${index + 1}</h4><p>This appears in the public News &amp; Updates section.</p></div><button class="button button-small button-outline" type="button" data-edit-post="${index}">Edit post</button></div><div class="admin-form-grid">${adminField("Headline", item.title, `news.${index}.title`)}${adminField("Date or label", item.date, `news.${index}.date` )}</div>${adminTextarea("Update details", item.body, `news.${index}.body`, 4)}<div class="admin-upload-block"><div class="admin-upload-description">${url ? `<img class="small-preview" src="${url}" alt="News image preview">` : `<span class="mini-placeholder">✦</span>`}<div><h4>Optional news image</h4><p>Add a photo to this update.</p></div></div><label class="file-picker">${url ? "Replace image" : "Upload image"}<input type="file" accept="image/*" data-media-key="${escapeHTML(item.mediaKey)}" data-media-kind="image"></label>${url ? `<button class="button button-small button-danger" type="button" data-delete-media-key="${escapeHTML(item.mediaKey)}" data-delete-media-kind="image">Delete image</button>` : ""}<span class="upload-state" data-media-status="${escapeHTML(item.mediaKey)}">${url ? "Image uploaded" : "No image uploaded"}</span></div></article>`;
             }));
             panel.innerHTML = `<div class="admin-section-heading"><p class="eyebrow">Announcements</p><h3>News &amp; updates</h3><p>Edit the two news cards with release announcements, event information, and ministry updates.</p></div>${cards.join("")}`;
         }
@@ -995,7 +995,7 @@
             const releases = await Promise.all(siteData.releases.map(async (release, index) => {
                 const coverUrl = await getMediaUrl(`release-cover-${release.id}`);
                 const audioUrl = await getMediaUrl(`release-audio-${release.id}`);
-                return `<article class="admin-edit-card admin-release-card" data-release-id="${escapeHTML(release.id)}"><div class="admin-section-subheading"><span class="admin-number">${String(index + 1).padStart(2, "0")}</span><div><h4>Music release ${index + 1}</h4><p>Upload an MP3 and optional cover art. The MP3 download link appears automatically.</p></div><button class="button button-small button-danger" type="button" data-remove-release="${escapeHTML(release.id)}">Remove</button></div><div class="admin-form-grid">${adminField("Song / release title", release.title, `release.${release.id}.title`)}${adminField("Release date or label", release.date, `release.${release.id}.date`, "text", "e.g. October 2026")}${adminField("Streaming link (optional)", release.streamUrl, `release.${release.id}.streamUrl`, "url", "https://...")}</div>${adminTextarea("Short description", release.description, `release.${release.id}.description`, 3)}<div class="admin-media-upload-row"><div class="admin-upload-block"><div class="admin-upload-description">${coverUrl ? `<img class="small-preview" src="${coverUrl}" alt="Cover preview">` : `<span class="mini-placeholder">♫</span>`}<div><h4>Cover art</h4><p>Square artwork recommended.</p></div></div><label class="file-picker">${coverUrl ? "Replace cover" : "Upload cover"}<input type="file" accept="image/*" data-media-key="release-cover-${escapeHTML(release.id)}" data-media-kind="image"></label><span class="upload-state" data-media-status="release-cover-${escapeHTML(release.id)}">${coverUrl ? "Cover uploaded" : "No cover uploaded"}</span></div><div class="admin-upload-block"><div class="admin-upload-description"><span class="mini-placeholder">♫</span><div><h4>MP3 audio</h4><p>${audioUrl ? "Audio uploaded and ready." : "Upload the song file for playback and download."}</p></div></div><label class="file-picker">${audioUrl ? "Replace MP3" : "Upload MP3"}<input type="file" accept="audio/mpeg,audio/mp3,.mp3" data-media-key="release-audio-${escapeHTML(release.id)}" data-media-kind="audio"></label><span class="upload-state" data-media-status="release-audio-${escapeHTML(release.id)}">${audioUrl ? "MP3 uploaded" : "No MP3 uploaded"}</span></div></div></article>`;
+                return `<article class="admin-edit-card admin-release-card" data-release-id="${escapeHTML(release.id)}"><div class="admin-section-subheading"><span class="admin-number">${String(index + 1).padStart(2, "0")}</span><div><h4>Music release ${index + 1}</h4><p>Upload an MP3 and optional cover art. The MP3 download link appears automatically.</p></div><button class="button button-small button-danger" type="button" data-remove-release="${escapeHTML(release.id)}">Remove</button></div><div class="admin-form-grid">${adminField("Song / release title", release.title, `release.${release.id}.title`)}${adminField("Release date or label", release.date, `release.${release.id}.date`, "text", "e.g. October 2026")}${adminField("Streaming link (optional)", release.streamUrl, `release.${release.id}.streamUrl`, "url", "https://...")}</div>${adminTextarea("Short description", release.description, `release.${release.id}.description`, 3)}<div class="admin-media-upload-row"><div class="admin-upload-block"><div class="admin-upload-description">${coverUrl ? `<img class="small-preview" src="${coverUrl}" alt="Cover preview">` : `<span class="mini-placeholder">♫</span>`}<div><h4>Cover art</h4><p>Square artwork recommended.</p></div></div><label class="file-picker">${coverUrl ? "Replace cover" : "Upload cover"}<input type="file" accept="image/*" data-media-key="release-cover-${escapeHTML(release.id)}" data-media-kind="image"></label>${coverUrl ? `<button class="button button-small button-danger" type="button" data-delete-media-key="release-cover-${escapeHTML(release.id)}" data-delete-media-kind="image">Delete image</button>` : ""}<span class="upload-state" data-media-status="release-cover-${escapeHTML(release.id)}">${coverUrl ? "Cover uploaded" : "No cover uploaded"}</span></div><div class="admin-upload-block"><div class="admin-upload-description"><span class="mini-placeholder">♫</span><div><h4>MP3 audio</h4><p>${audioUrl ? "Audio uploaded and ready." : "Upload the song file for playback and download."}</p></div></div><label class="file-picker">${audioUrl ? "Replace MP3" : "Upload MP3"}<input type="file" accept="audio/mpeg,audio/mp3,.mp3" data-media-key="release-audio-${escapeHTML(release.id)}" data-media-kind="audio"></label>${audioUrl ? `<button class="button button-small button-danger" type="button" data-delete-media-key="release-audio-${escapeHTML(release.id)}" data-delete-media-kind="audio">Delete MP3</button>` : ""}<span class="upload-state" data-media-status="release-audio-${escapeHTML(release.id)}">${audioUrl ? "MP3 uploaded" : "No MP3 uploaded"}</span></div></div></article>`;
             }));
             panel.innerHTML = `<div class="admin-section-heading"><p class="eyebrow">Release management</p><h3>Music releases &amp; downloads</h3><p>Add a song, upload the MP3, include cover art, and optionally link to a streaming page. The website has no fixed release limit.</p></div><div class="admin-release-list">${releases.length ? releases.join("") : `<div class="admin-help-card"><strong>No releases added yet.</strong><br>Add your first release below, then upload its MP3. Only add audio files you have permission to distribute.</div>`}</div><button class="button button-outline add-release-button" id="addReleaseBtn" type="button">＋ Add music release</button>`;
         }
@@ -1102,6 +1102,32 @@
             document.querySelectorAll(".admin-tab-panel").forEach(panel => panel.classList.toggle("active", panel.dataset.adminPanel === tabName));
         }
 
+        async function handleMediaDelete(button) {
+            const key = button.dataset.deleteMediaKey;
+            const kind = button.dataset.deleteMediaKind || "image";
+            if (!key) return;
+            if (!window.confirm(`Permanently delete this ${kind === "audio" ? "MP3/audio file" : "image"} from cloud storage? This cannot be undone.`)) return;
+            button.disabled = true;
+            const cloudPath = siteData.media && siteData.media[key];
+            try {
+                if (cloudPath) {
+                    const { error } = await supabaseClient.storage.from(SITE_MEDIA_BUCKET).remove([cloudPath]);
+                    if (error) throw error;
+                    delete siteData.media[key];
+                }
+                await deleteMedia(key).catch(() => {});
+                if (siteData.media) delete siteData.media[key];
+                await saveSiteData();
+                await renderSite();
+                await renderAdminPanel();
+                showToast(`${kind === "audio" ? "MP3" : "Image"} deleted from cloud storage.`);
+            } catch (error) {
+                console.error("Media deletion failed:", error);
+                showToast(error.message || "Could not delete this file. Check Storage permissions.", true);
+                button.disabled = false;
+            }
+        }
+
         async function handleMediaUpload(input) {
             const file = input.files && input.files[0];
             if (!file) return;
@@ -1125,8 +1151,14 @@
                 });
                 if (uploadError) throw uploadError;
                 siteData.media = siteData.media || {};
+                const previousCloudPath = siteData.media[key];
                 siteData.media[key] = cloudPath;
                 await saveSiteData();
+                // Remove the replaced object only after the new file and its reference have saved successfully.
+                if (previousCloudPath && previousCloudPath !== cloudPath) {
+                    const { error: cleanupError } = await supabaseClient.storage.from(SITE_MEDIA_BUCKET).remove([previousCloudPath]);
+                    if (cleanupError) console.warn("New upload saved, but old media could not be removed:", cleanupError);
+                }
                 if (status) status.textContent = `${kind === "image" ? "Image" : "Audio"} uploaded online: ${file.name}`;
                 await renderSite();
 
@@ -1324,6 +1356,23 @@
             if (event.target.matches("input[data-media-key]")) handleMediaUpload(event.target);
         });
         document.getElementById("adminForm").addEventListener("click", async event => {
+            const deleteMediaButton = event.target.closest("[data-delete-media-key]");
+            if (deleteMediaButton) {
+                await handleMediaDelete(deleteMediaButton);
+                return;
+            }
+            const editPostButton = event.target.closest("[data-edit-post]");
+            if (editPostButton) {
+                const index = Number(editPostButton.dataset.editPost);
+                const card = editPostButton.closest(".admin-edit-card");
+                const titleInput = card && card.querySelector(`[data-site-field="news.${index}.title"]`);
+                if (titleInput) {
+                    titleInput.focus();
+                    titleInput.scrollIntoView({ behavior: "smooth", block: "center" });
+                    setAdminSaveStatus(`Editing news post ${index + 1}. Make your changes, then tap Save all changes.`);
+                }
+                return;
+            }
             if (event.target.id === "addReleaseBtn") {
                 collectAdminForm();
                 const id = `release-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
