@@ -3890,12 +3890,12 @@ html[data-theme="dark"] .main-nav > a { border-color: #303b53; }
     background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
-    animation: dpm-brand-color-cycle 0s ease-in-out infinite;
+    animation: dpm-brand-color-cycle 8s ease-in-out infinite;
 }
 .brand-copy small {
     font-size: .62rem;
     letter-spacing: .13em;
-    animation-delay: 5s;
+    animation-delay: -.8s;
 }
 @keyframes dpm-brand-color-cycle {
     0%, 100% { background-position: 0% 50%; }
@@ -3903,4 +3903,74 @@ html[data-theme="dark"] .main-nav > a { border-color: #303b53; }
 }
 @media (prefers-reduced-motion: reduce) {
     .brand-copy strong, .brand-copy small { animation: none; background-position: 50% 50%; }
-  
+}
+
+
+/* News feedback: visible public comments and owner moderation tools. */
+.news-comments-list { max-height: 360px; overflow-y: auto; padding-right: 3px; }
+.news-comment small { display:block; margin-top:5px; color:var(--cream-muted); font-size:.72rem; }
+.feedback-admin-summary { margin: 12px 0 16px; color: var(--cream-muted); font-size: .88rem; }
+.feedback-admin-list { display:grid; gap:12px; }
+.feedback-admin-item { padding:16px; border:1px solid rgba(216,180,90,.25); border-radius:12px; background:rgba(255,255,255,.035); }
+.feedback-admin-item-head { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
+.feedback-admin-item-head > div { display:grid; gap:4px; min-width:0; }
+.feedback-admin-item-head strong { color:var(--gold-light); }
+.feedback-admin-item-head small { color:var(--cream-muted); font-size:.75rem; overflow-wrap:anywhere; }
+.feedback-admin-item > p { margin:12px 0 0; white-space:pre-wrap; overflow-wrap:anywhere; }
+.feedback-admin-status { padding:16px; color:var(--cream-muted); }
+@media (max-width:600px) { .feedback-admin-item-head { flex-direction:column; } .feedback-admin-item-head .button { align-self:flex-start; } }
+
+/* October 2026 additions: church logos/videos, richer devotional editor, biographies */
+.church-partner-card { grid-template-columns: minmax(90px,auto) minmax(0,1fr) auto minmax(74px,auto); }
+.church-logo-cluster { display:flex; flex-direction:column; align-items:center; gap:10px; }
+.church-email-button { display:inline-flex; align-items:center; justify-content:center; gap:6px; padding:7px 10px; border-radius:999px; border:1px solid rgba(255,224,138,.42); color:#ffe8a7; background:rgba(14,13,10,.75); font-size:.78rem; font-weight:850; text-decoration:none; }
+.church-email-button:hover { background:rgba(216,180,90,.18); }
+.church-logo-wrap-right { overflow:hidden; transform:rotate(var(--right-logo-rotation,180deg)); transform-origin:center; }
+.church-logo-wrap-right img { width:100%; height:100%; object-fit:contain; padding:7px; }
+.church-videos-panel { margin-top:24px; padding:clamp(20px,3vw,30px); border:1px solid rgba(241,216,139,.22); border-radius:22px; background:rgba(5,6,7,.24); }
+.church-videos-heading { text-align:center; margin-bottom:18px; }
+.church-videos-heading .eyebrow { color:#ffe08a; margin-bottom:5px; }
+.church-videos-heading h2 { color:#fff0c6; margin:0; font-family:Georgia,"Times New Roman",serif; font-size:clamp(1.35rem,3vw,2rem); }
+.church-videos-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
+.church-video-card { min-width:0; padding:12px; border:1px solid rgba(241,216,139,.18); border-radius:15px; background:rgba(0,0,0,.22); }
+.church-video-card h3 { margin:12px 4px 4px; color:#fff4dc; font-size:1rem; }
+.church-video-placeholder { min-height:180px; }
+.devotional-panel { width:100%; }
+.devotional-content { grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr); gap:clamp(20px,3vw,34px); align-items:stretch; }
+.devotional-body { min-width:0; padding:clamp(18px,2.5vw,30px); border:1px solid rgba(241,216,139,.2); border-radius:16px; background:rgba(0,0,0,.18); font-size:clamp(1.05rem,1.4vw,1.2rem); line-height:1.9; overflow-wrap:anywhere; }
+.devotional-body p { margin:0 0 1em; }
+.devotional-body ul,.devotional-body ol { padding-left:1.5em; }
+.devotional-body span { overflow-wrap:anywhere; }
+.devotional-rich-editor { min-height:280px; max-height:560px; overflow:auto; padding:18px; border:1px solid var(--line-dark); border-radius:12px; color:#fff5df; background:#17140f; font-size:1rem; line-height:1.75; outline:none; }
+.devotional-rich-editor:focus { border-color:var(--gold-light); box-shadow:0 0 0 3px rgba(216,180,90,.13); }
+.rich-text-toolbar { display:flex; align-items:center; flex-wrap:wrap; gap:8px; margin:8px 0 10px; padding:10px; border:1px solid var(--line-dark); border-radius:12px; background:rgba(216,180,90,.06); }
+.rich-text-toolbar button,.rich-text-toolbar select { min-height:36px; padding:6px 10px; border:1px solid var(--line-dark); border-radius:8px; color:var(--text); background:var(--surface); cursor:pointer; }
+.rich-text-toolbar label { display:flex; align-items:center; gap:6px; font-size:.82rem; }
+.rich-text-toolbar input[type=color] { width:42px; height:36px; padding:2px; border:1px solid var(--line-dark); border-radius:8px; background:var(--surface); }
+.devotional-editor-field small { display:block; margin-top:8px; color:var(--muted); font-weight:500; }
+.notification-sound-toggle { display:flex; align-items:center; gap:10px; padding:14px; border:1px solid var(--line-dark); border-radius:10px; }
+.notification-sound-toggle input { width:18px; height:18px; }
+.admin-biography-list { display:grid; gap:16px; margin-bottom:18px; }
+.biography-admin-fields { display:grid; grid-template-columns:180px minmax(0,1fr); gap:18px; }
+.biography-admin-photo { display:flex; flex-direction:column; align-items:flex-start; gap:9px; }
+.biography-admin-photo img { width:150px; height:150px; object-fit:cover; border-radius:12px; border:1px solid var(--line-dark); }
+.biography-admin-photo > span { display:grid; place-items:center; width:150px; height:150px; border:1px dashed var(--line-dark); border-radius:12px; color:var(--muted); }
+.biography-admin-details { display:grid; gap:10px; min-width:0; }
+.bio-char-count { color:var(--muted); text-align:right; }
+@media (max-width: 900px) {
+  .church-partner-card { grid-template-columns:auto minmax(0,1fr) auto; }
+  .church-logo-wrap-right { grid-column:1; grid-row:2; }
+  .church-partner-card > .button { grid-column:2; grid-row:2; justify-self:start; }
+}
+@media (max-width: 620px) {
+  .church-partner-card { grid-template-columns:1fr; gap:14px; }
+  .church-logo-cluster { flex-direction:row; justify-content:flex-start; }
+  .church-partner-card > .button,.church-logo-wrap-right { grid-column:auto; grid-row:auto; }
+  .church-partner-card > .button { width:100%; justify-content:center; }
+  .church-videos-grid { grid-template-columns:1fr; }
+  .devotional-content { grid-template-columns:1fr; }
+  .devotional-rich-editor { min-height:220px; }
+  .biography-admin-fields { grid-template-columns:1fr; }
+}
+.devotional-content:not(:has(.devotional-image)) { max-width:none; width:100%; }
+.church-logo-cluster { flex-direction:row; align-items:center; flex-wrap:wrap; }
