@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#17140f">
+  <meta name="description" content="Artist biographies from D Psalmist Music Ministry.">
+  <title>Artist Biographies | D Psalmist Music Ministry</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    :root{color-scheme:dark;--bg:#11100d;--panel:#1d1a14;--gold:#f3d88b;--muted:#c8bdab;--line:rgba(243,216,139,.2)}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 10% 0%,rgba(214,168,61,.16),transparent 35%),linear-gradient(140deg,#11100d,#211d15 60%,#0d0c0a);color:#fff7e7;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
+    .top{padding:24px 18px;border-bottom:1px solid var(--line);background:rgba(0,0,0,.2)}.top-inner{max-width:1120px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{font-weight:950;letter-spacing:.12em;color:var(--gold);text-decoration:none}.brand small{display:block;color:#fff3d6;letter-spacing:.18em;font-size:.7rem;margin-top:4px}.navlinks{display:flex;gap:10px;flex-wrap:wrap}.navlinks a{color:#fff0c6;text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:9px 13px;font-weight:750;font-size:.9rem}.wrap{max-width:1120px;margin:auto;padding:44px 18px 70px}.eyebrow{color:var(--gold);text-transform:uppercase;letter-spacing:.18em;font-size:.72rem;font-weight:900}.intro{text-align:center;max-width:760px;margin:0 auto 32px}.intro h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(2rem,5vw,3.5rem);line-height:1.08;margin:8px 0 12px}.intro p{color:var(--muted);line-height:1.7}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,285px),1fr));gap:22px}.artist-card{overflow:hidden;border:1px solid var(--line);border-radius:20px;background:linear-gradient(155deg,rgba(243,216,139,.08),rgba(255,255,255,.025));box-shadow:0 18px 50px rgba(0,0,0,.2)}.portrait{height:290px;background:#29251c;display:grid;place-items:center;color:var(--gold);font-size:1rem;font-weight:850}.portrait img{width:100%;height:100%;object-fit:cover}.details{padding:22px}.details h2{font-family:Georgia,"Times New Roman",serif;font-size:1.5rem;margin:0 0 7px;color:#ffedbd}.age{display:inline-block;margin:0 0 14px;padding:5px 10px;border-radius:999px;background:rgba(243,216,139,.1);color:var(--gold);font-size:.82rem;font-weight:800}.bio{margin:0;color:#eee4d1;line-height:1.8;overflow-wrap:anywhere;white-space:pre-wrap}.status{padding:30px;text-align:center;border:1px dashed var(--line);border-radius:16px;color:var(--muted);line-height:1.7}.footer{text-align:center;margin-top:36px;color:#bcb09c;font-size:.85rem}.footer a{color:var(--gold)}
+    @media(max-width:600px){.top-inner{align-items:flex-start;flex-direction:column}.portrait{height:250px}.wrap{padding-top:32px}}
+  </style>
+</head>
+<body>
+  <header class="top"><div class="top-inner"><a class="brand" href="./index.html">D PSALMIST<small>MUSIC MINISTRY</small></a><nav class="navlinks" aria-label="Biography navigation"><a href="./index.html">← Main website</a></nav></div></header>
+  <main class="wrap"><section class="intro"><span class="eyebrow">People behind the sound</span><h1>Artist Biographies</h1><p>Meet the artists, worship leaders, and music ministers connected with D Psalmist Music Ministry.</p></section><section id="artistGrid" class="grid" aria-live="polite"><div class="status">Loading artist biographies…</div></section><p class="footer">D Psalmist Music Ministry · Gospel sound. Worship heart. Purposeful living.<br><a href="mailto:consultant1805@gmail.com">Email the ministry</a></p></main>
+  <script>
+    const SUPABASE_URL = "https://ypbcibuzsmtrfbmbgxqk.supabase.co";
+    const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_s8ExqgL-CJz9rAzMpg17bA_QGTvzhiH";
+    const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+    const grid = document.getElementById("artistGrid");
+    const esc = value => String(value ?? "").replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
+    async function loadBiographies(){
+      try{
+        const {data,error}=await client.from("site_content").select("data").eq("id","main").maybeSingle();
+        if(error) throw error;
+        const site=data&&data.data?data.data:{}; const artists=Array.isArray(site.biographies)?site.biographies:[]; const media=site.media||{};
+        if(!artists.length){grid.innerHTML='<div class="status">Artist biographies will appear here soon. Please check back later.</div>';return;}
+        grid.innerHTML=artists.map((artist)=>{
+          const key=`bio-artist-${artist.id}`; const path=media[key];
+          const photo=path?client.storage.from("site-media").getPublicUrl(path).data.publicUrl:"";
+          const age=String(artist.age??"").trim();
+          return `<article class="artist-card"><div class="portrait">${photo?`<img src="${esc(photo)}" alt="${esc(artist.name||"Artist")} portrait" loading="lazy">`:`<span>Artist picture</span>`}</div><div class="details"><h2>${esc(artist.name||"Artist name")}</h2>${age?`<p class="age">Age: ${esc(age)}</p>`:""}<p class="bio">${esc(String(artist.bio||"").slice(0,500))}</p></div></article>`;
+        }).join("");
+      }catch(error){console.error("Could not load artist biographies",error);grid.innerHTML='<div class="status">We could not load biographies right now. Please refresh the page or try again later.</div>';}
+    }
+    loadBiographies();
+  </script>
+</body>
+</html>
