@@ -57,6 +57,7 @@
                 <a href="#gallery">Gallery</a>
                 <a href="#videos">Videos</a>
                 <a href="#updates">Updates</a>
+                <a href="./biographies.html">Artist biographies</a>
                 <a href="#contact">Contact</a>
                 <button class="button button-small button-outline admin-open" type="button">Admin Login</button>
                 <div class="theme-switcher" role="group" aria-label="Website appearance">
@@ -354,10 +355,18 @@
         <section class="church-devotional-section" id="church" aria-labelledby="churchSectionTitle">
             <div class="container">
                 <div class="church-partner-card">
-                    <div class="church-logo-wrap" id="churchLogoWrap" aria-label="Church logo"><span class="church-cross" aria-hidden="true">✝</span></div>
+                    <div class="church-logo-cluster">
+                        <div class="church-logo-wrap" id="churchLogoWrap" aria-label="Church logo"><span class="church-cross" aria-hidden="true">✝</span></div>
+                        <a class="church-email-button" id="churchEmailLink" href="mailto:consultant1805@gmail.com" aria-label="Email the ministry">✉ <span>Email</span></a>
+                    </div>
                     <div class="church-partner-copy"><p class="eyebrow">Church partnership</p><h2 id="churchSectionTitle">The Latter Day Church of Jesus Christ</h2><p id="churchIntroText">A ministry relationship built around faith, encouragement, and the Word of God.</p></div>
                     <a class="button button-gold" id="churchWebsiteLink" href="https://example.com" target="_blank" rel="noopener noreferrer">Visit church website ↗</a>
+                    <div class="church-logo-wrap church-logo-wrap-right" id="churchRightLogoWrap" aria-label="Second church logo"><span class="church-cross" aria-hidden="true">✝</span></div>
                 </div>
+                <section class="church-videos-panel" aria-labelledby="churchVideosHeading">
+                    <div class="church-videos-heading"><p class="eyebrow">Church video ministry</p><h2 id="churchVideosHeading">Watch &amp; be encouraged</h2></div>
+                    <div class="church-videos-grid" id="churchVideosGrid" aria-live="polite"></div>
+                </section>
                 <div class="devotional-panel" aria-labelledby="devotionalHeading">
                     <div class="devotional-heading"><p class="eyebrow">Faith • Word • Daily encouragement</p><h2 id="devotionalHeading">BESTRONG DAILY DEVOTIONAL</h2><p id="devotionalDate" class="devotional-date"></p></div>
                     <div class="devotional-content" id="devotionalContent"><p class="devotional-empty">The latest BeStrong Daily Devotional will be published here. Check back for devotional pictures and messages.</p></div>
@@ -429,6 +438,8 @@
                     <button class="admin-tab" type="button" data-admin-tab="videos">▶ Manage YouTube videos (3)</button>
                     <button class="admin-tab" type="button" data-admin-tab="music">Music releases</button>
                     <button class="admin-tab" type="button" data-admin-tab="stores">Music stores (6)</button>
+                    <button class="admin-tab" type="button" data-admin-tab="feedback">Comments &amp; moderation</button>
+                    <button class="admin-tab" type="button" data-admin-tab="biographies">Artist biographies</button>
                 </aside>
                 <div class="admin-main">
                     <!-- Dashboard overview: quick counts and shortcuts for the ministry website. -->
@@ -464,6 +475,8 @@
                         <div class="admin-tab-panel" data-admin-panel="videos" id="videosPanel"></div>
                         <div class="admin-tab-panel" data-admin-panel="music" id="musicPanel"></div>
                         <div class="admin-tab-panel" data-admin-panel="stores" id="storesPanel"></div>
+                        <div class="admin-tab-panel" data-admin-panel="feedback" id="feedbackAdminPanel"></div>
+                        <div class="admin-tab-panel" data-admin-panel="biographies" id="biographiesPanel"></div>
                         <div class="admin-save-bar">
                             <span id="adminSaveStatus" role="status">Remember to save your changes.</span>
                             <button class="button button-gold" type="button" id="saveAdminBtn">Save all changes</button>
@@ -564,7 +577,13 @@
                 devotionalDate: "",
                 devotionalBody: "",
                 mediaKey: "devotional-image",
-                logoMediaKey: "church-logo"
+                logoMediaKey: "church-logo",
+                rightLogoMediaKey: "church-logo-right",
+                rightLogoRotation: 180,
+                videos: [
+                    { title: "Church service video 1", url: "" },
+                    { title: "Church service video 2", url: "" }
+                ]
             },
             slider: [
                 { caption: "Inside D Psalmist Studio", mediaKey: "slider-1" },
@@ -623,7 +642,9 @@
                 { label: "Audiomack", url: "https://audiomack.com/", icon: "AM" },
                 { label: "Deezer", url: "https://www.deezer.com/", icon: "D" }
             ],
-            releases: []
+            releases: [],
+            biographies: [],
+            notificationSounds: true
         };
 
         let siteData = loadSiteData();
@@ -644,13 +665,15 @@
                 contact: { ...DEFAULT_SITE_DATA.contact, ...(parsed.contact || {}) },
                 latestUpdate: typeof parsed.latestUpdate === "string" ? parsed.latestUpdate : DEFAULT_SITE_DATA.latestUpdate,
                 tickerText: typeof parsed.tickerText === "string" ? parsed.tickerText : DEFAULT_SITE_DATA.tickerText,
-                church: { ...DEFAULT_SITE_DATA.church, ...(parsed.church || {}) },
+                church: { ...DEFAULT_SITE_DATA.church, ...(parsed.church || {}), videos: Array.from({ length: 2 }, (_, index) => ({ ...DEFAULT_SITE_DATA.church.videos[index], ...((parsed.church && parsed.church.videos || [])[index] || {}) })) },
                 slider: Array.from({ length: 7 }, (_, index) => ({ ...DEFAULT_SITE_DATA.slider[index], ...((parsed.slider || [])[index] || {}) })),
                 gallery: Array.from({ length: 7 }, (_, index) => ({ ...DEFAULT_SITE_DATA.gallery[index], ...((parsed.gallery || [])[index] || {}) })),
                 news: Array.from({ length: 4 }, (_, index) => ({ ...DEFAULT_SITE_DATA.news[index], ...((parsed.news || [])[index] || {}) })),
                 videos: Array.from({ length: 3 }, (_, index) => ({ ...DEFAULT_SITE_DATA.videos[index], ...((parsed.videos || [])[index] || {}) })),
                 stores: Array.from({ length: 6 }, (_, index) => ({ ...DEFAULT_SITE_DATA.stores[index], ...((parsed.stores || [])[index] || {}) })),
                 releases: Array.isArray(parsed.releases) ? parsed.releases : [],
+                biographies: Array.isArray(parsed.biographies) ? parsed.biographies : [],
+                notificationSounds: parsed.notificationSounds !== false,
                 media: parsed.media && typeof parsed.media === "object" ? parsed.media : {}
             };
         }
@@ -976,7 +999,7 @@
                 const likes = rows.filter(row => row.kind === "like").length;
                 const comments = rows.filter(row => row.kind === "comment");
                 const alreadyLiked = rows.some(row => row.kind === "like" && row.visitor_id === getVisitorId());
-                const commentMarkup = comments.slice(0, 3).map(row => `<div class="news-comment"><strong>${escapeHTML(row.display_name || "Visitor")}</strong><p>${escapeHTML(row.comment || "")}</p></div>`).join("");
+                const commentMarkup = comments.map(row => `<div class="news-comment"><strong>${escapeHTML(row.display_name || "Visitor")}</strong><p>${escapeHTML(row.comment || "")}</p><small>${escapeHTML(new Date(row.created_at).toLocaleString())}</small></div>`).join("");
                 return `<article class="news-card">
                     <div class="news-image ${imageUrl ? "has-image" : ""}">${imageUrl ? `<img src="${imageUrl}" alt="${escapeHTML(item.title)}" loading="lazy">` : `<span aria-hidden="true">${index % 2 === 0 ? "✦" : "♫"}</span>`}<small>${escapeHTML(item.date || "Ministry news")}</small></div>
                     <div class="news-content"><p class="news-index">UPDATE / ${String(index + 1).padStart(2, "0")}</p><h3>${escapeHTML(item.title || "Ministry update")}</h3><p>${escapeHTML(item.body || "Update details will be published soon.")}</p><a href="#contact" class="text-link">Enquire <span aria-hidden="true">↗</span></a>
@@ -998,7 +1021,7 @@
             try {
                 const { error } = await supabaseClient.from("news_feedback").insert({ news_index: index, visitor_id: getVisitorId(), kind: "comment", display_name: displayName, comment });
                 if (error) throw error;
-                await renderNews(); showToast("Your comment has been posted.");
+                await renderNews(); playNotificationSound(); showToast("Your comment has been posted.");
             } catch (error) { console.error("Comment could not be posted:", error); showToast("Could not post comment. Please check that the feedback setup SQL has been run in Supabase.", true); button.disabled = false; }
         }
 
@@ -1069,6 +1092,80 @@
             }).join("");
         }
 
+        function sanitizeDevotionalHtml(input) {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(`<div>${String(input || "")}</div>`, "text/html");
+            const allowed = new Set(["DIV", "P", "BR", "STRONG", "B", "EM", "I", "U", "UL", "OL", "LI", "SPAN", "FONT"]);
+            const cleanNode = node => {
+                [...node.childNodes].forEach(child => {
+                    if (child.nodeType === Node.ELEMENT_NODE) {
+                        if (!allowed.has(child.tagName)) {
+                            child.replaceWith(document.createTextNode(child.textContent || ""));
+                            return;
+                        }
+                        [...child.attributes].forEach(attr => {
+                            const name = attr.name.toLowerCase();
+                            if (child.tagName === "FONT" && name === "color" && /^#[0-9a-f]{3,8}$/i.test(attr.value)) return;
+                            if (child.tagName === "FONT" && name === "size" && /^[1-7]$/.test(attr.value)) return;
+                            if (child.tagName === "SPAN" && name === "style") {
+                                const styles = [];
+                                const color = child.style.color;
+                                const size = child.style.fontSize;
+                                if (color && /^(#[0-9a-f]{3,8}|rgb\([0-9 ,]+\)|[a-z]{3,20})$/i.test(color)) styles.push(`color:${color}`);
+                                if (size && (/^(\d+(\.\d+)?(px|pt|em|rem|%))$/.test(size) || /^(xx-small|x-small|small|medium|large|x-large|xx-large|smaller|larger)$/i.test(size))) styles.push(`font-size:${size}`);
+                                if (styles.length) child.setAttribute("style", styles.join(";")); else child.removeAttribute("style");
+                                return;
+                            }
+                            child.removeAttribute(attr.name);
+                        });
+                        if (child.tagName === "FONT") {
+                            const sizeMap = {"1":"0.75em","2":"0.875em","3":"1em","4":"1.25em","5":"1.5em","6":"1.8em","7":"2em"};
+                            const styles = [];
+                            if (child.getAttribute("color")) styles.push(`color:${child.getAttribute("color")}`);
+                            if (child.getAttribute("size")) styles.push(`font-size:${sizeMap[child.getAttribute("size")] || "1em"}`);
+                            if (styles.length) child.setAttribute("style", styles.join(";"));
+                            child.removeAttribute("color"); child.removeAttribute("size");
+                        }
+                        cleanNode(child);
+                    } else if (child.nodeType !== Node.TEXT_NODE) child.remove();
+                });
+            };
+            cleanNode(doc.body.firstElementChild);
+            return doc.body.firstElementChild ? doc.body.firstElementChild.innerHTML : "";
+        }
+
+        function playNotificationSound() {
+            if (siteData.notificationSounds === false) return;
+            try {
+                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                if (!AudioContextClass) return;
+                const ctx = new AudioContextClass();
+                if (ctx.state === "suspended") ctx.resume().catch(() => {});
+                const oscillator = ctx.createOscillator();
+                const gain = ctx.createGain();
+                oscillator.type = "sine"; oscillator.frequency.setValueAtTime(880, ctx.currentTime);
+                gain.gain.setValueAtTime(0.0001, ctx.currentTime); gain.gain.exponentialRampToValueAtTime(0.12, ctx.currentTime + 0.02); gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.22);
+                oscillator.connect(gain); gain.connect(ctx.destination); oscillator.start(); oscillator.stop(ctx.currentTime + 0.24);
+                oscillator.onended = () => ctx.close();
+            } catch (error) { console.debug("Notification sound unavailable", error); }
+        }
+
+        function initialiseDevotionalEditor() {
+            const editor = document.getElementById("devotionalRichEditor");
+            const storage = document.getElementById("devotionalBodyStorage");
+            if (!editor || !storage || editor.dataset.ready === "1") return;
+            editor.dataset.ready = "1";
+            const savedBody = storage.value || siteData.church.devotionalBody || "";
+            editor.innerHTML = /<\/?[a-z][^>]*>/i.test(savedBody) ? sanitizeDevotionalHtml(savedBody) : escapeHTML(savedBody).replace(/\r?\n/g, "<br>");
+            editor.addEventListener("input", () => {
+                storage.value = sanitizeDevotionalHtml(editor.innerHTML);
+                const plain = editor.innerText.trim();
+                const count = plain ? plain.split(/\s+/).length : 0;
+                const display = document.getElementById("devotionalWordCount");
+                if (display) { display.textContent = `${count} / 800 words`; display.classList.toggle("over-limit", count > 800); }
+            });
+        }
+
         async function renderChurchAndTicker() {
             const church = siteData.church || DEFAULT_SITE_DATA.church;
             const title = document.getElementById("churchSectionTitle");
@@ -1081,6 +1178,12 @@
             if (intro) intro.textContent = church.intro || "A ministry relationship built around faith, encouragement, and the Word of God.";
             const logoWrap = document.getElementById("churchLogoWrap");
             if (logoWrap) { const logoUrl = await getMediaUrl(church.logoMediaKey || "church-logo"); logoWrap.innerHTML = logoUrl ? `<img src="${logoUrl}" alt="${escapeHTML(church.name || "Church")} logo" loading="lazy">` : `<span class="church-cross" aria-hidden="true">✝</span><span class="church-logo-label">Church logo</span>`; }
+            const rightLogoWrap = document.getElementById("churchRightLogoWrap");
+            if (rightLogoWrap) { const rightLogoUrl = await getMediaUrl(church.rightLogoMediaKey || "church-logo-right"); rightLogoWrap.style.setProperty("--right-logo-rotation", `${Number(church.rightLogoRotation) === 180 ? 180 : 0}deg`); rightLogoWrap.innerHTML = rightLogoUrl ? `<img src="${rightLogoUrl}" alt="${escapeHTML(church.name || "Church")} second logo" loading="lazy">` : `<span class="church-cross" aria-hidden="true">✝</span><span class="church-logo-label">Second logo</span>`; }
+            const emailLink = document.getElementById("churchEmailLink");
+            if (emailLink) emailLink.href = `mailto:${String(siteData.contact.email || "consultant1805@gmail.com").replace(/[\r\n]/g, "")}`;
+            const churchVideosGrid = document.getElementById("churchVideosGrid");
+            if (churchVideosGrid) churchVideosGrid.innerHTML = (church.videos || []).map((video, index) => { const id = extractYouTubeId(video.url); return `<article class="church-video-card">${id ? `<div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/${id}" title="${escapeHTML(video.title || `Church video ${index + 1}`)}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>` : `<div class="video-placeholder church-video-placeholder"><span class="play-icon" aria-hidden="true">▶</span><span class="video-placeholder-label">Church video 0${index + 1}</span><small>Add a YouTube link in Admin</small></div>`}<h3>${escapeHTML(video.title || `Church video ${index + 1}`)}</h3></article>`; }).join("");
             const externalChurchUrl = safeExternalUrl(church.url);
             if (churchLink) { churchLink.href = externalChurchUrl || "#church"; churchLink.hidden = !externalChurchUrl || externalChurchUrl.includes("example.com"); }
             if (devotionalHeading) devotionalHeading.textContent = church.devotionalTitle || "BESTRONG DAILY DEVOTIONAL";
@@ -1088,7 +1191,7 @@
             if (devotionalContent) {
                 const imageUrl = await getMediaUrl(church.mediaKey || "devotional-image");
                 const body = String(church.devotionalBody || "").trim();
-                devotionalContent.innerHTML = `${imageUrl ? `<img class="devotional-image" src="${imageUrl}" alt="BeStrong Daily Devotional" loading="lazy">` : ""}${body ? `<div class="devotional-body">${escapeHTML(body).replace(/\n/g, "<br>")}</div>` : `<p class="devotional-empty">The latest BeStrong Daily Devotional will be published here. The admin can add a devotional picture and a message of up to 800 words.</p>`}`;
+                devotionalContent.innerHTML = `${imageUrl ? `<img class="devotional-image" src="${imageUrl}" alt="BeStrong Daily Devotional" loading="lazy">` : ""}${body ? `<div class="devotional-body">${/<\/?[a-z][^>]*>/i.test(body) ? sanitizeDevotionalHtml(body) : escapeHTML(body).replace(/\r?\n/g, "<br>")}</div>` : `<p class="devotional-empty">The latest BeStrong Daily Devotional will be published here. The admin can add a devotional picture and a message of up to 800 words.</p>`}`;
             }
             const latest = document.getElementById("latestUpdateText");
             if (latest) latest.textContent = siteData.latestUpdate || "Stay connected for the latest ministry updates.";
@@ -1148,10 +1251,25 @@
                 <div class="admin-form-grid">${adminField("Church name", siteData.church.name, "church.name")}${adminField("Church website URL", siteData.church.url, "church.url", "url", "https://...")}</div>
                 ${adminTextarea("Church introduction", siteData.church.intro, "church.intro", 2)}
                 <div class="admin-upload-block"><div><h4>Church logo</h4><p>Upload or replace the partner church logo. It will appear beside the church name on the public website.</p></div><label class="file-picker">Upload church logo<input type="file" accept="image/*" data-media-key="church-logo" data-media-kind="image"></label>${siteData.media && siteData.media["church-logo"] ? `<button class="button button-small button-danger" type="button" data-delete-media-key="church-logo" data-delete-media-kind="image">Delete logo</button>` : ""}<span class="upload-state" data-media-status="church-logo">${siteData.media && siteData.media["church-logo"] ? "Church logo uploaded" : "No church logo uploaded"}</span></div>
+                <div class="admin-upload-block"><div><h4>Second church logo (right side)</h4><p>Upload the second logo displayed on the far right of the church partnership card.</p></div><label class="file-picker">Upload second logo<input type="file" accept="image/*" data-media-key="church-logo-right" data-media-kind="image"></label>${siteData.media && siteData.media["church-logo-right"] ? `<button class="button button-small button-danger" type="button" data-delete-media-key="church-logo-right" data-delete-media-kind="image">Delete second logo</button>` : ""}<span class="upload-state" data-media-status="church-logo-right">${siteData.media && siteData.media["church-logo-right"] ? "Second logo uploaded" : "No second logo uploaded"}</span><label class="admin-field">Second logo rotation<select id="rightChurchLogoRotation"><option value="0" ${Number(siteData.church.rightLogoRotation) === 0 ? "selected" : ""}>0° — normal</option><option value="180" ${Number(siteData.church.rightLogoRotation) === 180 ? "selected" : ""}>180° — upside down</option></select></label></div>
                 <div class="admin-section-heading admin-subsection-heading"><p class="eyebrow">Devotional publishing</p><h3>BeStrong Daily Devotional</h3><p>Enter a message up to 800 words. The devotional appears within the church partnership section.</p></div>
                 <div class="admin-form-grid">${adminField("Devotional heading", siteData.church.devotionalTitle, "church.devotionalTitle")}${adminField("Date / issue label", siteData.church.devotionalDate, "church.devotionalDate", "text", "e.g. Thursday, October 15, 2026")}</div>
-                ${adminTextarea("Devotional message (maximum 800 words)", siteData.church.devotionalBody, "church.devotionalBody", 12, "Write or paste the devotional text here...")}
+                <div class="admin-field devotional-editor-field"><span>Devotional message (maximum 800 words)</span>
+                    <div class="rich-text-toolbar" role="toolbar" aria-label="Devotional text formatting">
+                        <button type="button" data-editor-command="bold" title="Bold"><strong>B</strong></button><button type="button" data-editor-command="italic" title="Italic"><em>I</em></button><button type="button" data-editor-command="underline" title="Underline"><u>U</u></button>
+                        <label>Font size <select id="devotionalFontSize"><option value="2">Small</option><option value="3" selected>Normal</option><option value="4">Large</option><option value="5">Extra large</option><option value="6">Heading</option></select></label>
+                        <label>Text colour <input type="color" id="devotionalTextColor" value="#fff5df" aria-label="Text colour"></label>
+                        <button type="button" data-editor-command="removeFormat" title="Clear formatting">Clear style</button>
+                    </div>
+                    <div id="devotionalRichEditor" class="devotional-rich-editor" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Devotional message editor"></div>
+                    <textarea data-site-field="church.devotionalBody" id="devotionalBodyStorage" rows="12" hidden>${escapeHTML(siteData.church.devotionalBody || "")}</textarea>
+                    <small>Use the toolbar to style the message. The devotional is displayed in a larger card on the public page.</small>
+                </div>
                 <p class="admin-word-count" id="devotionalWordCount">0 / 800 words</p>
+                <div class="admin-section-heading admin-subsection-heading"><p class="eyebrow">Church video frames</p><h3>Manage two church YouTube videos</h3><p>These appear in the church section above the devotional. Add a title and a public or unlisted YouTube link for each frame.</p></div>
+                ${siteData.church.videos.map((video, index) => `<article class="admin-edit-card"><h4>Church video ${index + 1}</h4><div class="admin-form-grid">${adminField("Video title", video.title, `church.videos.${index}.title`)}${adminField("YouTube video link", video.url, `church.videos.${index}.url`, "url", "https://www.youtube.com/watch?v=...")}</div></article>`).join("")}
+                <div class="admin-section-heading admin-subsection-heading"><p class="eyebrow">Notification sounds</p><h3>Admin and visitor alerts</h3><p>Play a short notification sound after successful admin login, comment posting, and saving website updates.</p></div>
+                <label class="notification-sound-toggle"><input id="notificationSoundsEnabled" type="checkbox" ${siteData.notificationSounds !== false ? "checked" : ""}> Enable notification sounds</label>
                 <div class="admin-upload-block"><div><h4>Devotional picture</h4><p>Upload a devotional flyer or image to display with the message.</p></div><label class="file-picker">Upload devotional picture<input type="file" accept="image/*" data-media-key="devotional-image" data-media-kind="image"></label>${siteData.media && siteData.media["devotional-image"] ? `<button class="button button-small button-danger" type="button" data-delete-media-key="devotional-image" data-delete-media-kind="image">Delete image</button>` : ""}<span class="upload-state" data-media-status="devotional-image">${siteData.media && siteData.media["devotional-image"] ? "Devotional image uploaded" : "No devotional image uploaded"}</span></div>
                 <div class="devotional-admin-actions"><button class="button button-gold" type="button" data-devotional-action="post">Post devotional</button><button class="button button-outline" type="button" data-devotional-action="update">Update devotional</button><button class="button button-danger" type="button" data-devotional-action="delete">Delete devotional</button><p>Post publishes the devotional you entered. Update saves your edits to the current devotional. Delete removes the text, date, and devotional picture.</p></div>
                 <div class="admin-upload-block"><div><h4>Artist portrait</h4><p>Recommended: a sharp portrait or stage photo in JPG, PNG, or WebP format.</p></div><label class="file-picker">Upload portrait<input type="file" accept="image/*" data-media-key="artist-portrait" data-media-kind="image"></label>${siteData.media && siteData.media["artist-portrait"] ? `<button class="button button-small button-danger" type="button" data-delete-media-key="artist-portrait" data-delete-media-kind="image">Delete image</button>` : ""}<span class="upload-state" data-media-status="artist-portrait">Portrait can be changed any time.</span></div>
@@ -1205,11 +1323,59 @@
             panel.innerHTML = `<div class="admin-section-heading"><p class="eyebrow">Streaming &amp; sales</p><h3>Music store links</h3><p>Six platform cards appear on the public website. Replace the sample platform homepages with your actual artist or song pages.</p></div><div class="admin-store-list">${siteData.stores.map((store, index) => `<article class="admin-store-row"><span class="store-icon store-icon-${index + 1}">${escapeHTML(store.icon || (store.label || "M").slice(0, 2))}</span><div class="admin-store-fields">${adminField("Platform name", store.label, `stores.${index}.label`)}${adminField("Artist / store link", store.url, `stores.${index}.url`, "url", "https://...")}</div></article>`).join("")}</div>`;
         }
 
+        async function renderFeedbackAdmin() {
+            const panel = document.getElementById("feedbackAdminPanel");
+            if (!panel) return;
+            panel.innerHTML = `<div class="admin-section-heading"><p class="eyebrow">Community moderation</p><h3>Comments &amp; moderation</h3><p>Review comments submitted on News &amp; Updates. Deleting a comment removes it from the public website as well.</p></div><div class="feedback-admin-status">Loading comments…</div>`;
+            try {
+                const { data, error } = await supabaseClient.from("news_feedback")
+                    .select("id, news_index, display_name, comment, created_at, kind")
+                    .eq("kind", "comment").order("created_at", { ascending: false }).limit(500);
+                if (error) throw error;
+                const comments = data || [];
+                panel.innerHTML = `<div class="admin-section-heading"><p class="eyebrow">Community moderation</p><h3>Comments &amp; moderation</h3><p>Review comments submitted on News &amp; Updates. Deleting a comment removes it from the public website as well.</p></div><div class="feedback-admin-summary">${comments.length} recent comment${comments.length === 1 ? "" : "s"} loaded</div>${comments.length ? `<div class="feedback-admin-list">${comments.map(row => {
+                    const title = siteData.news[Number(row.news_index)]?.title || `News update ${Number(row.news_index) + 1}`;
+                    return `<article class="feedback-admin-item"><div class="feedback-admin-item-head"><div><strong>${escapeHTML(row.display_name || "Visitor")}</strong><small>${escapeHTML(new Date(row.created_at).toLocaleString())} · ${escapeHTML(title)}</small></div><button class="button button-small button-danger" type="button" data-delete-news-comment="${escapeHTML(row.id)}">Delete comment</button></div><p>${escapeHTML(row.comment || "")}</p></article>`;
+                }).join("")}</div>` : `<div class="admin-help-card">No comments have been submitted yet.</div>`}`;
+            } catch (error) {
+                console.error("Could not load comments for moderation:", error);
+                panel.innerHTML = `<div class="admin-section-heading"><p class="eyebrow">Community moderation</p><h3>Comments &amp; moderation</h3></div><div class="admin-help-card">Could not load comments. Check that the news_feedback table exists and that the feedback SQL setup has been applied.</div>`;
+            }
+        }
+
+        async function deleteNewsComment(id, button) {
+            if (!id || !window.confirm("Delete this comment from the public website? This cannot be undone.")) return;
+            button.disabled = true;
+            try {
+                const { error } = await supabaseClient.from("news_feedback").delete().eq("id", id).eq("kind", "comment");
+                if (error) throw error;
+                await renderFeedbackAdmin();
+                await renderNews();
+                showToast("Comment deleted.");
+            } catch (error) {
+                console.error("Could not delete comment:", error);
+                showToast("Could not delete this comment. Check the admin delete policy in Supabase and try again.", true);
+                button.disabled = false;
+            }
+        }
+
+        async function renderBiographyAdmin() {
+            const panel = document.getElementById("biographiesPanel");
+            if (!panel) return;
+            const cards = await Promise.all((siteData.biographies || []).map(async (artist, index) => {
+                const key = `bio-artist-${artist.id}`;
+                const photo = await getMediaUrl(key);
+                return `<article class="admin-edit-card biography-admin-card" data-biography-id="${escapeHTML(artist.id)}"><div class="admin-section-subheading"><span class="admin-number">${String(index + 1).padStart(2, "0")}</span><div><h4>${escapeHTML(artist.name || "New artist")}</h4><p>Biography profile · maximum 500 characters</p></div><button class="button button-small button-danger" type="button" data-delete-biography="${escapeHTML(artist.id)}">Delete artist</button></div><div class="biography-admin-fields"><div class="biography-admin-photo">${photo ? `<img src="${photo}" alt="${escapeHTML(artist.name || "Artist")} photo preview">` : `<span>Artist picture</span>`}<label class="file-picker">${photo ? "Replace picture" : "Upload picture"}<input type="file" accept="image/*" data-media-key="${escapeHTML(key)}" data-media-kind="image"></label>${siteData.media && siteData.media[key] ? `<button class="button button-small button-danger" type="button" data-delete-media-key="${escapeHTML(key)}" data-delete-media-kind="image">Delete picture</button>` : ""}<span class="upload-state" data-media-status="${escapeHTML(key)}">${photo ? "Picture uploaded" : "No picture uploaded"}</span></div><div class="biography-admin-details"><label class="admin-field">Artist name<input type="text" data-biography-id="${escapeHTML(artist.id)}" data-biography-field="name" value="${escapeHTML(artist.name || "")}" maxlength="100" placeholder="Artist full name"></label><label class="admin-field">Age<input type="number" data-biography-id="${escapeHTML(artist.id)}" data-biography-field="age" value="${escapeHTML(artist.age || "")}" min="0" max="120" placeholder="Age"></label><label class="admin-field">Short biography (maximum 500 characters)<textarea data-biography-id="${escapeHTML(artist.id)}" data-biography-field="bio" maxlength="500" rows="5" placeholder="Write a short biography...">${escapeHTML(artist.bio || "")}</textarea></label><small class="bio-char-count">${String(artist.bio || "").length}/500 characters</small></div></div></article>`;
+            }));
+            panel.innerHTML = `<div class="admin-section-heading"><p class="eyebrow">Separate public page</p><h3>Artist biographies</h3><p>Add and manage artist profiles shown on <a href="./biographies.html" target="_blank" rel="noopener">biographies.html</a>. Every profile has a picture, name, age, and a biography of up to 500 characters. Save changes with the main Save all changes button.</p></div><div class="admin-biography-list">${cards.join("")}</div><button class="button button-gold" id="addBiographyArtistBtn" type="button">＋ Add artist</button><p class="admin-help-card">This separate biography page reads the same shared Supabase website content, so profiles are visible to visitors on other devices after you save.</p>`;
+        }
+
         async function renderAdminPanel() {
             const dashboardMusicCount = document.getElementById("dashboardMusicCount");
             if (dashboardMusicCount) dashboardMusicCount.textContent = String((siteData.releases || []).length);
             renderBasicsAdmin();
-            const devotionalWords = String(siteData.church.devotionalBody || "").trim();
+            initialiseDevotionalEditor();
+            const devotionalWords = String(siteData.church.devotionalBody || "").replace(/<[^>]*>/g, " ").trim();
             const wordCounter = document.getElementById("devotionalWordCount");
             if (wordCounter) wordCounter.textContent = `${devotionalWords ? devotionalWords.split(/\s+/).length : 0} / 800 words`;
             await renderSliderAdmin();
@@ -1218,6 +1384,8 @@
             renderVideosAdmin();
             await renderMusicAdmin();
             renderStoresAdmin();
+            await renderFeedbackAdmin();
+            await renderBiographyAdmin();
         }
 
         function setObjectPath(object, path, value) {
@@ -1235,6 +1403,13 @@
         }
 
         function collectAdminForm() {
+            const richEditor = document.getElementById("devotionalRichEditor");
+            const devotionalStorage = document.getElementById("devotionalBodyStorage");
+            if (richEditor && devotionalStorage) devotionalStorage.value = sanitizeDevotionalHtml(richEditor.innerHTML);
+            const rotation = document.getElementById("rightChurchLogoRotation");
+            if (rotation) siteData.church.rightLogoRotation = Number(rotation.value) === 180 ? 180 : 0;
+            const soundToggle = document.getElementById("notificationSoundsEnabled");
+            if (soundToggle) siteData.notificationSounds = soundToggle.checked;
             document.querySelectorAll("[data-site-field]").forEach(input => {
                 const path = input.dataset.siteField;
 
@@ -1256,11 +1431,15 @@
             document.querySelectorAll("[data-gallery-caption]").forEach(input => {
                 siteData.gallery[Number(input.dataset.galleryCaption)].caption = input.value.trim();
             });
+            document.querySelectorAll("[data-biography-id][data-biography-field]").forEach(input => {
+                const artist = (siteData.biographies || []).find(item => String(item.id) === String(input.dataset.biographyId));
+                if (artist) artist[input.dataset.biographyField] = input.value.trim().slice(0, input.dataset.biographyField === "bio" ? 500 : 100);
+            });
         }
 
         async function saveAdminChanges() {
             collectAdminForm();
-            const devotionalWords = String(siteData.church.devotionalBody || "").trim();
+            const devotionalWords = String(siteData.church.devotionalBody || "").replace(/<[^>]*>/g, " ").trim();
             const devotionalWordCount = devotionalWords ? devotionalWords.split(/\s+/).length : 0;
             if (devotionalWordCount > 800) {
                 activateAdminTab("basics");
@@ -1270,6 +1449,7 @@
             try {
                 await saveSiteData();
                 await renderSite();
+                playNotificationSound();
                 setAdminSaveStatus(`Published to the live website at ${new Date().toLocaleTimeString()}.`);
                 showToast("Saved online. Visitors can now see your changes.");
             } catch (error) {
@@ -1373,11 +1553,15 @@
                 await renderSite();
 
                 // Update the relevant preview inside the admin panel without clearing typed form fields.
-                const previewContainer = input.closest(".admin-media-card, .admin-upload-block");
+                const previewContainer = input.closest(".admin-media-card, .admin-upload-block, .biography-admin-photo");
                 if (previewContainer && kind === "image") {
                     const preview = previewContainer.querySelector(".admin-media-preview, .admin-upload-description");
                     const url = await getMediaUrl(key);
-                    if (preview && url && preview.classList.contains("admin-media-preview")) preview.innerHTML = `<img src="${url}" alt="Uploaded image preview">`;
+                    if (previewContainer.classList.contains("biography-admin-photo") && url) {
+                        let img = previewContainer.querySelector("img");
+                        if (!img) { img = document.createElement("img"); img.alt = "Artist photo preview"; const placeholder = previewContainer.querySelector(":scope > span"); if (placeholder) placeholder.replaceWith(img); else previewContainer.prepend(img); }
+                        img.src = url;
+                    } else if (preview && url && preview.classList.contains("admin-media-preview")) preview.innerHTML = `<img src="${url}" alt="Uploaded image preview">`;
                     else if (preview && url) {
                         let img = preview.querySelector(".small-preview");
                         if (!img) {
@@ -1450,8 +1634,8 @@
             try {
                 const backup = JSON.parse(await file.text());
                 if (backup.format !== "dpm-music-ministry-backup-v1" || !backup.siteData) throw new Error("This is not a D Psalmist website backup file.");
-                siteData = backup.siteData;
-                saveSiteData();
+                siteData = normalizeSiteData(backup.siteData);
+                await saveSiteData();
                 for (const asset of (backup.media || [])) {
                     if (asset.key && asset.dataUrl) await putMedia(asset.key, dataUrlToBlob(asset.dataUrl), asset.name || asset.key);
                 }
@@ -1533,6 +1717,7 @@
                 const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
                 if (error) throw error;
                 errorBox.textContent = "";
+                playNotificationSound();
                 await openAdminPanel();
             } catch (error) {
                 console.error("Admin sign-in failed", error);
@@ -1584,16 +1769,19 @@
                     await saveSiteData();
                     await renderSite();
                     await renderBasicsAdmin();
+                    initialiseDevotionalEditor();
                     activateAdminTab("basics");
                     showToast("Devotional deleted from the live website.");
                 } else {
                     const body = String(siteData.church.devotionalBody || "").trim();
-                    if (!body) { showToast("Enter the devotional message before posting.", true); return; }
-                    const count = body.split(/\s+/).length;
+                    const plainBody = body.replace(/<[^>]*>/g, " ").trim();
+                    if (!plainBody) { showToast("Enter the devotional message before posting.", true); return; }
+                    const count = plainBody.split(/\s+/).length;
                     if (count > 800) { showToast(`The devotional is ${count} words. Please reduce it to 800 words or fewer.`, true); return; }
                     await saveAdminChanges();
                     showToast(action === "post" ? "BeStrong Daily Devotional posted successfully." : "BeStrong Daily Devotional updated successfully.");
                     await renderBasicsAdmin();
+                    initialiseDevotionalEditor();
                     activateAdminTab("basics");
                 }
                 return;
@@ -1646,6 +1834,54 @@
                 showToast("Release removed.");
             }
         });
+        document.getElementById("biographiesPanel").addEventListener("input", event => {
+            const field = event.target.closest('[data-biography-field="bio"]');
+            if (field) { const counter = field.closest(".biography-admin-details")?.querySelector(".bio-char-count"); if (counter) counter.textContent = `${field.value.length}/500 characters`; }
+        });
+        document.getElementById("biographiesPanel").addEventListener("click", async event => {
+            const add = event.target.closest("#addBiographyArtistBtn");
+            if (add) {
+                collectAdminForm();
+                const id = `artist-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
+                siteData.biographies.push({ id, name: "", age: "", bio: "" });
+                await renderBiographyAdmin();
+                return;
+            }
+            const remove = event.target.closest("[data-delete-biography]");
+            if (remove) {
+                const id = remove.dataset.deleteBiography;
+                const artist = (siteData.biographies || []).find(item => String(item.id) === String(id));
+                if (!window.confirm(`Delete ${artist?.name ? `“${artist.name}”` : "this artist"} from the biography page?`)) return;
+                siteData.biographies = (siteData.biographies || []).filter(item => String(item.id) !== String(id));
+                const key = `bio-artist-${id}`;
+                const cloudPath = siteData.media && siteData.media[key];
+                if (cloudPath) { const { error } = await supabaseClient.storage.from(SITE_MEDIA_BUCKET).remove([cloudPath]); if (error) console.warn("Could not remove artist photo", error); delete siteData.media[key]; }
+                await deleteMedia(key).catch(() => {});
+                await saveSiteData(); await renderBiographyAdmin(); showToast("Artist removed from biographies.");
+            }
+        });
+        document.getElementById("adminForm").addEventListener("click", event => {
+            const button = event.target.closest("[data-editor-command]");
+            if (!button) return;
+            const editor = document.getElementById("devotionalRichEditor"); if (!editor) return;
+            editor.focus(); document.execCommand("styleWithCSS", false, true); document.execCommand(button.dataset.editorCommand, false, null); editor.dispatchEvent(new Event("input", { bubbles: true }));
+        });
+        document.getElementById("adminForm").addEventListener("change", event => {
+            if (event.target.id === "devotionalFontSize") {
+                const editor = document.getElementById("devotionalRichEditor"); if (!editor) return;
+                editor.focus(); document.execCommand("styleWithCSS", false, true); document.execCommand("fontSize", false, event.target.value); editor.dispatchEvent(new Event("input", { bubbles: true }));
+            }
+        });
+        document.getElementById("adminForm").addEventListener("input", event => {
+            if (event.target.id === "devotionalTextColor") {
+                const editor = document.getElementById("devotionalRichEditor"); if (!editor) return;
+                editor.focus(); document.execCommand("styleWithCSS", false, true); document.execCommand("foreColor", false, event.target.value); editor.dispatchEvent(new Event("input", { bubbles: true }));
+            }
+        });
+        document.getElementById("feedbackAdminPanel").addEventListener("click", event => {
+            const button = event.target.closest("[data-delete-news-comment]");
+            if (button) deleteNewsComment(button.dataset.deleteNewsComment, button);
+        });
         document.getElementById("newsGrid").addEventListener("click", event => {
             const likeButton = event.target.closest("[data-news-like]");
             if (likeButton) likeNews(Number(likeButton.dataset.newsLike), likeButton);
@@ -1655,11 +1891,11 @@
             if (form) { event.preventDefault(); submitNewsComment(form); }
         });
         document.getElementById("adminForm").addEventListener("input", event => {
-            if (event.target.matches('[data-site-field="church.devotionalBody"]')) {
-                const count = event.target.value.trim() ? event.target.value.trim().split(/\s+/).length : 0;
+            if (event.target.id === "devotionalRichEditor") {
+                const storage = document.getElementById("devotionalBodyStorage"); if (storage) storage.value = sanitizeDevotionalHtml(event.target.innerHTML);
+                const plain = event.target.innerText.trim(); const count = plain ? plain.split(/\s+/).length : 0;
                 const display = document.getElementById("devotionalWordCount");
                 if (display) { display.textContent = `${count} / 800 words`; display.classList.toggle("over-limit", count > 800); }
-                event.target.setCustomValidity(count > 800 ? "Please keep the devotional within 800 words." : "");
             }
         });
         document.getElementById("exportBackupBtn").addEventListener("click", exportBackup);
